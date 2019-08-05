@@ -1,9 +1,14 @@
 <h1>Landing Page! - Index</h1>
 
 <!-- show all projects -->
+
 <% @projects.each do |project| %>
+
 <div>
+  <!-- Only the name of the project is clickable -->
+<%= link_to project_path(project) do %>
 <%= project.name %>
+<% end %>
 <%= project.description %>
 <% end %>
 </div>
