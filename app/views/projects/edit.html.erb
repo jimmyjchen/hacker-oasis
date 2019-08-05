@@ -1,3 +1,9 @@
 <h1>Edit Project Page!</h1>
 
 <!-- show especific project with form -->
+
+<%= simple_for_for @project do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.submit %>
+<% end -%>
