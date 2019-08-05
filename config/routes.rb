@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :collaboration, only: [:new, :create, :edit, :update]
   end
 
-  root to: 'pages#home'
+  root to: 'projects#index'
+
+  # root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
