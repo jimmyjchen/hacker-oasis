@@ -10,7 +10,6 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.user = current_user
-    authorize @project
     if @project.save
       redirect_to root_path
     else
