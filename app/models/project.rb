@@ -1,4 +1,4 @@
 class Project < ApplicationRecord
   belongs_to :user
-  has_one :team
+  has_one :collaboration
 end
