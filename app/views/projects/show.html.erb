@@ -12,7 +12,7 @@
 <%= link_to 'Edit Project', edit_project_path(@project), class: "btn btn-light" %>
 <% end %>
 <% if policy(@project).destroy? %>
-<%= link_to 'Destroy Project', projects_path, method: 'delete', class: "btn btn-light" %>
+<%= link_to 'Destroy Project', project_path(@project), method: 'delete', class: "btn btn-light" %>
 <% end %>
 
 

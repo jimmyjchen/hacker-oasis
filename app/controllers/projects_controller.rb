@@ -30,8 +30,9 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:id])
+    authorize @project
     @project.destroy
-    redirect_to root_path
+    redirect_to projects_path
   end
 
   def edit
