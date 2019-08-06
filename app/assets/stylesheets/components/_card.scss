@@ -5,7 +5,7 @@
 }
 
 .card-body {
-  height: 104px;
+  height: 36px;
   padding: 8px 0px;
   color: #444444;
   a {
@@ -13,5 +13,14 @@
   }
   a:hover {
     color: $gray;
+  }
+}
+
+.card-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h6 {
+    margin: 0;
   }
 }

@@ -9,10 +9,15 @@
         <div class="card">
           <%= image_tag "index-banner.jpg", alt: "image", class: "card-img-top" %>
           <div class="card-body">
-            <%= link_to project_path(project) do %>
-            <h6><%= project.name %></h6>
-            <% end %>
-            <p><%= project.description %></p>
+            <div class="card-content-header">
+              <%= link_to project_path(project) do %>
+              <h6><%= project.name %></h6>
+              <% end %>
+              <div class="list-avatars">
+                <%= image_tag "ericd.jpg", class: "avatar-small" %>
+                <%= image_tag "nicoleg.jpg", class: "avatar-small" %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
