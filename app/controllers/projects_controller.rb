@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   skip_before_action :authenticate_user!
+  before_action :set_project, only: [:show, :update, :destroy, :edit]
 
   def index
     @projects = policy_scope(Project).order(created_at: :desc)
@@ -22,32 +23,29 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:id])
     @project.update(project_params)
-    authorize @project
     redirect_to root_path
   end
 
   def destroy
-    @project = Project.find(params[:id])
-    authorize @project
     @project.destroy
     redirect_to projects_path
   end
 
   def edit
-    @project = Project.find(params[:id])
-    authorize @project
   end
 
   def show
-    @project = Project.find(params[:id])
-    authorize @project
   end
 
   private
 
   def project_params
     params.require(:project).permit(:name, :description, :cover_photo, :photo1, :photo2, :photo3)
+  end
+
+  def set_project
+    @project = Project.find(params[:id])
+    authorize @project
   end
 end
