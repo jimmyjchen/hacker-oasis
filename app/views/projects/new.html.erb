@@ -3,5 +3,13 @@
 <%= simple_form_for @project do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
+  <%= f.input :cover_photo %>
+  <%= f.input :cover_photo_cache, as: :hidden %>
+  <%= f.input :photo1 %>
+  <%= f.input :photo1_cache, as: :hidden %>
+  <%= f.input :photo2 %>
+  <%= f.input :photo2_cache, as: :hidden %>
+  <%= f.input :photo3 %>
+  <%= f.input :photo3_cache, as: :hidden %>
   <%= f.submit %>
 <% end -%>
