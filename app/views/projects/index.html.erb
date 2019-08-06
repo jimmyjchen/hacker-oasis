@@ -1,4 +1,16 @@
-<div class="submenu"></div>
+<% if user_signed_in? == false %>
+  <div class="banner-index">
+    <div class="banner-text">
+      <h3>Explore other hackers' projects.</h3>
+      <h3 style="margin-bottom: 24px;">Share your own.</h3>
+      <%= link_to "User.new",new_user_registration_path, class: "btn-signup"  %>
+    </div>
+  </div>
+<% end %>
+
+<div class="submenu">
+  <%= link_to "Newest", "#", class: "btn-filter" %>
+</div>
 
 <!-- show all projects -->
 
@@ -15,6 +27,7 @@
               <% end %>
               <div class="list-avatars">
                 <%= image_tag "ericd.jpg", class: "avatar-small" %>
+                <%= image_tag "bingq.jpg", class: "avatar-small" %>
                 <%= image_tag "nicoleg.jpg", class: "avatar-small" %>
               </div>
             </div>
