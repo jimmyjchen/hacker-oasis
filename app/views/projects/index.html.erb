@@ -1,0 +1,17 @@
+<h1>Landing Page! - Index</h1>
+
+<!-- show all projects -->
+
+<% @projects.each do |project| %>
+
+<div>
+  <!-- Only the name of the project is clickable -->
+<%= link_to project_path(project) do %>
+<%= project.name %>
+<% end %>
+<%= project.description %>
+<p><%= project.user.first_name %>  <%= project.user.last_name %></p>
+<% end %>
+</div>
+
+<%= link_to 'Create Project', new_project_path, class: "btn btn-light" %>

@@ -1,0 +1,11 @@
+<h1>Create Project Page!</h1>
+
+<!-- Form to create project -->
+<!-- Still need to add pictures -->
+<!-- cover photo, photo1, photo2, photo3 -->
+
+<%= simple_for_for @project do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.submit %>
+<% end -%>

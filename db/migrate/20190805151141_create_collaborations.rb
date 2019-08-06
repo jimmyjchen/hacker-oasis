@@ -1,6 +1,6 @@
-class CreateTeams < ActiveRecord::Migration[5.2]
+class CreateCollaborations < ActiveRecord::Migration[5.2]
   def change
-    create_table :teams do |t|
+    create_table :collaborations do |t|
       t.references :user, foreign_key: true
       t.references :project, foreign_key: true
 
