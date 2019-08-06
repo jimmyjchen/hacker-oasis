@@ -1,21 +1,43 @@
-<h1>Landing Page! - Index</h1>
+<% if user_signed_in? == false %>
+  <div class="banner-index">
+    <div class="banner-text">
+      <h3>Explore other hackers' projects.</h3>
+      <h3 style="margin-bottom: 24px;">Share your own.</h3>
+      <%= link_to "User.new",new_user_registration_path, class: "btn-signup"  %>
+    </div>
+  </div>
+<% end %>
+
+<div class="submenu">
+  <%= link_to "Newest", "#", class: "btn-filter" %>
+</div>
 
 <!-- show all projects -->
 
-<% @projects.each do |project| %>
-
-<div>
   <!-- Only the name of the project is clickable -->
 
 <!-- cl_image_tag(project.cover_photo, :width => 200, :height => 150, :crop => :fill) -->
 
-<%= link_to project_path(project) do %>
-<%= project.name %>
-<% end %>
-<%= project.description %>
-<p><%= project.user.first_name %>  <%= project.user.last_name %></p>
-<% end %>
+<div class="container">
+  <div class="row">
+    <% @projects.each do |project| %>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="card">
+          <%= image_tag "index-banner.jpg", alt: "image", class: "card-img-top" %>
+          <div class="card-body">
+            <div class="card-content-header">
+              <%= link_to project_path(project) do %>
+              <h6><%= project.name %></h6>
+              <% end %>
+              <div class="list-avatars">
+                <%= image_tag "ericd.jpg", class: "avatar-small" %>
+                <%= image_tag "bingq.jpg", class: "avatar-small" %>
+                <%= image_tag "nicoleg.jpg", class: "avatar-small" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to 'Create Project', new_project_path, class: "btn btn-light" %>
-

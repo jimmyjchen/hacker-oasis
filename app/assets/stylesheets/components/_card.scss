@@ -1,0 +1,26 @@
+.card {
+  background-size: cover;
+  padding: 8px;
+  margin: 16px 0px;
+}
+
+.card-body {
+  height: 36px;
+  padding: 8px 0px;
+  color: #444444;
+  a {
+    color: #444444;
+  }
+  a:hover {
+    color: $gray;
+  }
+}
+
+.card-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h6 {
+    margin: 0;
+  }
+}
