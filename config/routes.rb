@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-
-  get 'collaborations/index'
-  get 'collaborations/show'
-  get 'collaborations/create'
-  get 'collaborations/profile'
   devise_for :users
   resources :projects do
     resources :collaboration, only: [:new, :create, :edit, :update, :profile]
