@@ -220,7 +220,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootsnap
   carrierwave
-  cloudinary
+  cloudinary (~> 1.9.1)
   devise
   dotenv-rails
   faker

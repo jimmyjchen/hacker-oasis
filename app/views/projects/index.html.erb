@@ -6,6 +6,7 @@
 
 <div>
   <!-- Only the name of the project is clickable -->
+<%= cl_image_tag(project.cover_photo, :width => 200, :height => 150, :crop => :fill) %>
 <%= link_to project_path(project) do %>
 <%= project.name %>
 <% end %>
@@ -15,3 +16,4 @@
 </div>
 
 <%= link_to 'Create Project', new_project_path, class: "btn btn-light" %>
+
