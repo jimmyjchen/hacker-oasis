@@ -16,7 +16,7 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.2'
 gem 'cloudinary', '~> 1.9.1'
 
 group :development do

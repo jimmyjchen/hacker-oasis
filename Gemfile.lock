@@ -219,7 +219,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bootsnap
-  carrierwave
+  carrierwave (~> 1.2)
   cloudinary (~> 1.9.1)
   devise
   dotenv-rails
