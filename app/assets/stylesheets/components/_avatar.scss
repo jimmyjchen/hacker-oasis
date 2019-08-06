@@ -1,9 +1,15 @@
-.avatar {
-  width: 40px;
+.avatar-small {
+  width: 24px;
   border-radius: 50%;
 }
+
+.avatar {
+  width: 36px;
+  border-radius: 50%;
+}
+
 .avatar-large {
-  width: 56px;
+  width: 48px;
   border-radius: 50%;
 }
 .avatar-bordered {
