@@ -1,0 +1,15 @@
+<h1>Profile Page</h1>
+
+<p>First Name: <%= @user.first_name %></p>
+<p>Last Name: <%= @user.last_name %></p>
+<p>User's Id: <%= @user.id %></p>
+<p>User's Description: <%= @user.description %></p>
+<div>
+
+<% @user.projects.each do |p| %>
+
+<div>
+  <%= p.name %>
+  <%= p.description %>
+  <% end %>
+</div>
