@@ -12,6 +12,12 @@
   <%= link_to "Newest", "#", class: "btn-filter" %>
 </div>
 
+<!-- 5 MOST USED TAGS FOR TOOL BAR -->
+<p>Popular Content</p>
+<% ActsAsTaggableOn::Tag.most_used(5).each do |t| %>
+<%= t.name %>
+<% end %>
+
 <!-- show all projects -->
 
   <!-- Only the name of the project is clickable -->
