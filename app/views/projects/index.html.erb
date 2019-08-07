@@ -24,7 +24,7 @@
       <div class="col-lg-4 col-md-6 col-sm-12">
         <%= link_to project_path(project) do %>
           <div class="card">
-            <%= image_tag "index-banner.jpg", alt: "image", class: "card-img-top" %>
+            <%= cl_image_tag project.cover_photo, crop: :fill, alt: "image", class: "card-img-top" %>
             <div class="card-body">
               <div class="card-content-header">
                 <h6><%= project.name %></h6>
