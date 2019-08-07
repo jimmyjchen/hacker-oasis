@@ -19,10 +19,9 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <% if policy(@project).destroy? %>
 <%= link_to 'Destroy Project', project_path(@project), method: 'delete', class: "btn btn-light" %>
 <% end %>
-<%= link_to 'Comment', new_project_comment_path(@project), class: "btn btn-light" %>
 
 <!-- Number of comments in this project -->
-<p><%= @project.comments.size %></p>
+<p>Number of comments: <%= @project.comments.size %></p>
 
 <!-- All the comements -->
 <% @project.comments.each do |c| %>
