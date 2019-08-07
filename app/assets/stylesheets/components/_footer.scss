@@ -1,0 +1,35 @@
+.footer {
+  background-color: #fff;
+  border-top: 1px solid $light-gray;
+  padding: 16px;
+  position: absolute;
+  left: 0;
+  height: 120px;
+  bottom: -136px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.footer .list-icons {
+  text-align: center;
+  padding: 10px;
+}
+
+.footer .list-icons i {
+  color: rgb(100,100,100);
+  font-size: 20px;
+  padding: 5px;
+  opacity: 0.6;
+}
+
+.footer .list-icons i:hover {
+  opacity: 1;
+}
+
+.footer p {
+  margin: 0;
+  padding-bottom: 30px;
+  text-align: center;
+  color: #484848;
+  opacity: 0.6;
+}

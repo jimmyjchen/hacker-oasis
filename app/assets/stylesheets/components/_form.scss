@@ -1,0 +1,26 @@
+.form-add-project {
+  justify-content: center;
+  margin: 32px 0px;
+  color: $gray;
+}
+
+.form-add-project label {
+  color: $off-black;
+}
+
+.form-box {
+  padding: 24px;
+  border: 1px solid $red;
+  border-radius: 8px;
+}
+
+.log-in-alt {
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: $red;
+  }
+  a:hover {
+    opacity: 0.8;
+  }
+}
