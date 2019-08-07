@@ -2,9 +2,21 @@
 @import "alert";
 @import "avatar";
 @import "navbar";
+@import "submenu";
 @import "button";
 @import "card";
 @import "banner";
+@import "footer";
+@import "form";
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-color: $off-white;
+}
 
 p {
   font-size: 12px;

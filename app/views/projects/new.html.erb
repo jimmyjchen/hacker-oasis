@@ -1,15 +1,26 @@
-<h1>Projects#new</h1>
+<div class="submenu-tall" style="justify-content: center">
+  <h4 class="sub-header">What are you working on?</h4>
+</div>
 
-<%= simple_form_for @project do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :cover_photo %>
-  <%= f.input :cover_photo_cache, as: :hidden %>
-  <%= f.input :photo1 %>
-  <%= f.input :photo1_cache, as: :hidden %>
-  <%= f.input :photo2 %>
-  <%= f.input :photo2_cache, as: :hidden %>
-  <%= f.input :photo3 %>
-  <%= f.input :photo3_cache, as: :hidden %>
-  <%= f.submit %>
-<% end -%>
+<div class="container">
+  <div class="row form-add-project">
+    <div class="col-8">
+      <div class="form-box">
+        <%= simple_form_for @project do |f| %>
+          <%= f.input :name, label: "Project Name" %>
+          <%= f.input :description, label: "Short description of your project" %>
+          <%= f.input :cover_photo, label: "Screenshot of your landing page" %>
+          <%= f.input :cover_photo_cache, as: :hidden %>
+          <%= f.input :photo1, label: "Additional screenshot 1" %>
+          <%= f.input :photo1_cache, as: :hidden %>
+          <%= f.input :photo2, label: "Additional screenshot 2" %>
+          <%= f.input :photo2_cache, as: :hidden %>
+          <%= f.input :photo3, label: "Additional screenshot 3" %>
+          <%= f.input :photo3_cache, as: :hidden %>
+          <%= f.button :submit, "Project.new", class: "btn-signup" %>
+          <%= f.button :button, "Reset", type: "reset", class: "btn-reset" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
