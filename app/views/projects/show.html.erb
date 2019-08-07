@@ -20,6 +20,11 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <%= link_to 'Destroy Project', project_path(@project), method: 'delete', class: "btn btn-light" %>
 <% end %>
 
+<!-- PROJECT TAGS -->
+<h3>Project Tags</h3>
+<% @project.tags.each do |t| %>
+<p><%= t.name %></p>
+<% end %>
 
 <!-- COMMENTS -->
 <!-- Number of comments in this project -->
