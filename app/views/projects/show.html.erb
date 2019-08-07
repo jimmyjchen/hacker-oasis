@@ -19,6 +19,7 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <% if policy(@project).destroy? %>
 <%= link_to 'Destroy Project', project_path(@project), method: 'delete', class: "btn btn-light" %>
 <% end %>
+<%= link_to 'Comment', new_project_comment_path(@project), class: "btn btn-light" %>
 
 
 

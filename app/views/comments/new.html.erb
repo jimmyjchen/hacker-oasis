@@ -1,2 +1,6 @@
-<h1>Comments#new</h1>
-<p>Find me in app/views/comments/new.html.erb</p>
+<h1>Comments</h1>
+
+<%= simple_form_for [@project, @comment] do |f| %>
+  <%= f.input :content %>
+  <%= f.submit %>
+<% end -%>
