@@ -21,9 +21,12 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <% end %>
 <%= link_to 'Comment', new_project_comment_path(@project), class: "btn btn-light" %>
 
+<!-- Number of comments in this project -->
+<p><%= @project.comments.size %></p>
+
 <!-- All the comements -->
 <% @project.comments.each do |c| %>
-<p><%= c.user.first_name %></p>
+<p><%= c.user.first_name %> <%= c.user.last_name %></p>
 <p><%= c.content %></p>
 <% end %>
 
