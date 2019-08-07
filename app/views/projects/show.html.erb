@@ -21,5 +21,19 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <% end %>
 
 
+<!-- COMMENTS -->
+<!-- Number of comments in this project -->
+<p>Number of comments: <%= @project.comments.size %></p>
 
+<!-- All the comements -->
+<% @project.comments.each do |c| %>
+<p><%= c.user.username %></p>
+<p><%= c.content %></p>
+<% end %>
 
+<!-- Adding a new comment -->
+<%= simple_form_for [@project, @comment] do |f| %>
+  <%= f.input :content %>
+  <%= f.submit %>
+<% end -%>
+<!-- END OF COMMENTS -->

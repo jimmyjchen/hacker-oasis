@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :projects do
-    resources :collaboration, only: [:new, :create]
-    resources :comment, only: [:new, :create]
+    resources :collaborations, only: [:new, :create]
+    resources :comments, only: [:new, :create]
   end
 
   resources :users, only: :show
