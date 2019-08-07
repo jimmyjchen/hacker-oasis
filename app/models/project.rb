@@ -5,4 +5,5 @@ class Project < ApplicationRecord
   mount_uploader :photo3, PhotoUploader
   belongs_to :user
   has_one :collaboration
+  has_many :comments
 end

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, PhotoUploader
   has_many :projects
   has_many :collaborations
+  has_many :comments
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
