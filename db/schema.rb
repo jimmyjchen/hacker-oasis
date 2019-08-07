@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(version: 2019_08_07_074918) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_teams_on_project_id"
+    t.index ["user_id"], name: "index_teams_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -96,4 +105,6 @@ ActiveRecord::Schema.define(version: 2019_08_07_074918) do
   add_foreign_key "comments", "projects"
   add_foreign_key "comments", "users"
   add_foreign_key "projects", "users"
+  add_foreign_key "teams", "projects"
+  add_foreign_key "teams", "users"
 end
