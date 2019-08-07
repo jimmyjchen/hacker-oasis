@@ -1,4 +1,100 @@
-<h1>Project Show Page</h1>
+<div class="body-container">
+  <div class="submenu-tall" style="justify-content: center">
+    <h4 class="sub-header">Help <%= current_user.username %>'s project become better</h4>
+  </div>
+
+  <div class="container">
+    <div class="row" style="justify-content: center;">
+      <div class="col col-sm-12 col-lg-8">
+        <div class="submenu-show">
+          <%= cl_image_tag current_user.avatar, class: "avatar-large" %>
+          <div class="project-details">
+            <h4><%= @project.name %></h4>
+            <p>by <%= link_to @project.user.username, user_path(current_user) %>
+            </p>
+          </div>
+          <a href="#" class="btn-social" style="margin-right: 8px;">Follow</a>
+          <a href="#" class="btn-social"><i class="fas fa-heart"></i> Like</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="container">
+    <div class="row" style="justify-content: center;">
+      <div class="col col-sm-12 col-lg-8">
+        <%= cl_image_tag @project.photo1, class: "project-photo" %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="container">
+  <div class="row" style="justify-content: center;">
+    <div class="col col-sm-12 col-lg-8">
+
+      <div class="container-description">
+
+        <div class="col-sm-12 col-md-8" style="padding: 0 16px 0 0;">
+          <div class="box-description">
+            <div class="icons-project-crud">
+              <% if policy(@project).edit? %>
+                <%= link_to edit_project_path(@project) do %>
+                  <i class="fas fa-edit icon" style="padding-right: 4px;"></i>
+                <% end %>
+              <% end %>
+              <% if policy(@project).destroy? %>
+                <%= link_to project_path(@project), method: 'delete', data: { confirm: "Are you sure?" } do %>
+                  <i class="far fa-trash-alt icon"></i>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="text-description">
+              <%= @project.description %>
+            </div>
+          </div>
+
+          <div class="box-comments">
+            <h6>
+              Number of comments: <%= @project.comments.size %>
+            </h6>
+            <% @project.comments.each do |c| %>
+            <p><%= c.user.username %></p>
+            <p><%= c.content %></p>
+            <% end %>
+
+            <%= simple_form_for [@project, @comment] do |f| %>
+              <%= f.input :content, label: "Your comment:" %>
+              <%= f.submit %>
+            <% end %>
+          </div>
+
+        </div>
+
+        <div class="col-sm-12 col-md-4" style="padding: 0;">
+          <div class="box-collaborators">
+            <i class="fas fa-users"></i>
+            <div>
+              <%= image_tag "ericd.jpg", class: "avatar" %>
+              <%= image_tag "bingq.jpg", class: "avatar" %>
+              <%= image_tag "nicoleg.jpg", class: "avatar" %>
+            </div>
+          </div>
+
+          <%= link_to "Link to Github repository", "#"  %>
+          <%= link_to "Contact", "#"  %>
+
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
 
 <!-- All informations about one project -->
 <!-- Still need to add pictures -->
@@ -9,16 +105,6 @@ cl_image_tag(@project.photo1, :width => 200, :height => 150, :crop => :fill)
 cl_image_tag(@project.photo2, :width => 200, :height => 150, :crop => :fill)
 cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 
-<%= @project.name %>
-<%= @project.description %>
-<p><%= @project.user.first_name %>
-
-<% if policy(@project).edit? %>
-<%= link_to 'Edit Project', edit_project_path(@project), class: "btn btn-light" %>
-<% end %>
-<% if policy(@project).destroy? %>
-<%= link_to 'Destroy Project', project_path(@project), method: 'delete', class: "btn btn-light" %>
-<% end %>
 
 <!-- PROJECT TAGS -->
 <h3>Project Tags</h3>
@@ -26,19 +112,3 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <p><%= t.name %></p>
 <% end %>
 
-<!-- COMMENTS -->
-<!-- Number of comments in this project -->
-<p>Number of comments: <%= @project.comments.size %></p>
-
-<!-- All the comements -->
-<% @project.comments.each do |c| %>
-<p><%= c.user.username %></p>
-<p><%= c.content %></p>
-<% end %>
-
-<!-- Adding a new comment -->
-<%= simple_form_for [@project, @comment] do |f| %>
-  <%= f.input :content %>
-  <%= f.submit %>
-<% end -%>
-<!-- END OF COMMENTS -->

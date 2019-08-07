@@ -1,0 +1,34 @@
+.box-description {
+  padding: 16px 0px;
+  background-color: $off-white;
+  border-bottom: 1px solid $light-gray;
+  i {
+    color: $dark-gray;
+    opacity: 0.8;
+  }
+  i:hover {
+    opacity: 1;
+  }
+}
+
+.icons-project-crud {
+  display: flex;
+}
+
+.box-comments {
+  h6 {
+    padding: 16px 0px;
+  }
+}
+
+.box-collaborators {
+  display: flex;
+  padding: 16px 0;
+  align-items: center;
+  i {
+    margin: 0;
+    color: $dark-gray;
+    opacity: 0.8;
+    padding-right: 16px;
+  }
+}
