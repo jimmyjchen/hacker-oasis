@@ -1,4 +1,4 @@
 class Collaboration < ApplicationRecord
-  has_many :users
-  has_one :project
+  belongs_to :user
+  belongs_to :project
 end
