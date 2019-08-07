@@ -21,12 +21,13 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <% end %>
 <%= link_to 'Comment', new_project_comment_path(@project), class: "btn btn-light" %>
 
-
-
+<!-- All the comements -->
 <% @project.comments.each do |c| %>
+<p><%= c.user.first_name %></p>
 <p><%= c.content %></p>
 <% end %>
 
+<!-- Adding a new comment -->
 <%= simple_form_for [@project, @comment] do |f| %>
   <%= f.input :content %>
   <%= f.submit %>
