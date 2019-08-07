@@ -20,12 +20,14 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <%= link_to 'Destroy Project', project_path(@project), method: 'delete', class: "btn btn-light" %>
 <% end %>
 
+
+<!-- COMMENTS -->
 <!-- Number of comments in this project -->
 <p>Number of comments: <%= @project.comments.size %></p>
 
 <!-- All the comements -->
 <% @project.comments.each do |c| %>
-<p><%= c.user.first_name %> <%= c.user.last_name %></p>
+<p><%= c.user.username %></p>
 <p><%= c.content %></p>
 <% end %>
 
@@ -34,4 +36,4 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
   <%= f.input :content %>
   <%= f.submit %>
 <% end -%>
-
+<!-- END OF COMMENTS -->
