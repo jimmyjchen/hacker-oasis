@@ -9,7 +9,7 @@ class CollaborationsController < ApplicationController
   end
 
   def create
-    @collaboration = collaboration.new(params_collaboration)
+    @collaboration = Collaboration.new(params_collaboration)
     @project = Project.find(params[:project_id])
     @collaboration.user = current_user
     @collaboration.project = @project
