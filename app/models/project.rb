@@ -6,4 +6,6 @@ class Project < ApplicationRecord
   belongs_to :user
   has_many :collaborations
   has_many :comments
+
+  validates :name, :description, :cover_photo, :photo1, presence: true
 end

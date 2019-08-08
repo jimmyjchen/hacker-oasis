@@ -22,7 +22,10 @@ class CollaborationsController < ApplicationController
     if @collaboration.save
       redirect_to project_path(@project)
     else
-      render 'new'
+      # render 'new'
+      # flash.now[:alert] = 'Alert message!'
+      redirect_to project_path(@project), alert: 'This user is already in your project!'
+
     end
   end
 
