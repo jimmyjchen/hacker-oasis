@@ -25,10 +25,12 @@
                   <div class="card-body">
                     <div class="card-content-header">
                       <h6><%= project.name %></h6>
-                      <div class="list-avatars">
-                        <%= image_tag "ericd.jpg", class: "avatar-small" %>
-                        <%= image_tag "bingq.jpg", class: "avatar-small" %>
-                        <%= image_tag "nicoleg.jpg", class: "avatar-small" %>
+                      <div class="avatar-list">
+                        <% project.collaborations.map do |collaboration| %>
+                          <%= link_to user_path(collaboration.user) do %>
+                            <img src="<%= collaboration.user.avatar %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
+                          <% end %>
+                        <% end %>
                       </div>
                     </div>
                   </div>
