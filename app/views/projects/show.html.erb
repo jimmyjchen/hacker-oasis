@@ -1,16 +1,16 @@
 <div class="body-container">
   <div class="submenu-tall" style="justify-content: center">
-    <h4 class="sub-header">Help <%= current_user.username %>'s project become better</h4>
+    <h4 class="sub-header">Help <%= @project.user.username %>'s project become better</h4>
   </div>
 
   <div class="container">
     <div class="row" style="justify-content: center;">
       <div class="col col-sm-12 col-lg-8">
         <div class="submenu-show">
-          <%= cl_image_tag current_user.avatar, class: "avatar-large" %>
+          <%= cl_image_tag @project.user.avatar, class: "avatar-large" %>
           <div class="project-details">
             <h4><%= @project.name %></h4>
-            <p>by <%= link_to @project.user.username, user_path(current_user) %>
+            <p>by <%= link_to @project.user.username, user_path(@project.user) %>
             </p>
           </div>
           <a href="#" class="btn-social" style="margin-right: 8px;">Follow</a>
@@ -58,18 +58,23 @@
           </div>
 
           <div class="box-comments">
+            <%= simple_form_for [@project, @comment] do |f| %>
+              <%= f.input :content, label: "Leave a comment:" %>
+              <%= f.submit %>
+            <% end %>
             <h6>
               Number of comments: <%= @project.comments.size %>
             </h6>
-            <% @project.comments.each do |c| %>
-            <p><%= c.user.username %></p>
-            <p><%= c.content %></p>
+            <% @project.comments.order(id: :desc).each do |c| %>
+              <div class="comment-header">
+                <div><img src="<%= c.user.avatar.url %>" class="avatar-small"></div>
+                <p><%= link_to c.user.username, user_path(c.user) %></p>
+              </div>
+              <div class="comment-content">
+                <p><%= c.content %></p>
+              </div>
             <% end %>
 
-            <%= simple_form_for [@project, @comment] do |f| %>
-              <%= f.input :content, label: "Your comment:" %>
-              <%= f.submit %>
-            <% end %>
           </div>
 
         </div>

@@ -1,0 +1,15 @@
+.comment-header {
+  display: flex;
+  align-items: center;
+  padding-top: 16px;
+
+  p {
+    margin: 0;
+    padding: 4px;
+  }
+}
+
+.comment-content {
+  padding-left: 4px;
+  border-bottom: 1px solid $light-gray;
+}
