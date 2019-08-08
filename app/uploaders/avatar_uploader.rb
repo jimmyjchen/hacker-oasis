@@ -32,7 +32,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :bright_face do
-    cloudinary_transformation effect: "brightness:30", radius: 20,
+    cloudinary_transformation effect: "brightness:5", radius: 20,
       width: 150, height: 150, crop: :thumb, gravity: :face
   end
 
