@@ -69,18 +69,6 @@
         <div class="row" style="width: 100%;">
           <div class="col-md-8">
             <div class="box-description">
-              <div class="icons-project-crud">
-                <% if policy(@project).edit? %>
-                  <%= link_to edit_project_path(@project) do %>
-                    <i class="fas fa-edit icon" style="padding-right: 4px;"></i>
-                  <% end %>
-                <% end %>
-                <% if policy(@project).destroy? %>
-                  <%= link_to project_path(@project), method: 'delete', data: { confirm: "Are you sure?" } do %>
-                    <i class="far fa-trash-alt icon"></i>
-                  <% end %>
-                <% end %>
-              </div>
               <div class="text-description">
                 <%= @project.description %>
               </div>
@@ -96,7 +84,7 @@
               </h6>
               <% @project.comments.order(id: :desc).each do |c| %>
                 <div class="comment-header">
-                  <div><img src="<%= c.user.avatar.url %>" class="avatar-small"></div>
+                  <img src="<%= c.user.avatar.url %>" class="avatar-small">
                   <p><%= link_to c.user.username, user_path(c.user) %></p>
                 </div>
                 <div class="comment-content">
@@ -108,6 +96,22 @@
           </div>
 
           <div class="col-md-4">
+            <div class="icons-project-crud">
+              <% if policy(@project).edit? %>
+                <h6>Project Management</h6>
+                <%= link_to edit_project_path(@project) do %>
+                    <i class="fas fa-edit icon"></i>
+                <% end %>
+              <% end %>
+              <% if policy(@project).destroy? %>
+                <%= link_to project_path(@project), method: 'delete', data: { confirm: "Are you sure?" } do %>
+                    <i class="far fa-trash-alt icon"></i>
+                <% end %>
+              <% end %>
+            </div>
+
+            <h6 style="margin:0;">Project Collaborators</h6>
+
             <div class="box-collaborators">
               <i class="fas fa-users"></i>
               <div class="avatar-list">
