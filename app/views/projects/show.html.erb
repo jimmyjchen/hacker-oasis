@@ -42,12 +42,17 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <!-- END OF COMMENTS -->
 
 <!-- COLLABORATIONS ----------->
+<% if policy(@project).update? %>
 <%= simple_form_for [@project, @collaboration] do |f| %>
-
   <%= f.input :user, collection: @users %>
   <%= f.submit %>
-<% end -%>
+<% end %>
+<% end %>
 
+<% @project.collaborations.map do |collaboration| %>
+<% a = collaboration.user.first_name %>
+<p> printing:<%= a %></p>
+<% end %>
 
 
 

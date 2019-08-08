@@ -36,8 +36,10 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:id])
+    # raise
     @comment = Comment.new
-    @collaboration = @project.collaborations.new(user_id: current_user.id)
+    @collaboration = Collaboration.new
     # @users = User.all.order(username: :asc)
     @users = User.all.order(username: :asc).map{|user| user.email}
     # puts @users
