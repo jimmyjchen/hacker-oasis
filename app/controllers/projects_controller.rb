@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_project, only: [:show, :update, :destroy, :edit]
 
   def index
@@ -36,7 +36,13 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:id])
+    # raise
     @comment = Comment.new
+    @collaboration = Collaboration.new
+    # @users = User.all.order(username: :asc)
+    @users = User.all.order(username: :asc).map{|user| user.email}
+    # puts @users
   end
 
   private
