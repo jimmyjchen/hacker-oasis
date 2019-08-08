@@ -17,6 +17,7 @@
           <%= f.input :photo2_cache, as: :hidden %>
           <%= f.input :photo3, label: "Additional screenshot 3" %>
           <%= f.input :photo3_cache, as: :hidden %>
+          <%= f.input :tag_list, as: :check_boxes, collection: ["blockchain", "bootstrap", "c++", "c#", "css", "html" "java", "javascript", "machine learning", "react", "ruby", "ruby on rails", "wechat"] %>
           <%= f.button :submit, "Project.new", class: "btn-signup" %>
           <%= f.button :button, "Reset", type: "reset", class: "btn-reset" %>
         <% end %>

@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project.update(project_params)
-    redirect_to root_path
+    redirect_to project_path(@project)
   end
 
   def destroy
@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description, :cover_photo, :photo1, :photo2, :photo3)
+    params.require(:project).permit(:name, :description, :cover_photo, :photo1, :photo2, :photo3, :photo_cache, tag_list: [])
   end
 
   def set_project
