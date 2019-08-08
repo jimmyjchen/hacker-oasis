@@ -31,7 +31,6 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <% @project.comments.each do |c| %>
 <p><%= c.user.username %></p>
 <p><%= c.content %></p>
- <button><%= link_to "+", "/#"  %></button>
 <% end %>
 
 <!-- Adding a new comment -->
@@ -41,19 +40,4 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <% end -%>
 <!-- END OF COMMENTS -->
 
-<!-- COLLABORATIONS ----------->
-<% if policy(@project).update? %>
-<%= simple_form_for [@project, @collaboration] do |f| %>
-  <%= f.input :user, collection: @users %>
-  <%= f.submit %>
-<% end %>
-<% end %>
 
-<% @project.collaborations.map do |collaboration| %>
-<% a = collaboration.user.first_name %>
-<p> printing:<%= a %></p>
-<% end %>
-
-
-
-<!-- End of collaboration ----->
