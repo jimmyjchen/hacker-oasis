@@ -14,6 +14,8 @@
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%= render 'shared/footer' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js' %>
+    <%= javascript_include_tag 'https://cdn.rawgit.com/sniperwolf/taggingJS/master/tagging.min.js' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>

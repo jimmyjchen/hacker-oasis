@@ -8,16 +8,18 @@
       <div class="form-box">
         <%= simple_form_for @project do |f| %>
           <%= f.input :name, label: "Project Name" %>
-          <%= f.input :description, label: "Short description of your project" %>
-          <%= f.input :cover_photo, label: "Screenshot of your landing page" %>
+          <%= f.input :description, label: "Short Project Description" %>
+          <%= f.input :cover_photo, label: "Landing Page Screenshot" %>
           <%= f.input :cover_photo_cache, as: :hidden %>
-          <%= f.input :photo1, label: "Additional screenshot 1" %>
+          <%= f.input :photo1, label: "Additional Screenshot 1" %>
           <%= f.input :photo1_cache, as: :hidden %>
-          <%= f.input :photo2, label: "Additional screenshot 2" %>
+          <%= f.input :photo2, label: "Additional Screenshot 2" %>
           <%= f.input :photo2_cache, as: :hidden %>
-          <%= f.input :photo3, label: "Additional screenshot 3" %>
+          <%= f.input :photo3, label: "Additional Screenshot 3" %>
           <%= f.input :photo3_cache, as: :hidden %>
-          <%= f.input :tag_list, as: :check_boxes, collection: ["blockchain", "bootstrap", "c++", "c#", "css", "html" "java", "javascript", "machine learning", "react", "ruby", "ruby on rails", "wechat"] %>
+          <%= f.label :name, "Project Categories (ex. blockchain, javascript, ruby, wechat, etc.)" %>
+          <div data-tags-input-name="project[tag_list]" id="tag"></div>
+          <p>Press enter, comma or spacebar to create a new tag; backspace or delete to remove.</p>
           <%= f.button :submit, "Project.new", class: "btn-signup" %>
           <%= f.button :button, "Reset", type: "reset", class: "btn-reset" %>
         <% end %>
@@ -25,3 +27,4 @@
     </div>
   </div>
 </div>
+
