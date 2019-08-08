@@ -32,3 +32,49 @@
     padding-right: 16px;
   }
 }
+
+.box-user-profile {
+  margin: 16px 0;
+  padding-top: 16px;
+  background-color: #fff;
+  height: 100vh;
+  border-radius: 8px;
+  text-align: center;
+
+  .avatar-large {
+    margin-bottom: 8px;
+  }
+
+  a {
+    text-decoration: none;
+    color: $off-black;
+  }
+
+  .location {
+    font-size: 14px;
+    color: $gray;
+    padding-bottom: 16px;
+    border-bottom: 1px solid $light-gray;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
