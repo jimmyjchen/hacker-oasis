@@ -37,6 +37,8 @@ class ProjectsController < ApplicationController
 
   def show
     @comment = Comment.new
+    @collaboration = @project.collaborations.new(user_id:current_user.id)
+
   end
 
   private

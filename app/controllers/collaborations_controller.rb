@@ -12,10 +12,10 @@ class CollaborationsController < ApplicationController
     @collaboration = Collaboration.new(params_collaboration)
     @project = Project.find(params[:project_id])
     @collaboration.user = current_user
-    @collaboration.project = @project
-    # authorize @collaboration
+    # @collaboration.project = @project
+    authorize @collaboration
     if @collaboration.save
-      redirect_to 'root_path'
+      redirect_to project_path(@project)
     else
       render 'new'
     end
@@ -28,6 +28,6 @@ class CollaborationsController < ApplicationController
   private
 
   def params_collaboration
-     params.require(:collaboration).permit(:project_id, :user_id)
+     params.require(:collaboration).permit(:project_id, :user_id, :active)
   end
 end

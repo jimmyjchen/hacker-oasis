@@ -38,7 +38,17 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <% end -%>
 <!-- END OF COMMENTS -->
 
-
 <!-- COLLABORATIONS ----------->
-<%= link_to 'Create Collaboration', project_collaborations_path(@project), method: 'create', class: "btn btn-light" %>
+
+<%= simple_form_for [@project, @collaboration] do |f| %>
+<%= f.input :user_id %>
+<%= f.input :project_id %>
+<%= f.submit %>
+<% end -%>
+
+<% @project.collaborations.each do |collaboration| %>
+<%= collaboration.user.email %>
+<% end %>
+
+
 <!-- End of collaboration ----->
