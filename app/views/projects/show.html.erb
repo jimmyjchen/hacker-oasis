@@ -110,12 +110,20 @@
           <div class="col-md-4">
             <div class="box-collaborators">
               <i class="fas fa-users"></i>
-              <div>
-                <%= image_tag "ericd.jpg", class: "avatar" %>
-                <%= image_tag "bingq.jpg", class: "avatar" %>
-                <%= image_tag "nicoleg.jpg", class: "avatar" %>
+              <div class="avatar-list">
+                <% @project.collaborations.map do |collaboration| %>
+                  <%= link_to user_path(collaboration.user) do %>
+                    <img src="<%= collaboration.user.avatar %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
+                  <% end %>
+                <% end %>
               </div>
             </div>
+            <% if policy(@project).update? %>
+              <%= simple_form_for [@project, @collaboration] do |f| %>
+                <%= f.input :user, collection: @users %>
+                <%= f.submit %>
+              <% end %>
+            <% end %>
 
             <%= link_to "Link to Github repository", "#"  %>
             <%= link_to "Contact", "#"  %>
@@ -129,6 +137,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- All informations about one project -->
 <!-- Still need to add pictures -->
