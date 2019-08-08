@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
     @project.user = current_user
     authorize @project
     if @project.save
+      Collaboration.create(user_id: current_user.id, project_id: @project.id)
       redirect_to root_path
     else
       render 'new'
