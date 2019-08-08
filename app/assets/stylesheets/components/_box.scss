@@ -1,6 +1,5 @@
 .box-description {
   padding: 16px 0px;
-  background-color: $off-white;
   border-bottom: 1px solid $light-gray;
   i {
     color: $dark-gray;
@@ -12,7 +11,15 @@
 }
 
 .icons-project-crud {
-  display: flex;
+  padding: 16px 0;
+  i {
+    padding-right: 2px;
+    color: $dark-gray;
+    opacity: 0.8;
+  }
+  i:hover {
+    opacity: 1;
+  }
 }
 
 .box-comments {
@@ -24,12 +31,58 @@
 
 .box-collaborators {
   display: flex;
-  padding: 16px 0;
+  padding: 8px 0;
   align-items: center;
   i {
     margin: 0;
     color: $dark-gray;
     opacity: 0.8;
-    padding-right: 16px;
+    padding-right: 8px;
   }
 }
+
+.box-user-profile {
+  margin: 16px 0;
+  padding-top: 16px;
+  background-color: #fff;
+  height: 100vh;
+  border-radius: 8px;
+  text-align: center;
+
+  .avatar-large {
+    margin-bottom: 8px;
+  }
+
+  a {
+    text-decoration: none;
+    color: $off-black;
+  }
+
+  .location {
+    font-size: 14px;
+    color: $gray;
+    padding-bottom: 16px;
+    border-bottom: 1px solid $light-gray;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

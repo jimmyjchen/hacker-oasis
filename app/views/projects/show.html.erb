@@ -24,7 +24,7 @@
 
   <div class="container">
     <div class="row" style="justify-content: center;">
-      <div class="col col-sm-12 col-lg-8">
+      <div class="col-lg-8">
         <div id="carouselExampleIndicators" class="carousel slide flex-shrink-1" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -62,72 +62,85 @@
 
 <div class="container">
   <div class="row" style="justify-content: center;">
-    <div class="col col-sm-12 col-lg-8">
+    <div class="col-lg-8">
 
       <div class="container-description">
+        <div class="row" style="width: 100%;">
+          <div class="col-md-8">
+            <div class="box-description">
+              <div class="text-description">
+                <%= @project.description %>
+              </div>
+            </div>
 
-        <div class="col-sm-12 col-md-8" style="padding: 0 16px 0 0;">
-          <div class="box-description">
+            <div class="box-comments">
+              <%= simple_form_for [@project, @comment] do |f| %>
+                <%= f.input :content, label: "Leave a comment:" %>
+                <%= f.submit %>
+              <% end %>
+              <h6>
+                Number of comments: <%= @project.comments.size %>
+              </h6>
+              <% @project.comments.order(id: :desc).each do |c| %>
+                <div class="comment-header">
+                  <img src="<%= c.user.avatar.url %>" class="avatar-small">
+                  <p><%= link_to c.user.username, user_path(c.user) %></p>
+                </div>
+                <div class="comment-content">
+                  <p><%= c.content %></p>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+
+          <div class="col-md-4">
             <div class="icons-project-crud">
               <% if policy(@project).edit? %>
+                <h6>Project Management</h6>
                 <%= link_to edit_project_path(@project) do %>
-                  <i class="fas fa-edit icon" style="padding-right: 4px;"></i>
+                    <i class="fas fa-edit icon"></i>
                 <% end %>
               <% end %>
               <% if policy(@project).destroy? %>
                 <%= link_to project_path(@project), method: 'delete', data: { confirm: "Are you sure?" } do %>
-                  <i class="far fa-trash-alt icon"></i>
+                    <i class="far fa-trash-alt icon"></i>
                 <% end %>
               <% end %>
             </div>
-            <div class="text-description">
-              <%= @project.description %>
-            </div>
-          </div>
 
-          <div class="box-comments">
-            <%= simple_form_for [@project, @comment] do |f| %>
-              <%= f.input :content, label: "Leave a comment:" %>
-              <%= f.submit %>
-            <% end %>
-            <h6>
-              Number of comments: <%= @project.comments.size %>
-            </h6>
-            <% @project.comments.order(id: :desc).each do |c| %>
-              <div class="comment-header">
-                <div><img src="<%= c.user.avatar.url %>" class="avatar-small"></div>
-                <p><%= link_to c.user.username, user_path(c.user) %></p>
+            <h6 style="margin:0;">Project Collaborators</h6>
+
+            <div class="box-collaborators">
+              <i class="fas fa-users"></i>
+              <div class="avatar-list">
+                <% @project.collaborations.map do |collaboration| %>
+                  <%= link_to user_path(collaboration.user) do %>
+                    <img src="<%= collaboration.user.avatar %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
+                  <% end %>
+                <% end %>
               </div>
-              <div class="comment-content">
-                <p><%= c.content %></p>
-              </div>
+            </div>
+            <% if policy(@project).update? %>
+              <%= simple_form_for [@project, @collaboration] do |f| %>
+                <%= f.input :user, collection: @users %>
+                <%= f.submit %>
+              <% end %>
             <% end %>
+
+            <%= link_to "Link to Github repository", "#"  %>
+            <%= link_to "Contact", "#"  %>
 
           </div>
 
         </div>
-
-        <div class="col-sm-12 col-md-4" style="padding: 0;">
-          <div class="box-collaborators">
-            <i class="fas fa-users"></i>
-            <div>
-              <%= image_tag "ericd.jpg", class: "avatar" %>
-              <%= image_tag "bingq.jpg", class: "avatar" %>
-              <%= image_tag "nicoleg.jpg", class: "avatar" %>
-            </div>
-          </div>
-
-          <%= link_to "Link to Github repository", "#"  %>
-          <%= link_to "Contact", "#"  %>
-
-        </div>
-
       </div>
 
 
     </div>
   </div>
 </div>
+
 
 <!-- All informations about one project -->
 <!-- Still need to add pictures -->
@@ -139,9 +152,11 @@ cl_image_tag(@project.photo2, :width => 200, :height => 150, :crop => :fill)
 cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 
 
+
 <!-- PROJECT TAGS -->
 <!-- <h3>Project Tags</h3> -->
 <%# @project.tags.each do |t| %>
 <!-- <p> #t.name %></p> -->
 <!-- end -->
+
 

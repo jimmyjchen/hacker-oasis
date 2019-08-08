@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :projects do
-    resources :collaborations, only: [:new, :create]
+    resources :collaborations, only: [:new, :create, :show, :index]
     resources :comments, only: [:new, :create]
   end
 

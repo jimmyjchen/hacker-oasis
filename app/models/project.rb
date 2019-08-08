@@ -5,6 +5,8 @@ class Project < ApplicationRecord
   mount_uploader :photo2, PhotoUploader
   mount_uploader :photo3, PhotoUploader
   belongs_to :user
-  has_one :collaboration
+  has_many :collaborations
   has_many :comments
+
+  validates :name, :description, :cover_photo, :photo1, presence: true
 end

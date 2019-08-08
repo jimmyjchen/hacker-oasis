@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     # raise
     @comment.project = @project
-    @comment.user = @project.user
+    @comment.user = current_user
     authorize @project
     if @comment.save
       redirect_to project_path(@project)

@@ -6,6 +6,10 @@ class User < ApplicationRecord
   has_many :collaborations
   has_many :comments
 
+  validates :email, :username, uniqueness: true, presence: true
+  validates :avatar, presence: true
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
 end
