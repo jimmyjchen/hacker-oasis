@@ -20,6 +20,8 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <%= link_to 'Destroy Project', project_path(@project), method: 'delete', class: "btn btn-light" %>
 <% end %>
 
+<!-- Button asking to collaborate -->
+
 
 <!-- COMMENTS -->
 <!-- Number of comments in this project -->
@@ -29,6 +31,7 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <% @project.comments.each do |c| %>
 <p><%= c.user.username %></p>
 <p><%= c.content %></p>
+ <button><%= link_to "+", "/#"  %></button>
 <% end %>
 
 <!-- Adding a new comment -->
@@ -39,16 +42,13 @@ cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 <!-- END OF COMMENTS -->
 
 <!-- COLLABORATIONS ----------->
-
 <%= simple_form_for [@project, @collaboration] do |f| %>
-<%= f.input :user_id %>
-<%= f.input :project_id %>
-<%= f.submit %>
+
+  <%= f.input :user, collection: @users %>
+  <%= f.submit %>
 <% end -%>
 
-<% @project.collaborations.each do |collaboration| %>
-<%= collaboration.user.email %>
-<% end %>
+
 
 
 <!-- End of collaboration ----->

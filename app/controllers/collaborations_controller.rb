@@ -4,14 +4,19 @@ class CollaborationsController < ApplicationController
   end
 
   def new
+    @user = User.new
     @collaboration = Collaboration.new
     @project = Project.find(params[:project_id])
   end
 
   def create
-    @collaboration = Collaboration.new(params_collaboration)
+    # raise
+    @email = params[:collaboration][:user]
+    @user = User.find_by(email: @email)
+    @collaboration = Collaboration.new
     @project = Project.find(params[:project_id])
-    @collaboration.user = current_user
+    @collaboration.user = @user
+    @collaboration.project = @project
     # @collaboration.project = @project
     authorize @collaboration
     if @collaboration.save
@@ -19,6 +24,10 @@ class CollaborationsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def show
+    # @collaboration = Collaboration.find()
   end
 
   def profile

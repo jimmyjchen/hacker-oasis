@@ -37,8 +37,10 @@ class ProjectsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @collaboration = @project.collaborations.new(user_id:current_user.id)
-
+    @collaboration = @project.collaborations.new(user_id: current_user.id)
+    # @users = User.all.order(username: :asc)
+    @users = User.all.order(username: :asc).map{|user| user.email}
+    # puts @users
   end
 
   private
