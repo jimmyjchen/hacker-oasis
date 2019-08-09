@@ -36,8 +36,8 @@ class User < ApplicationRecord
     end
   end
 
-  def profile_avatar
-    social_avatar || avatar.url
+  def profile_avatar_url
+    social_avatar || avatar.url(:bright_face)
   end
 
   # def self.find_for_facebook_oauth(auth)

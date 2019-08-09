@@ -11,6 +11,7 @@
 @import "form";
 @import "box";
 @import "comment";
+@import "tag";
 
 html {
   position: relative;
@@ -23,7 +24,7 @@ body {
 }
 
 p {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 a {

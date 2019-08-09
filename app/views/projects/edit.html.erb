@@ -1,9 +1,20 @@
-<h1>Edit Project Page!</h1>
+<div class="submenu-tall" style="justify-content: center">
+  <h4 class="sub-header">Edit project details</h4>
+</div>
 
-<!-- show especific project with form -->
-
-<%= simple_form_for @project do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.submit %>
-<% end -%>
+<div class="container">
+  <div class="row form-add-project">
+    <div class="col-8">
+      <div class="form-box">
+        <%= simple_form_for @project do |f| %>
+          <%= f.input :name %>
+          <%= f.input :description %>
+          <%= f.label :name, "Project Categories (ex. blockchain, javascript, ruby, wechat, etc.)" %>
+          <div data-tags-input-name="project[tag_list]" id="tag"></div>
+          <p>Press enter, comma or spacebar to create a new tag; backspace or delete to remove.</p>
+          <%= f.button :submit, "Update", class: "btn-signup" %>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+</div>

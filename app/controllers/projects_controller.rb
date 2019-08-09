@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
     @comment = Comment.new
     @collaboration = Collaboration.new
     # @users = User.all.order(username: :asc)
-    @users = User.all.order(username: :asc).map{|user| user.email}
+    @users = User.all.order(username: :asc).map{|user| user.username}
     # puts @users
   end
 

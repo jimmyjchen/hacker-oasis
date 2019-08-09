@@ -7,7 +7,7 @@
     <div class="row" style="justify-content: center;">
       <div class="col col-sm-12 col-lg-8">
         <div class="submenu-show">
-          <%= cl_image_tag @project.user.avatar, class: "avatar-large" %>
+          <img src="<%= @project.user.avatar.url(:bright_face) %>" class="avatar-large">
           <div class="project-details">
             <h4><%= @project.name %></h4>
             <p>by <%= link_to @project.user.username, user_path(@project.user) %>
@@ -25,7 +25,6 @@
   <div class="container">
     <div class="row" style="justify-content: center;">
       <div class="col-lg-8">
-        <!-- # cl_image_tag @project.cover_photo, class: "project-photo" -->
         <div id="carouselExampleIndicators" class="carousel slide flex-shrink-1" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -69,18 +68,6 @@
         <div class="row" style="width: 100%;">
           <div class="col-md-8">
             <div class="box-description">
-              <div class="icons-project-crud">
-                <% if policy(@project).edit? %>
-                  <%= link_to edit_project_path(@project) do %>
-                    <i class="fas fa-edit icon" style="padding-right: 4px;"></i>
-                  <% end %>
-                <% end %>
-                <% if policy(@project).destroy? %>
-                  <%= link_to project_path(@project), method: 'delete', data: { confirm: "Are you sure?" } do %>
-                    <i class="far fa-trash-alt icon"></i>
-                  <% end %>
-                <% end %>
-              </div>
               <div class="text-description">
                 <%= @project.description %>
               </div>
@@ -88,15 +75,15 @@
 
             <div class="box-comments">
               <%= simple_form_for [@project, @comment] do |f| %>
-                <%= f.input :content, label: "Leave a comment:" %>
-                <%= f.submit %>
+                <%= f.input :content, label: false, placeholder: "What are your thoughts?" %>
+                <%= f.button :submit, "Comment", class: "btn-social" %>
               <% end %>
               <h6>
-                Number of comments: <%= @project.comments.size %>
+                <%= @project.comments.size %> comments
               </h6>
               <% @project.comments.order(id: :desc).each do |c| %>
                 <div class="comment-header">
-                  <div><img src="<%= c.user.avatar.url %>" class="avatar-small"></div>
+                  <img src="<%= c.user.avatar.url(:bright_face) %>" class="avatar">
                   <p><%= link_to c.user.username, user_path(c.user) %></p>
                 </div>
                 <div class="comment-content">
@@ -108,25 +95,56 @@
           </div>
 
           <div class="col-md-4">
+            <div class="icons-project-crud">
+              <% if policy(@project).edit? %>
+                <%= link_to edit_project_path(@project) do %>
+                    <i class="fas fa-edit icon" data-toggle="tooltip" data-placement="top" title="Edit project details"></i>
+                <% end %>
+              <% end %>
+              <% if policy(@project).destroy? %>
+                <%= link_to project_path(@project), method: 'delete', data: { confirm: "Are you sure?" } do %>
+                    <i class="far fa-trash-alt icon" data-toggle="tooltip" data-placement="top" title="Delete project"></i>
+                <% end %>
+              <% end %>
+            </div>
+
+            <h6 style="margin:0;">Project Collaborators</h6>
+
             <div class="box-collaborators">
               <i class="fas fa-users"></i>
               <div class="avatar-list">
                 <% @project.collaborations.map do |collaboration| %>
                   <%= link_to user_path(collaboration.user) do %>
-                    <img src="<%= collaboration.user.avatar %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
+                    <img src="<%= collaboration.user.avatar.url(:bright_face) %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
                   <% end %>
                 <% end %>
               </div>
             </div>
             <% if policy(@project).update? %>
               <%= simple_form_for [@project, @collaboration] do |f| %>
-                <%= f.input :user, collection: @users %>
-                <%= f.submit %>
+                <%= f.input :user, collection: @users, label: false %>
+                <%= f.button :submit, "Add Collaborator", class: "btn-social" %>
               <% end %>
             <% end %>
+            <div class="box-project-public">
+              <%= link_to "#" do %>
+                <i class="fab fa-github-square"></i>
+                <p>Project repository</p>
+              <% end %>
+              <%= link_to "#" do %>
+                <i class="fas fa-envelope-square"></i>
+                <p>Contact project owner</p>
+              <% end %>
+            </div>
 
-            <%= link_to "Link to Github repository", "#"  %>
-            <%= link_to "Contact", "#"  %>
+            <div class="box-tags">
+              <i class="fas fa-tag"></i>
+              <div class="tags">
+                <% @project.tag_list.each do |t| %>
+                <span><%= link_to t, "#" %></span>
+                <% end %>
+              </div>
+            </div>
 
           </div>
 

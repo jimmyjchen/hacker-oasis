@@ -5,11 +5,12 @@
       <div class="box-user-profile">
         <div class="container">
           <%= link_to user_path(@user) do %>
-          <img src="<%= @user.profile_avatar %>" class="avatar-large">
+          <img src="<%= @user.profile_avatar_url %>" class="avatar-large">
+
           <h5><%= @user.username %></h5>
           <% end %>
           <div class="location">
-            <i class="fas fa-map-marker-alt"></i> Shanghai, China
+            <i class="fas fa-map-marker-alt"></i> | <%= @user.city %>, <%= @user.country %>
           </div>
         </div>
       </div>

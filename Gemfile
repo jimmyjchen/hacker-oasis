@@ -23,7 +23,7 @@ gem 'acts-as-taggable-on', '~> 6.0'
 # Authentication
 gem 'omniauth-github'
 gem 'oauth2', :git => 'git@github.com:oauth-xx/oauth2.git'
-
+gem 'country_select'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
