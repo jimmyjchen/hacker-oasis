@@ -1,9 +1,17 @@
-<h1>Edit Project Page!</h1>
+<div class="submenu-tall" style="justify-content: center">
+  <h4 class="sub-header">Edit project details</h4>
+</div>
 
-<!-- show especific project with form -->
-
-<%= simple_form_for @project do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.submit %>
-<% end -%>
+<div class="container">
+  <div class="row form-add-project">
+    <div class="col-8">
+      <div class="form-box">
+        <%= simple_form_for @project do |f| %>
+          <%= f.input :name %>
+          <%= f.input :description %>
+          <%= f.button :submit, "Update", class: "btn-signup" %>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+</div>

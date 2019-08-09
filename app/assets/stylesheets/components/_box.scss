@@ -1,5 +1,6 @@
 .box-description {
   padding: 16px 0px;
+  margin-bottom: 16px;
   border-bottom: 1px solid $light-gray;
   i {
     color: $dark-gray;
@@ -11,7 +12,9 @@
 }
 
 .icons-project-crud {
-  padding: 16px 0;
+  padding-top: 16px;
+  display: flex;
+  justify-content: flex-end;
   i {
     padding-right: 2px;
     color: $dark-gray;
@@ -25,19 +28,72 @@
 .box-comments {
   h6 {
     padding-top: 16px;
+    padding-bottom: 8px;
     margin: 0;
+    text-align: right;
+    color: $gray;
   }
 }
 
 .box-collaborators {
   display: flex;
-  padding: 8px 0;
+  padding: 8px 0 16px 0;
   align-items: center;
   i {
     margin: 0;
     color: $dark-gray;
     opacity: 0.8;
     padding-right: 8px;
+  }
+}
+
+.box-project-public {
+  margin-top: 16px;
+  padding: 16px 0;
+  border-top: 1px solid $light-gray;
+
+  a {
+    display: flex;
+    align-items: center;
+    color: $dark-gray;
+    opacity: 0.8;
+  }
+  a:hover {
+    opacity: 1;
+  }
+  i {
+    padding-right: 8px;
+  }
+  p {
+    margin: 0;
+    font-weight: bold;
+  }
+}
+
+.box-tags {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid $light-gray;
+  padding: 16px 0;
+  color: $dark-gray;
+  opacity: 0.8;
+  p {
+    margin: 0;
+    padding-right: 8px;
+  }
+  i {
+    padding-right: 8px;
+  }
+  a {
+    padding: 1px 4px;
+    border: 1px solid $gray;
+    border-radius: 4px;
+    color: $dark-gray;
+    font-size: 12px;
+    opacity: 0.8;
+  }
+  a:hover {
+    opacity: 1;
   }
 }
 

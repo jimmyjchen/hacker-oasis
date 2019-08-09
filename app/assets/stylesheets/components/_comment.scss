@@ -2,6 +2,17 @@
   display: flex;
   align-items: center;
   padding-top: 16px;
+  padding-bottom: 4px;
+  border-top: 1px solid $light-gray;
+
+  a {
+    font-weight: bold;
+    color: $dark-gray;
+    opacity: 0.8;
+  }
+  a:hover {
+    opacity: 1;
+  }
 
   p {
     margin: 0;
@@ -9,6 +20,3 @@
   }
 }
 
-.comment-content {
-  border-bottom: 1px solid $light-gray;
-}
