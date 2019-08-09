@@ -41,7 +41,7 @@
                 <div class="avatar-list">
                   <% project.collaborations.map do |collaboration| %>
                     <%= link_to user_path(collaboration.user) do %>
-                      <img src="<%= collaboration.user.profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
+                      <img src="<%= collaboration.user.avatar.url(:bright_face) %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
                     <% end %>
                   <% end %>
                 </div>
