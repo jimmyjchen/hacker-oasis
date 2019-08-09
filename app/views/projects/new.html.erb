@@ -7,7 +7,7 @@
     <div class="col-8">
       <div class="form-box">
         <%= simple_form_for @project do |f| %>
-          <%= f.input :name, label: "Project Name" %>
+          <%= f.input :name, autofocus: true, label: "Project Name" %>
           <%= f.input :description, label: "Short Project Description" %>
           <%= f.input :cover_photo, label: "Landing Page Screenshot" %>
           <%= f.input :cover_photo_cache, as: :hidden %>
