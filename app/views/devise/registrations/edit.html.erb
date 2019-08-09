@@ -18,14 +18,22 @@
             <% end %>
 
             <%= f.input :password,
-                        hint: "leave it blank if you don't want to change it",
+                        hint: "Leave blank if you don't want to change it",
                         required: false,
-                        input_html: { autocomplete: "new-password" } %>
+                        input_html: { autocomplete: "password" } %>
+            <%= f.input :city,
+                        hint: "Leave blank if you don't want to change it",
+                        required: false,
+                        input_html: { autocomplete: "city" } %>
+            <%= f.input :country,
+                        hint: "Leave blank if you don't want to change it",
+                        required: false,
+                        input_html: { autocomplete: "country" } %>
             <%= f.input :password_confirmation,
                         required: false,
                         input_html: { autocomplete: "new-password" } %>
             <%= f.input :current_password,
-                        hint: "we need your current password to confirm your changes",
+                        hint: "We need your current password to confirm your changes",
                         required: true,
                         input_html: { autocomplete: "current-password" } %>
           </div>

@@ -20,6 +20,7 @@ gem 'webpacker'
 gem 'carrierwave', '~> 1.2'
 gem 'cloudinary', '~> 1.9.1'
 gem 'acts-as-taggable-on', '~> 6.0'
+gem 'country_select'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
