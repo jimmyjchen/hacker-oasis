@@ -8,11 +8,13 @@
   </div>
 <% end %>
 
-<div class="submenu-tall" style="justify-content: center">
-  <%= link_to new_project_path do %>
-    <div class="btn-signup">Project.new</div>
-  <% end %>
-</div>
+<% if user_signed_in? %>
+  <div class="submenu-tall" style="justify-content: center">
+    <%= link_to new_project_path do %>
+      <div class="btn-signup">Project.new</div>
+    <% end %>
+  </div>
+<% end %>
 
 <!-- 5 MOST USED TAGS FOR TOOL BAR -->
 <!-- <p>Popular Content</p> -->
