@@ -75,15 +75,15 @@
 
             <div class="box-comments">
               <%= simple_form_for [@project, @comment] do |f| %>
-                <%= f.input :content, label: "Leave a comment:" %>
-                <%= f.submit %>
+                <%= f.input :content, label: false, placeholder: "What are your thoughts?" %>
+                <%= f.button :submit, "Comment", class: "btn-social" %>
               <% end %>
               <h6>
-                Number of comments: <%= @project.comments.size %>
+                <%= @project.comments.size %> comments
               </h6>
               <% @project.comments.order(id: :desc).each do |c| %>
                 <div class="comment-header">
-                  <img src="<%= c.user.avatar.url(:bright_face) %>" class="avatar-small">
+                  <img src="<%= c.user.avatar.url(:bright_face) %>" class="avatar">
                   <p><%= link_to c.user.username, user_path(c.user) %></p>
                 </div>
                 <div class="comment-content">
@@ -97,14 +97,13 @@
           <div class="col-md-4">
             <div class="icons-project-crud">
               <% if policy(@project).edit? %>
-                <h6>Project Management</h6>
                 <%= link_to edit_project_path(@project) do %>
-                    <i class="fas fa-edit icon"></i>
+                    <i class="fas fa-edit icon" data-toggle="tooltip" data-placement="top" title="Edit project details"></i>
                 <% end %>
               <% end %>
               <% if policy(@project).destroy? %>
                 <%= link_to project_path(@project), method: 'delete', data: { confirm: "Are you sure?" } do %>
-                    <i class="far fa-trash-alt icon"></i>
+                    <i class="far fa-trash-alt icon" data-toggle="tooltip" data-placement="top" title="Delete project"></i>
                 <% end %>
               <% end %>
             </div>
@@ -123,13 +122,27 @@
             </div>
             <% if policy(@project).update? %>
               <%= simple_form_for [@project, @collaboration] do |f| %>
-                <%= f.input :user, collection: @users %>
-                <%= f.submit %>
+                <%= f.input :user, collection: @users, label: false %>
+                <%= f.button :submit, "Add Collaborator", class: "btn-social" %>
               <% end %>
             <% end %>
+            <div class="box-project-public">
+              <%= link_to "#" do %>
+                <i class="fab fa-github-square"></i>
+                <p>Project repository</p>
+              <% end %>
+              <%= link_to "#" do %>
+                <i class="fas fa-envelope-square"></i>
+                <p>Contact project owner</p>
+              <% end %>
+            </div>
 
-            <%= link_to "Link to Github repository", "#"  %>
-            <%= link_to "Contact", "#"  %>
+            <div class="box-tags">
+              <i class="fas fa-tag"></i>
+              <% @project.tag_list.each do |t| %>
+              <p><%= link_to t, "#" %></p>
+              <% end %>
+            </div>
 
           </div>
 
