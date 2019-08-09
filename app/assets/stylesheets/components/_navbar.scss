@@ -18,3 +18,13 @@
 .nav-link:hover {
   color: $light-gray !important;
 }
+
+.navbar-toggler-icon {
+  span {
+    padding: 8px;
+  }
+}
+
+#navbarSupportedContent {
+  color: white;
+}

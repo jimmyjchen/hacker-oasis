@@ -139,9 +139,11 @@
 
             <div class="box-tags">
               <i class="fas fa-tag"></i>
-              <% @project.tag_list.each do |t| %>
-              <p><%= link_to t, "#" %></p>
-              <% end %>
+              <div class="tags">
+                <% @project.tag_list.each do |t| %>
+                <span><%= link_to t, "#" %></span>
+                <% end %>
+              </div>
             </div>
 
           </div>

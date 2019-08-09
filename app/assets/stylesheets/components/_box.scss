@@ -72,17 +72,25 @@
 
 .box-tags {
   display: flex;
-  align-items: center;
+  align-items: top;
   border-top: 1px solid $light-gray;
   padding: 16px 0;
   color: $dark-gray;
   opacity: 0.8;
-  p {
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  span {
+    display: flex;
+    align-items: center;
     margin: 0;
     padding-right: 8px;
+    padding-bottom: 4px;
   }
   i {
     padding-right: 8px;
+    padding-top: 4px;
   }
   a {
     padding: 1px 4px;
