@@ -11,8 +11,8 @@ class CollaborationsController < ApplicationController
 
   def create
     # raise
-    @email = params[:collaboration][:user]
-    @user = User.find_by(email: @email)
+    @username = params[:collaboration][:user]
+    @user = User.find_by(username: @username)
     @collaboration = Collaboration.new
     @project = Project.find(params[:project_id])
     @collaboration.user = @user
