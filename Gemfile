@@ -20,6 +20,9 @@ gem 'webpacker'
 gem 'carrierwave', '~> 1.2'
 gem 'cloudinary', '~> 1.9.1'
 gem 'acts-as-taggable-on', '~> 6.0'
+# Authentication
+gem 'omniauth-github'
+gem 'oauth2', :git => 'git@github.com:oauth-xx/oauth2.git'
 gem 'country_select'
 
 group :development do

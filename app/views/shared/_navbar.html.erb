@@ -2,8 +2,6 @@
   <%= link_to "/", class: "navbar-brand" do %>
     <%= image_tag "hacker-oasis.png" %>
     <% end %>
-
-
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,10 +10,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-
         <li class="nav-item dropdown">
-          <img class="avatar-medium dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="<%= current_user.avatar.url(:bright_face) %>"/>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <img class="avatar-medium dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="<%= current_user.profile_avatar_url %>"/>
+
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDrogitpdown">
             <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Account Settings", edit_user_registration_path, class: "dropdown-item" %>
             <%= link_to "Add Project", new_project_path, class: "dropdown-item" %>

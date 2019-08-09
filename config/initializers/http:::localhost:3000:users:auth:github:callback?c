@@ -1,0 +1,15 @@
+http://localhost:3000/users/auth/github/callback?code=9283c03a81bb6ce83aae&state=65887057b551ec397adb51e4c6e7dc4791096f5bcc3e0ff5
+
+
+https%3A%2F%2Fdeveloper.github.com%2Fapps%2Fmanaging-oauth-apps%2Ftroubleshooting-oauth-app-access-token-request-errors%2F%23bad-verification-code
+
+
+
+access_token=7c6c494ac620976f162a1887e391f484aa235bbc&scope=public_repo%2Cuser&token_type=bearer
+
+
+
+"client_id"=>"c3da197830a67e6664ce", "client_secret"=>"444fa3824d6eaee67080459989caf2878ab1bbfe", "grant_type"=>"authorization_code", "code"=>"0f990fc2f2f3be5dc25e", :redirect_uri=>"http://localhost:3000/users/auth/github/callback"
+
+
+https://avatars0.githubusercontent.com/u/49521135?v=4
