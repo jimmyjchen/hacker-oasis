@@ -21,7 +21,10 @@
           <h5>My Projects</h5>
         </div>
         <div class="row">
-          <% @user.projects.each do |project| %>
+          <% if @user.projects.empty? %>
+            <p class="d-flex w-100 justify-content-center font-italic mt-3">You do not have any active projects. What are you waiting for?</p>
+          <% else %>
+            <% @user.projects.each do |project| %>
             <div class="col-xl-6">
               <%= link_to project_path(project) do %>
                 <div class="card">
@@ -41,6 +44,7 @@
                 </div>
               <% end %>
             </div>
+            <% end %>
           <% end %>
         </div>
 
@@ -48,7 +52,10 @@
           <h5>My Collaborations</h5>
         </div>
         <div class="row">
-          <% @user.collaborations.each do |collaboration| %>
+          <% if @user.collaborations.empty? %>
+            <p class="d-flex w-100 justify-content-center font-italic mt-3">You do not have any active collaborations. Go find some interesting projects!</p>
+          <% else %>
+            <% @user.collaborations.each do |collaboration| %>
             <div class="col-xl-6">
               <%= link_to project_path(collaboration.project) do %>
                 <div class="card">
@@ -68,11 +75,25 @@
                 </div>
               <% end %>
             </div>
+            <% end %>
           <% end %>
         </div>
       </div>
     </div>
-
   </div>
 </div>
+
+
+<!-- Eliminate Show Duplicates -->
+<%# guest_collabs = [] %>
+  <%# @user.collaborations.each do |collab| %>
+    <%# cid = collab.project_id %>
+    <%# @user.projects.each do |p| %>
+      <%# if cid != p.id %>
+        <%# p %>
+        <%# guest_collabs << p %>
+      <%# end %>
+    <%# end %>
+  <%# end %>
+<%# if guest_collabs.empty? %>
 
