@@ -8,8 +8,10 @@
   </div>
 <% end %>
 
-<div class="submenu">
-  <%= link_to "Newest", "#", class: "btn-filter" %>
+<div class="submenu-tall" style="justify-content: center">
+  <%= link_to new_project_path do %>
+    <div class="btn-signup">Project.new</div>
+  <% end %>
 </div>
 
 <!-- 5 MOST USED TAGS FOR TOOL BAR -->

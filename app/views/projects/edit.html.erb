@@ -9,6 +9,9 @@
         <%= simple_form_for @project do |f| %>
           <%= f.input :name %>
           <%= f.input :description %>
+          <%= f.label :name, "Project Categories (ex. blockchain, javascript, ruby, wechat, etc.)" %>
+          <div data-tags-input-name="project[tag_list]" id="tag"></div>
+          <p>Press enter, comma or spacebar to create a new tag; backspace or delete to remove.</p>
           <%= f.button :submit, "Update", class: "btn-signup" %>
         <% end -%>
       </div>
