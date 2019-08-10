@@ -31,6 +31,9 @@
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         </li>
+        <li class="nav-item">
+          <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+        </li>
       <% end %>
 
       <div class="box-search">
@@ -51,24 +54,33 @@
           <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
-      <div class="toggle-box-avatar">
-        <%= link_to user_path(current_user) do %>
-          <img class="avatar-medium" src="<%= current_user.avatar.url(:bright_face) %>"/>
-          <h5><%= current_user.username %></h5>
-        <% end %>
-        <div class="toggle-item">
-          <%= link_to "Profile", user_path(current_user) %>
+      <% if user_signed_in? %>
+        <div class="toggle-box-avatar">
+          <%= link_to user_path(current_user) do %>
+            <img class="avatar-medium" src="<%= current_user.avatar.url(:bright_face) %>"/>
+            <h5><%= current_user.username %></h5>
+          <% end %>
+          <div class="toggle-item">
+            <%= link_to "Profile", user_path(current_user) %>
+          </div>
+          <div class="toggle-item">
+            <%= link_to "Add Project", new_project_path %>
+          </div>
         </div>
         <div class="toggle-item">
-          <%= link_to "Add Project", new_project_path %>
+          <%= link_to "Account Settings", edit_user_registration_path %>
         </div>
-      </div>
-      <div class="toggle-item">
-        <%= link_to "Account Settings", edit_user_registration_path %>
-      </div>
-      <div class="toggle-item">
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-      </div>
+        <div class="toggle-item">
+          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+        </div>
+      <% else %>
+        <div class="toggle-item">
+          <%= link_to "Login", new_user_session_path %>
+        </div>
+        <div class="toggle-item">
+          <%= link_to "Sign Up", new_user_registration_path %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
