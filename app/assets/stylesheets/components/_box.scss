@@ -2,6 +2,15 @@
   padding: 8px 0;
 }
 
+.box-nav-links {
+  display: flex;
+  padding: 8px 0;
+  a {
+    padding-right: 8px;
+    color: $gray;
+  }
+}
+
 .box-description {
   padding: 16px 0px;
   margin-bottom: 16px;
