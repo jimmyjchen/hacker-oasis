@@ -1,0 +1,28 @@
+.toggle-box-search {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(229,229,229,0.2);
+}
+
+.toggle-box-avatar {
+  margin: 8px 0;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(229,229,229,0.2);
+  h5 {
+    color: $off-white;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    color: $gray;
+  }
+  img {
+    margin-right: 8px;
+  }
+}
+
+.toggle-item {
+  padding: 8px 0;
+  a {
+    color: $gray;
+  }
+}
