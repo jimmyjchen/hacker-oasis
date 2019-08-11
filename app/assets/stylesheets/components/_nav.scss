@@ -1,0 +1,31 @@
+@media(max-width: 576px) {
+  #myTab {
+    display: none;
+  }
+}
+
+#myTab {
+  margin-bottom: 16px;
+  padding: 24px;
+  background-color: $yellow;
+  a {
+    margin: 4px !important;
+    padding: 4px 8px !important;
+    font-family: "Roboto Mono";
+    color: $red !important;
+    border-radius: 4px !important;
+    transition: all .3s ease-in-out !important;
+  }
+
+  a:hover {
+    background-color: $red !important;
+    color: #fff !important;
+  }
+
+  .active {
+    background-color: $red !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    border-radius: 4px !important;
+  }
+}
