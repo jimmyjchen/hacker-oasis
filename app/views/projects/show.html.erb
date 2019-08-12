@@ -171,9 +171,10 @@
   <!-- Add current user to the the list. -->
   <% @att = @hacker_day.attendants %>
   <% if !@att.include?(current_user.id.to_s) %>
-
     <%= f.hidden_field :attendants, value: current_user.id, multiple: true %>
     <%= f.button :submit, "Join Hacker Day", class: "btn-social" %>
+    <% else %>
+    <p>Already registered to hacker day!</p>
     <% end %>
   <% end %>
   <!-- end adding user -->
