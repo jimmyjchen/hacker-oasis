@@ -37,8 +37,8 @@ class HackerDaysController < ApplicationController
     authorize @hacker_day
     @hacker_day.update(params_hackerdays)
     if @hacker_day.update(params_hackerdays)
-      redirect_to project_hacker_day_path(@project.id, @hacker_day.id)
-      # redirect_to project_path(@project.id)
+      # redirect_to project_hacker_day_path(@project.id, @hacker_day.id)
+      redirect_to project_path(@project.id)
     else
       render 'new'
     end
