@@ -8,7 +8,7 @@ class HackerDaysController < ApplicationController
   def show
     @project = Project.find(params[:project_id])
     authorize @project
-    @hacker_day = HackerDay.find(params[:project_id])
+    @hacker_day = HackerDay.where(project_id: @project.id)
   end
 
   def new
