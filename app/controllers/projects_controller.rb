@@ -1,9 +1,14 @@
 class ProjectsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_project, only: [:show, :update, :destroy, :edit]
+  skip_after_action :verify_policy_scoped, :only => :index
 
   def index
-    @projects = policy_scope(Project).order(created_at: :desc)
+    if params[:query].present?
+      @projects = Project.multisearchable(params[:query])
+    else
+      @projects = policy_scope(Project).order(created_at: :desc)
+    end
   end
 
   def new
@@ -44,6 +49,12 @@ class ProjectsController < ApplicationController
     # @users = User.all.order(username: :asc)
     @users = User.all.order(username: :asc).map{|user| user.username}
     # puts @users
+    @hacker_day = HackerDay.find(params[:id])
+
+
+
+
+
   end
 
   private
