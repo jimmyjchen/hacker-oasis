@@ -29,3 +29,23 @@
     border-radius: 4px !important;
   }
 }
+
+#commentTab {
+  margin-bottom: 16px;
+  a {
+    margin: 0 !important;
+    padding: 4px 8px !important;
+    background-color: transparent !important;
+    color: $dark-gray !important;
+    font-size: 14px;
+    opacity: 0.7;
+  }
+  a:hover {
+    opacity: 1;
+  }
+  .active {
+    border-color: $dark-gray $dark-gray $off-white $dark-gray !important;
+    font-weight: bold !important;
+    opacity: 1;
+  }
+}
