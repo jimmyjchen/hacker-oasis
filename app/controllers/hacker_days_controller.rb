@@ -35,8 +35,10 @@ class HackerDaysController < ApplicationController
     @project = Project.find(params[:project_id])
     @hacker_day = HackerDay.find(params[:id])
     authorize @hacker_day
+    @hacker_day.update(params_hackerdays)
     if @hacker_day.update(params_hackerdays)
       redirect_to project_hacker_day_path(@project.id, @hacker_day.id)
+      # redirect_to project_path(@project.id)
     else
       render 'new'
     end
@@ -45,6 +47,6 @@ class HackerDaysController < ApplicationController
   private
 
   def params_hackerdays
-    params.require(:hacker_day).permit(:project_id, :user_id, :location, :date,  attendants: [])
+    params.require(:hacker_day).permit(:project_id, :user_id, :location, :date, attendants: [])
   end
 end
