@@ -1,17 +1,14 @@
 class HackerDaysController < ApplicationController
-
   def index
     @project = Project.find(params[:project_id])
     authorize @project
     # @hacker_days = HackerDay.all
-
   end
 
   def show
     @project = Project.find(params[:project_id])
     authorize @project
     @hacker_days = HackerDay.all
-
   end
 
   def new
@@ -21,7 +18,21 @@ class HackerDaysController < ApplicationController
   end
 
   def create
-    @hacker_day = HackerDay.find(params[:id])
+    @project = Project.find(params[:project_id])
+    @hacker_day = HackerDay.new(params_hackerdays)
+    raise
+    @project.user = current_user
+    authorize @project
+    if @hacker_day.save
+      redirect_to project_path(@project.id)
+    else
+      render 'new'
+    end
+  end
 
+  private
+
+  def params_hackerdays
+    params.require(:hacker_day).permit(:project_id, :user_id, :location, :attendants, :date)
   end
 end

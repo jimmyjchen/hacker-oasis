@@ -1,1 +1,10 @@
 <p>New Hacker Days</p>
+
+<%= simple_form_for @hacker_day, url: project_hacker_days_path(params[:project_id]) do |f| %>
+<%= f.input :location, label: "Location" %>
+<%= f.input :date, label: "Date" %>
+<%= f.button :submit %>
+<% end %>
+
+
+resource, as: resource_name, url: registration_path(resource_name)

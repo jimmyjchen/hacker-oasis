@@ -7,9 +7,8 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.find(params[:project_id])
-    authorize @project
     @project = Project.new
+    authorize @project
   end
 
   def create
