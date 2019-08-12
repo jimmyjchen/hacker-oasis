@@ -173,11 +173,13 @@
                 <li class="nav-item">
                   <a class="nav-link active" id="public-chat-tab" data-toggle="tab" href="#public-chat" role="tab" aria-controls="public-chat" aria-selected="true">Public Chat</a>
                 </li>
-                <% @att = @hacker_days.last.attendants %>
-                <% if current_user.nil? == false && @att.include?(current_user.id.to_s) %>
-                  <li class="nav-item">
-                    <a class="nav-link" id="team-chat-tab" data-toggle="tab" href="#team-chat" role="tab" aria-controls="team-chat" aria-selected="false">Team Chat</a>
-                  </li>
+                <% if @hacker_days.empty? == false %>
+                  <% @att = @hacker_days.last.attendants %>
+                  <% if current_user.nil? == false && @att.include?(current_user.id.to_s) %>
+                    <li class="nav-item">
+                      <a class="nav-link" id="team-chat-tab" data-toggle="tab" href="#team-chat" role="tab" aria-controls="team-chat" aria-selected="false">Team Chat</a>
+                    </li>
+                  <% end %>
                 <% end %>
               </ul>
 
