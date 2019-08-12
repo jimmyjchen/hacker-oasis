@@ -20,7 +20,8 @@ class HackerDaysController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @hacker_day = HackerDay.new(params_hackerdays)
-    raise
+    # raise
+    @hacker_day.project = @project
     @project.user = current_user
     authorize @project
     if @hacker_day.save
