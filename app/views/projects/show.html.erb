@@ -87,6 +87,9 @@
                   <p><strong>Date and time: </strong><%= @hacker_day[0].date %>
                   <br />
                   <strong>Address: </strong><%= @hacker_day[0].location %></p>
+
+                  <!-- Bug: joining with one user wipes out other users on the team -->
+
                   <%= simple_form_for [@project, @hacker_day[0]] do |f| %>
                     <%= f.hidden_field :attendants, value: current_user.id, multiple: true %>
                     <%= f.button :submit, "Join", class: "btn-signup" %>
@@ -170,6 +173,7 @@
                 <li class="nav-item">
                   <a class="nav-link active" id="public-chat-tab" data-toggle="tab" href="#public-chat" role="tab" aria-controls="public-chat" aria-selected="true">Public Chat</a>
                 </li>
+                <% @att = @hacker_day[0].attendants %>
                 <% if current_user.nil? == false && @att.include?(current_user.id.to_s) %>
                   <li class="nav-item">
                     <a class="nav-link" id="team-chat-tab" data-toggle="tab" href="#team-chat" role="tab" aria-controls="team-chat" aria-selected="false">Team Chat</a>
