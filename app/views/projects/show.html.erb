@@ -192,16 +192,17 @@
 </div>
 
 <!-- Hacker Day Informations -->
-<%= @hacker_day.date %>
-<%= @hacker_day.location %>
-<%= @hacker_day.attendants %>
-<!-- End of Hack Day Informations -->
-<!-- Join the Hacker Day -->
-<%= simple_form_for [@project, @hacker_day] do |f| %>
-  <!-- OLD Attendants who registered before... -->
-  <% @hacker_day.attendants.each do |uid| %>
-    <%= f.hidden_field :attendants, value: uid, multiple: true %>
-  <% end %>
+<% if @hacker_day.empty? == false %>
+  <%= @hacker_day.date %>
+  <%= @hacker_day.location %>
+  <%= @hacker_day.attendants %>
+  <!-- End of Hack Day Informations -->
+  <!-- Join the Hacker Day -->
+  <%= simple_form_for [@project, @hacker_day] do |f| %>
+    <!-- OLD Attendants who registered before... -->
+    <% @hacker_day.attendants.each do |uid| %>
+      <%= f.hidden_field :attendants, value: uid, multiple: true %>
+    <% end %>
 
   <!-- Add current user to the the list. -->
   <% @att = @hacker_day.attendants %>
@@ -219,6 +220,7 @@
   <%= x.username %>
   <%= x.email %>
   <% end %>
+<% end %>
   <!-- End -->
 
 

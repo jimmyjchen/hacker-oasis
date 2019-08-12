@@ -49,12 +49,7 @@ class ProjectsController < ApplicationController
     # @users = User.all.order(username: :asc)
     @users = User.all.order(username: :asc).map{|user| user.username}
     # puts @users
-    @hacker_day = HackerDay.find(params[:id])
-
-
-
-
-
+    @hacker_day = HackerDay.where(project_id: @project.id)
   end
 
   private
