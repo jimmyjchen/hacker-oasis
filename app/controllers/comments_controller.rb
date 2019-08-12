@@ -1,4 +1,10 @@
 class CommentsController < ApplicationController
+  def index
+  end
+
+  def show
+  end
+
   def new
     @project = Project.find(params[:project_id])
     authorize @project
@@ -12,10 +18,14 @@ class CommentsController < ApplicationController
     @comment.project = @project
     @comment.user = current_user
     authorize @project
-    if @comment.save
-      redirect_to project_path(@project)
-    else
-      render 'new'
+
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to project_path(@project) }
+        format.js
+      else
+        format.html { render action: "new" }
+      end
     end
   end
 
