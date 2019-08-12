@@ -7,5 +7,16 @@ class Project < ApplicationRecord
   belongs_to :user
   has_many :collaborations, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :hacker_days
   validates :name, :description, :cover_photo, :photo1, presence: true
+
+  include PgSearch
+  pg_search_scope :multisearchable,
+    against: [ :name, :description ],
+    associated_against: {
+      user: [ :first_name, :last_name, :city, :country, :description, :username ]
+    },
+    using: {
+      tsearch: {prefix: true}
+    }
 end

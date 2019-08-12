@@ -29,8 +29,4 @@ class ApplicationController < ActionController::Base
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
-
-  def new_session_path(scope)
-    new_user_session_path
-  end
 end

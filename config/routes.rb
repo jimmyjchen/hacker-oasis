@@ -1,17 +1,12 @@
 Rails.application.routes.draw do
   root to: 'projects#index'
 
-  devise_for :users,
-    controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-
-  # devise_scope :user do
-  #   get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
-  #   get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
-  # end
-
+  devise_for :users
   resources :projects do
     resources :collaborations, only: [:new, :create, :show, :index]
-    resources :comments, only: [:new, :create]
+
+    resources :comments, only: [:index, :show, :new, :create]
+    resources :hacker_days, only: [:new, :create, :show, :update,:index]
   end
 
   resources :users, only: :show
