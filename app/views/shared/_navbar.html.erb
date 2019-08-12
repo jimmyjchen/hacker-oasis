@@ -36,22 +36,33 @@
       <% end %>
 
       <div class="box-search">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" aria-label="Search">
-          <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <%= form_tag('/projects', method: :get, class: "form-inline my-2 my-lg-0" ) do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control mr-sm-2",
+            type: "search",
+            'aria-label': "Search",
+            placeholder: "Find a project..."
+          %>
+          <%= submit_tag "Search", class: "btn btn-outline-secondary my-2 my-sm-0", type: "submit" %>
+        <% end %>
       </div>
-
     </div>
   </nav>
 
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="bg-dark p-3">
       <div class="toggle-box-search">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" aria-label="Search">
-          <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+       <%= form_tag('/projects', method: :get, class: "form-inline my-2 my-lg-0" ) do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control mr-sm-2",
+            type: "search",
+            'aria-label': "Search",
+            placeholder: "Find a project..."
+          %>
+          <%= submit_tag "Search", class: "btn btn-outline-secondary my-2 my-sm-0", type: "submit" %>
+        <% end %>
       </div>
       <% if user_signed_in? %>
         <div class="toggle-box-avatar">
