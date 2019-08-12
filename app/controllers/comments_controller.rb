@@ -13,6 +13,8 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     authorize @project
     if @comment.save
+
+      noti = Notification.create(recipient: @project.user, actor: current_user, action: "commented", notifiable: @comment)
       redirect_to project_path(@project)
     else
       render 'new'
@@ -24,5 +26,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:content)
   end
-
 end

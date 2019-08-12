@@ -7,5 +7,5 @@ class Project < ApplicationRecord
   belongs_to :user
   has_many :collaborations, dependent: :destroy
   has_many :comments, dependent: :destroy
-  validates :name, :description, :cover_photo, :photo1, presence: true
+#   validates :name, :description, :cover_photo, :photo1, presence: true
 end

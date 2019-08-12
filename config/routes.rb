@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'notifications/index'
   root to: 'projects#index'
 
   devise_for :users,
@@ -14,7 +15,14 @@ Rails.application.routes.draw do
     resources :comments, only: [:new, :create]
   end
 
-  resources :users, only: :show
+  resources :users, only: :show do
+    resources :notifications, only: :index
+    #   collection do
+    #     post: mark_as_read
+    #   end
+    # end
+  end
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

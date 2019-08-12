@@ -1,0 +1,7 @@
+<h1>Notifications center</h1>
+
+<% @notifications.each do |noti| %>
+<p><%= noti.actor.username %> <%= noti.action %> on <%= noti.recipient.username %>'s Project "<%= noti.notifiable.project.name %>" at <%= noti.created_at.strftime("%b %e, %l:%M %p") %> </p>
+
+<% end %>
+
