@@ -173,6 +173,12 @@
   <%= f.button :submit, "Join Hacker Day", class: "btn-social" %>
 <% end %>
 <!-- End -->
+<% @hacker_day.users.each do |x| %>
+<%= x.first_name%>
+<%= x.username %>
+<%= x.email %>
+
+<% end %>
 
 
 

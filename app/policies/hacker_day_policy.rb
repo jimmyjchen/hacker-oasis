@@ -14,14 +14,15 @@ class HackerDayPolicy < ApplicationPolicy
   end
 
   def create
-    return true
+    # record is what comes after the @
+    record.project.user == user
   end
 
   def update?
-    record.user == user
+    return true
   end
 
   def destroy?
-    record.user == user
+    record.project.user == user
   end
 end

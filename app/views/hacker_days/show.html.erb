@@ -1,1 +1,8 @@
 <p>Hacker Days Show page</p>
+
+<% @hacker_day.users.each do |x| %>
+<%= x.first_name%>
+<%= x.username %>
+<%= x.email %>
+
+<% end %>
