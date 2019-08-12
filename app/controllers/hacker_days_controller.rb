@@ -2,13 +2,13 @@ class HackerDaysController < ApplicationController
   def index
     @project = Project.find(params[:project_id])
     authorize @project
-    # @hacker_days = HackerDay.all
+    @hacker_days = HackerDay.where(project_id: @project.id)
   end
 
   def show
     @project = Project.find(params[:project_id])
     authorize @project
-    @hacker_day = HackerDay.where(project_id: @project.id)
+    @hacker_days = HackerDay.find(params[:id])
   end
 
   def new
