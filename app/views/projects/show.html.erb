@@ -156,6 +156,37 @@
   </div>
 </div>
 
+<!-- Hacker Day Informations -->
+<%= @hacker_day.date %>
+<%= @hacker_day.location %>
+<%= @hacker_day.attendants %>
+<!-- End of Hack Day Informations -->
+<!-- Join the Hacker Day -->
+<%= simple_form_for [@project, @hacker_day] do |f| %>
+  <!-- OLD Attendants who registered before... -->
+  <% @hacker_day.attendants.each do |uid| %>
+    <%= f.hidden_field :attendants, value: uid, multiple: true %>
+  <% end %>
+
+  <!-- Add current user to the the list. -->
+  <% @att = @hacker_day.attendants %>
+  <% if !@att.include?(current_user.id.to_s) %>
+    <%= f.hidden_field :attendants, value: current_user.id, multiple: true %>
+    <%= f.button :submit, "Join Hacker Day", class: "btn-social" %>
+    <% else %>
+    <p>Already registered to hacker day!</p>
+    <% end %>
+  <% end %>
+  <!-- end adding user -->
+  <!-- showing registered users -->
+  <% @hacker_day.users.each do |x| %>
+  <%= x.first_name%>
+  <%= x.username %>
+  <%= x.email %>
+  <% end %>
+  <!-- End -->
+
+
 
 <!-- All informations about one project -->
 <!-- Still need to add pictures -->
