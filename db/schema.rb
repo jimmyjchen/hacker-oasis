@@ -35,16 +35,6 @@ ActiveRecord::Schema.define(version: 2019_08_12_051549) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-
-  create_table "pg_search_documents", force: :cascade do |t|
-    t.text "content"
-    t.string "searchable_type"
-    t.bigint "searchable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
-  end
-
   create_table "hacker_days", force: :cascade do |t|
     t.datetime "date"
     t.bigint "project_id"
@@ -53,6 +43,15 @@ ActiveRecord::Schema.define(version: 2019_08_12_051549) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_hacker_days_on_project_id"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -108,6 +107,9 @@ ActiveRecord::Schema.define(version: 2019_08_12_051549) do
     t.string "description"
     t.string "avatar"
     t.string "username"
+    t.string "provider"
+    t.string "uid"
+    t.string "social_avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
