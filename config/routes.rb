@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :collaborations, only: [:new, :create, :show, :index]
     resources :comments, only: [:new, :create]
+    resources :hacker_days, only: [:new, :create, :show, :update,:index]
   end
 
   resources :users, only: :show

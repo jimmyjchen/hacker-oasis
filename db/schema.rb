@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2019_08_12_051549) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
     t.string "searchable_type"
@@ -42,6 +43,16 @@ ActiveRecord::Schema.define(version: 2019_08_12_051549) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
+  create_table "hacker_days", force: :cascade do |t|
+    t.datetime "date"
+    t.bigint "project_id"
+    t.text "attendants", default: [], array: true
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_hacker_days_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -105,5 +116,6 @@ ActiveRecord::Schema.define(version: 2019_08_12_051549) do
   add_foreign_key "collaborations", "users"
   add_foreign_key "comments", "projects"
   add_foreign_key "comments", "users"
+  add_foreign_key "hacker_days", "projects"
   add_foreign_key "projects", "users"
 end
