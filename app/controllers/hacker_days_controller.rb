@@ -23,6 +23,7 @@ class HackerDaysController < ApplicationController
     # raise
     @hacker_day.project = @project
     @project.user = current_user
+    @hacker_day.attendants.push(current_user.id.to_s)
     authorize @project
     if @hacker_day.save
       redirect_to project_path(@project.id)

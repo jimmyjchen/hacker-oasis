@@ -12,7 +12,8 @@
 }
 
 .box-description {
-  padding-top: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid $light-gray;
   i {
     color: $dark-gray;
     opacity: 0.8;
@@ -20,6 +21,10 @@
   i:hover {
     opacity: 1;
   }
+}
+
+.box-hacksession {
+  padding: 16px 0;
 }
 
 .icons-project-crud {
@@ -35,6 +40,7 @@
     opacity: 1;
   }
 }
+
 
 .box-comments {
   h6 {
@@ -64,7 +70,9 @@
 }
 
 .box-project-public {
-
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid $light-gray;
   a {
     display: flex;
     align-items: center;
