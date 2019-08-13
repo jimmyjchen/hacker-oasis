@@ -118,13 +118,12 @@ ActiveRecord::Schema.define(version: 2019_08_13_040009) do
     t.string "description"
     t.string "avatar"
     t.string "username"
+    t.string "social_avatar"
     t.string "provider"
     t.string "uid"
-    t.string "social_avatar"
     t.string "wechatid"
     t.string "linkedin"
     t.string "github"
-
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
