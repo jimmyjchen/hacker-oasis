@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarExpandedContent">
       <% if user_signed_in? %>
         <div class="dropdown-avatar" style="margin-right: 8px;">
-          <img class="avatar-medium dropbtn" src="<%= current_user.avatar.url(:bright_face) %>"/>
+          <img class="avatar-medium dropbtn" src="<%= current_user.profile_avatar_url %>"/>
           <div class="dropdown-content">
             <div class="dropdown-container">
               <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
@@ -67,7 +67,7 @@
       <% if user_signed_in? %>
         <div class="toggle-box-avatar">
           <%= link_to user_path(current_user) do %>
-            <img class="avatar-medium" src="<%= current_user.avatar.url(:bright_face) %>"/>
+            <img class="avatar-medium" src="<%= current_user.profile_avatar_url %>"/>
             <h5><%= current_user.username %></h5>
           <% end %>
           <div class="toggle-item">

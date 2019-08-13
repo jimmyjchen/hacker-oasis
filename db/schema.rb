@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_030208) do
+ActiveRecord::Schema.define(version: 2019_08_13_040009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,16 +56,16 @@ ActiveRecord::Schema.define(version: 2019_08_13_030208) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.string "cover_photo"
-    t.string "photo1"
-    t.string "photo2"
-    t.string "photo3"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.string "url"
+    t.string "qrcode"
+    t.string "type"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -109,6 +109,11 @@ ActiveRecord::Schema.define(version: 2019_08_13_030208) do
     t.string "description"
     t.string "avatar"
     t.string "username"
+    t.string "provider"
+    t.string "uid"
+    t.string "wechatid"
+    t.string "linkedin"
+    t.string "github"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -5,7 +5,7 @@
       <div class="box-user-profile">
         <div class="container">
           <%= link_to user_path(@user) do %>
-          <img src="<%= @user.avatar.url(:bright_face) %>" class="avatar-large">
+          <img src="<%= @user.profile_avatar_url %>" class="avatar-large">
           <h5><%= @user.username %></h5>
           <% end %>
           <div class="location">
@@ -34,7 +34,7 @@
                       <div class="avatar-list">
                         <% project.collaborations.map do |collaboration| %>
                           <%= link_to user_path(collaboration.user) do %>
-                            <img src="<%= collaboration.user.avatar %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
+                            <img src="<%= collaboration.user.profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
                           <% end %>
                         <% end %>
                       </div>
@@ -65,7 +65,7 @@
                       <div class="avatar-list">
                         <% collaboration.project.collaborations.map do |collaboration| %>
                           <%= link_to user_path(collaboration.user) do %>
-                            <img src="<%= collaboration.user.avatar %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
+                            <img src="<%= collaboration.user.profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
                           <% end %>
                         <% end %>
                       </div>
