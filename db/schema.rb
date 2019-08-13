@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2019_08_13_064310) do
 
   # These are extensions that must be enabled in order to support this database
@@ -112,6 +113,16 @@ ActiveRecord::Schema.define(version: 2019_08_13_064310) do
     t.string "name"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "team_comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "hacker_day_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hacker_day_id"], name: "index_team_comments_on_hacker_day_id"
+    t.index ["user_id"], name: "index_team_comments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

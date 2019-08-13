@@ -31,36 +31,7 @@
   <div class="container">
     <div class="row" style="justify-content: center;">
       <div class="col-lg-8">
-        <div id="carouselExampleIndicators" class="carousel slide flex-shrink-1" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-          </ol>
-          <div class="carousel-inner rounded">
-            <div class="carousel-item active">
-              <%= cl_image_tag(@project.cover_photo, class: "project-photo") %>
-            </div>
-            <div class="carousel-item">
-              <%= cl_image_tag(@project.photo1, class: "project-photo") %>
-            </div>
-            <div class="carousel-item">
-              <%= cl_image_tag(@project.photo2, class: "project-photo") %>
-            </div>
-            <div class="carousel-item">
-              <%= cl_image_tag(@project.photo3, class: "project-photo") %>
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
+        <%= cl_image_tag(@project.cover_photo, class: "project-photo") %>
       </div>
     </div>
   </div>
@@ -77,42 +48,6 @@
               <div class="text-description">
                 <%= @project.description %>
               </div>
-            </div>
-
-            <div class="box-hacksession">
-              <% if @hacker_days.empty? == false %>
-                <% @att = @hacker_days.last.attendants %>
-                <% if current_user.nil? == false && @att.include?(current_user.id.to_s) == false %>
-                  <h6>Next Hack Session</h6>
-                  <p><strong>Date and time: </strong><%= @hacker_days.last.date %>
-                  <br />
-                  <strong>Address: </strong><%= @hacker_days.last.location %></p>
-
-                  <!-- Bug: joining with one user wipes out other users on the team -->
-
-                  <%= simple_form_for [@project, @hacker_days.last], method: 'put' do |f| %>
-                    <% @hacker_days.last.attendants.each do |uid| %>
-                      <%= f.hidden_field :attendants, value: uid, multiple: true %>
-                    <% end %>
-                    <%= f.hidden_field :attendants, value: current_user.id, multiple: true %>
-                    <%= f.button :submit, "Join", class: "btn-signup" %>
-                  <% end %>
-                <% elsif current_user.nil? %>
-                  <p>Please login to join hack sessions!</p>
-                <% else %>
-                  <p>Registered to the next hack session on <%= @hacker_days.last.date %> at <%= @hacker_days.last.location %>.</p>
-                <% end %>
-              <% else %>
-                <p>Currently no Hacker Day scheduled for this project.</p>
-              <% end %>
-
-              <!-- Create Hacker Day Modal -->
-
-              <% if policy(@project).edit? %>
-                <button type="button" class="btn btn-signup" data-toggle="modal" data-target="#hackerDayModal">
-                  HackSession.new
-                </button>
-              <% end %>
             </div>
           </div>
 
@@ -131,6 +66,10 @@
             </div>
             <div class="box-project-public">
               <%= link_to "#" do %>
+              <i class="fas fa-link" style="padding-right: 6px;"></i>
+              <p>Project link</p>
+              <% end %>
+              <%= link_to "#" do %>
                 <i class="fab fa-github-square"></i>
                 <p>Project repository</p>
               <% end %>
@@ -139,19 +78,68 @@
                 <p>Contact project owner</p>
               <% end %>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-            <h6 style="margin:0;">Hack Team</h6>
+<div class="container">
+  <div class="row" style="justify-content: center;">
+    <div class="col-lg-8">
+      <div class="container-description">
+        <div class="row" style="width: 100%;">
+          <div class="col-md-8">
+            <div class="box-hacksession">
+              <% if @hacker_days.empty? == false %>
+                <% @att = @hacker_days.last.attendants %>
+                <% if current_user.nil? == false && @att.include?(current_user.id.to_s) == false %>
+                  <h6>Next Hack Session</h6>
+                  <p><strong>Date and time: </strong><%= @hacker_days.last.date %>
+                  <br />
+                  <strong>Address: </strong><%= @hacker_days.last.location %></p>
 
-            <div class="box-collaborators">
-              <i class="fas fa-users"></i>
-              <div class="avatar-list">
-                <% @project.hacker_days.map do |hacker_day| %>
-                  <% hacker_day.attendants.each do |attendant| %>
-                    <%= link_to user_path(attendant) do %>
-                      <img src="<%= User.find(attendant).profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= User.find(attendant).username %>">
+                  <%= simple_form_for [@project, @hacker_days.last], method: 'put' do |f| %>
+                    <% @hacker_days.last.attendants.each do |uid| %>
+                      <%= f.hidden_field :attendants, value: uid, multiple: true %>
+                    <% end %>
+                    <%= f.hidden_field :attendants, value: current_user.id, multiple: true %>
+                    <%= f.button :submit, "Join", class: "btn-signup" %>
+                  <% end %>
+                <% elsif current_user.nil? %>
+                  <p>Please login to join hack sessions!</p>
+                <% else %>
+                  <p>Registered to the next hack session on <em><%= @hacker_days.last.date %></em> at <strong><%= @hacker_days.last.location %>.</strong></p>
+                <% end %>
+              <% else %>
+                <p>Currently no hack session scheduled for this project.</p>
+              <% end %>
+
+              <!-- Create Hacker Day Modal -->
+
+              <% if policy(@project).edit? && (@project.hacker_days.empty? || DateTime.now > @project.hacker_days.last.date) %>
+                <button type="button" class="btn btn-signup" data-toggle="modal" data-target="#hackerDayModal">
+                  HackSession.new
+                </button>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="box-hack-info">
+              <h6 style="margin:0;">Hack Team</h6>
+
+              <div class="box-collaborators">
+                <i class="fas fa-users"></i>
+                <div class="avatar-list">
+                  <% @project.hacker_days.map do |hacker_day| %>
+                    <% hacker_day.attendants.each do |attendant| %>
+                      <%= link_to user_path(attendant) do %>
+                        <img src="<%= User.find(attendant).profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= User.find(attendant).username %>">
+                      <% end %>
                     <% end %>
                   <% end %>
-                <% end %>
+                </div>
               </div>
             </div>
           </div>
@@ -160,6 +148,7 @@
     </div>
   </div>
 </div>
+
 
 <div class="container">
   <div class="row" style="justify-content: center;">
@@ -189,7 +178,7 @@
               <!-- Tab panes -->
               <div class="tab-content">
                 <div class="tab-pane active" id="public-chat" role="tabpanel" aria-labelledby="public-chat-tab">
-                  <%= simple_form_for [@project, @comment], remote: true do |f| %>
+                  <%= simple_form_for [@project, @comment] do |f| %>
                     <%= f.input :content, label: false, placeholder: "What are your thoughts?" %>
                     <%= f.button :submit, "Comment", class: "btn-social" %>
                   <% end %>
@@ -208,9 +197,29 @@
                     <% end %>
                   </div>
                 </div>
-                <div class="tab-pane" id="team-chat" role="tabpanel" aria-labelledby="team-chat-tab">Team Chat</div>
+                <div class="tab-pane" id="team-chat" role="tabpanel" aria-labelledby="team-chat-tab">
+                  <% if @hacker_days.empty? == false %>
+                    <%= simple_form_for [@project, @team_comment] do |f| %>
+                      <%= f.input :content, label: false, placeholder: "What are your thoughts?" %>
+                      <%= f.button :submit, "Comment", class: "btn-social" %>
+                    <% end %>
+                    <h6>
+                      <%= @hacker_day.team_comments.size %> comments
+                    </h6>
+                    <div class="box-comment-messages">
+                      <% @hacker_day.team_comments.order(id: :desc).each do |c| %>
+                        <div class="comment-header">
+                          <img src="<%= c.user.profile_avatar_url %>" class="avatar">
+                          <p><%= link_to c.user.username, user_path(c.user) %> <em>at <%= c.created_at %></em></p>
+                        </div>
+                        <div class="comment-content">
+                          <p><%= c.content %></p>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
               </div>
-
             </div>
           </div>
 
@@ -289,7 +298,7 @@
   // };
 
   const getComments = () => {
-  fetch(`/comments`)
+  fetch(`project_comments_path(@project.id)`)
     .then(response => response.json())
     .then((data) => {
       console.log(data)
