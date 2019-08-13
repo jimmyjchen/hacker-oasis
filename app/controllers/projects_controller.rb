@@ -47,6 +47,7 @@ class ProjectsController < ApplicationController
     @hacker_day = @hacker_days.last
     # raise
     @comment = Comment.new
+    @comments = @project.comments
     @team_comment = TeamComment.new
     # @collaboration = Collaboration.new
     # @users = User.all.order(username: :asc)

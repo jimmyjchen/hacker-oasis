@@ -1,0 +1,18 @@
+<%= simple_form_for [@project, @comment], remote: true do |f| %>
+  <%= f.input :content, label: false, placeholder: "What are your thoughts?" %>
+  <%= f.button :submit, "Comment", class: "btn-social" %>
+<% end %>
+<div class="number-comments">
+  <h6><%= @project.comments.size %> comments</h6>
+</div>
+<div class="box-comment-messages">
+  <% @project.comments.order(id: :desc).each do |c| %>
+    <div class="comment-header">
+      <img src="<%= c.user.profile_avatar_url %>" class="avatar">
+      <p><%= link_to c.user.username, user_path(c.user) %> <em>at <%= c.created_at %></em></p>
+    </div>
+    <div class="comment-content">
+      <p><%= c.content %></p>
+    </div>
+  <% end %>
+</div>
