@@ -43,13 +43,15 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @hacker_days = HackerDay.where(project_id: @project.id)
+    @hacker_day = @hacker_days.last
     # raise
     @comment = Comment.new
+    @team_comment = TeamComment.new
     @collaboration = Collaboration.new
     # @users = User.all.order(username: :asc)
     @users = User.all.order(username: :asc).map{|user| user.username}
     # puts @users
-    @hacker_days = HackerDay.where(project_id: @project.id)
   end
 
   private

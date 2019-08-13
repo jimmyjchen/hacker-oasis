@@ -1,5 +1,8 @@
 class CommentsController < ApplicationController
   def index
+    @project = Project.find(params[:project_id])
+    @comments = @project.comments
+    render json: @comments
   end
 
   def show
