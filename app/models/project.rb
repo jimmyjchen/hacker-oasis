@@ -9,6 +9,8 @@ class Project < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :hacker_days
   validates :name, :description, :cover_photo, :photo1, presence: true
+  geocoded_by :location
+  after_validation :geocode, if: :will_save_change_to_location?
 
   include PgSearch
   pg_search_scope :multisearchable,
