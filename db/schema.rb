@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_08_13_040009) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 2019_08_13_040009) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+
   create_table "hacker_days", force: :cascade do |t|
     t.datetime "date"
     t.bigint "project_id"
@@ -43,6 +45,17 @@ ActiveRecord::Schema.define(version: 2019_08_13_040009) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_hacker_days_on_project_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "actor_id"
+    t.datetime "read_at"
+    t.string "action"
+    t.integer "notifiable_id"
+    t.string "notifiable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -109,6 +122,7 @@ ActiveRecord::Schema.define(version: 2019_08_13_040009) do
     t.string "description"
     t.string "avatar"
     t.string "username"
+    t.string "social_avatar"
     t.string "provider"
     t.string "uid"
     t.string "wechatid"

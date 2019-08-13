@@ -21,6 +21,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        noti = Notification.create(recipient: @project.user, actor: current_user, action: "commented", notifiable: @comment)
         format.html { redirect_to project_path(@project) }
         format.js
       else
@@ -34,5 +35,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:content)
   end
-
 end
