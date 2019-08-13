@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
     resources :comments, only: [:index, :show, :new, :create]
     resources :hacker_days, only: [:new, :create, :show, :update,:index]
+    resources :likes
   end
 
   resources :users, only: :show do
