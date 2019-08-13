@@ -91,6 +91,9 @@
                   <!-- Bug: joining with one user wipes out other users on the team -->
 
                   <%= simple_form_for [@project, @hacker_days.last], method: 'put' do |f| %>
+                    <% @hacker_days.last.attendants.each do |uid| %>
+                      <%= f.hidden_field :attendants, value: uid, multiple: true %>
+                    <% end %>
                     <%= f.hidden_field :attendants, value: current_user.id, multiple: true %>
                     <%= f.button :submit, "Join", class: "btn-signup" %>
                   <% end %>
@@ -212,26 +215,6 @@
           </div>
 
           <div class="col-md-4">
-
-            <h6 style="margin:0;">Project Collaborators</h6>
-
-            <div class="box-collaborators">
-              <i class="fas fa-users"></i>
-              <div class="avatar-list">
-                <% @project.collaborations.map do |collaboration| %>
-                  <%= link_to user_path(collaboration.user) do %>
-                    <img src="<%= collaboration.user.profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-            <% if policy(@project).update? %>
-              <%= simple_form_for [@project, @collaboration] do |f| %>
-                <%= f.input :user, collection: @users, label: false %>
-                <%= f.button :submit, "Add Collaborator", class: "btn-social" %>
-              <% end %>
-            <% end %>
-
             <div class="box-tags">
               <i class="fas fa-tag"></i>
               <div class="tags">
@@ -317,22 +300,5 @@
   });
 </script> -->
 
-
-<!-- All informations about one project -->
-<!-- Still need to add pictures -->
-<!-- cover photo, photo1, photo2, photo3 -->
-
-<!-- cl_image_tag(@project.cover_photo, :width => 200, :height => 150, :crop => :fill)
-cl_image_tag(@project.photo1, :width => 200, :height => 150, :crop => :fill)
-cl_image_tag(@project.photo2, :width => 200, :height => 150, :crop => :fill)
-cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
-
-
-
-<!-- PROJECT TAGS -->
-<!-- <h3>Project Tags</h3> -->
-<%# @project.tags.each do |t| %>
-<!-- <p> #t.name %></p> -->
-<!-- end -->
 
 
