@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 2019_08_13_040009) do
     t.index ["project_id"], name: "index_hacker_days_on_project_id"
   end
 
-
   create_table "notifications", force: :cascade do |t|
     t.integer "recipient_id"
     t.integer "actor_id"
@@ -58,7 +57,6 @@ ActiveRecord::Schema.define(version: 2019_08_13_040009) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
 
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
@@ -76,6 +74,8 @@ ActiveRecord::Schema.define(version: 2019_08_13_040009) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.string "url"
     t.string "qrcode"
     t.string "type"
