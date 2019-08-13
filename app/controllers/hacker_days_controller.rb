@@ -2,13 +2,13 @@ class HackerDaysController < ApplicationController
   def index
     @project = Project.find(params[:project_id])
     authorize @project
-    # @hacker_days = HackerDay.all
+    @hacker_days = HackerDay.where(project_id: @project.id)
   end
 
   def show
     @project = Project.find(params[:project_id])
     authorize @project
-    @hacker_day = HackerDay.where(project_id: @project.id)
+    @hacker_days = HackerDay.find(params[:id])
   end
 
   def new
@@ -23,6 +23,7 @@ class HackerDaysController < ApplicationController
     # raise
     @hacker_day.project = @project
     @project.user = current_user
+    @hacker_day.attendants.push(current_user.id.to_s)
     authorize @project
     if @hacker_day.save
       redirect_to project_path(@project.id)
