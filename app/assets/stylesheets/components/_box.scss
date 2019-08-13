@@ -37,10 +37,8 @@
 }
 
 .box-hacksession {
-  p {
-    padding-top: 16px;
-    border-top: 1px solid $light-gray;
-  }
+  padding-top: 16px;
+  border-top: 1px solid $light-gray;
 }
 
 .box-comments {
@@ -54,6 +52,11 @@
 }
 
 .box-comment-messages {
+  overflow: scroll;
+  height: 360px;
+}
+
+.box-team-comment-messages {
   overflow: scroll;
   height: 360px;
 }
