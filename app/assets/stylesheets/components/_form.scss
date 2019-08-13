@@ -2,11 +2,20 @@
   justify-content: center;
   margin: 32px 0px;
   color: $gray;
+  label {
+    color: $off-black;
+  }
+  legend {
+    color: $off-black;
+  }
+  .radio_buttons label {
+    margin: 0;
+  }
 }
 
-.form-add-project label {
-  color: $off-black;
-}
+// .form-add-project label {
+//   color: $off-black;
+// }
 
 .form-box {
   padding: 24px;

@@ -9,8 +9,8 @@ class Project < ApplicationRecord
   has_many :comments, dependent: :destroy
 #   validates :name, :description, :cover_photo, :photo1, presence: true
   has_many :hacker_days
-  geocoded_by :location
-  after_validation :geocode, if: :will_save_change_to_location?
+  # geocoded_by :location
+  # after_validation :geocode, if: :will_save_change_to_location?
 
   # validates :name, :description, :cover_photo, :photo1, presence: true
 
