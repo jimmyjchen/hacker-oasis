@@ -2,6 +2,8 @@ class LikesController < ApplicationController
   before_action :find_project
 
   def create
+    @project = Project.find(params[:project_id])
+    authorize @project
     if already_liked?
       flash[:notice] = "You can't like more than once"
     else
@@ -20,5 +22,4 @@ class LikesController < ApplicationController
   def find_project
     @project = Project.find(params[:project_id])
   end
-
 end
