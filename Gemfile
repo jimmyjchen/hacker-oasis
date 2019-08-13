@@ -24,6 +24,7 @@ gem 'omniauth-github'
 gem 'oauth2', :git => 'git@github.com:oauth-xx/oauth2.git'
 gem 'country_select'
 gem 'pg_search'
+gem 'geocoder'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
