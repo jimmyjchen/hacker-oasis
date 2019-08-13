@@ -1,7 +1,11 @@
 <div class="body-container">
+  <!-- Headline -->
+
   <div class="submenu-tall" style="justify-content: center">
     <h4 class="sub-header">Help <%= @project.user.username %>'s project become better</h4>
   </div>
+
+  <!-- Project owner information and like/follow buttons -->
 
   <div class="container">
     <div class="row" style="justify-content: center;">
@@ -21,6 +25,8 @@
   </div>
 
   <hr>
+
+  <!-- Project image(s) -->
 
   <div class="container">
     <div class="row" style="justify-content: center;">
@@ -60,10 +66,10 @@
   </div>
 </div>
 
+
 <div class="container">
   <div class="row" style="justify-content: center;">
     <div class="col-lg-8">
-
       <div class="container-description">
         <div class="row" style="width: 100%;">
           <div class="col-md-8">
@@ -73,24 +79,40 @@
               </div>
             </div>
 
-            <div class="box-comments">
-              <%= simple_form_for [@project, @comment] do |f| %>
-                <%= f.input :content, label: false, placeholder: "What are your thoughts?" %>
-                <%= f.button :submit, "Comment", class: "btn-social" %>
-              <% end %>
-              <h6>
-                <%= @project.comments.size %> comments
-              </h6>
-              <% @project.comments.order(id: :desc).each do |c| %>
-                <div class="comment-header">
-                  <img src="<%= c.user.profile_avatar_url %>" class="avatar">
-                  <p><%= link_to c.user.username, user_path(c.user) %></p>
-                </div>
-                <div class="comment-content">
-                  <p><%= c.content %></p>
-                </div>
+            <div class="box-hacksession">
+              <% if @hacker_days.empty? == false %>
+                <% @att = @hacker_days.last.attendants %>
+                <% if current_user.nil? == false && @att.include?(current_user.id.to_s) == false %>
+                  <h6>Next Hack Session</h6>
+                  <p><strong>Date and time: </strong><%= @hacker_days.last.date %>
+                  <br />
+                  <strong>Address: </strong><%= @hacker_days.last.location %></p>
+
+                  <!-- Bug: joining with one user wipes out other users on the team -->
+
+                  <%= simple_form_for [@project, @hacker_days.last], method: 'put' do |f| %>
+                    <% @hacker_days.last.attendants.each do |uid| %>
+                      <%= f.hidden_field :attendants, value: uid, multiple: true %>
+                    <% end %>
+                    <%= f.hidden_field :attendants, value: current_user.id, multiple: true %>
+                    <%= f.button :submit, "Join", class: "btn-signup" %>
+                  <% end %>
+                <% elsif current_user.nil? %>
+                  <p>Please login to join hack sessions!</p>
+                <% else %>
+                  <p>Registered to the next hack session on <%= @hacker_days.last.date %> at <%= @hacker_days.last.location %>.</p>
+                <% end %>
+              <% else %>
+                <p>Currently no Hacker Day scheduled for this project.</p>
               <% end %>
 
+              <!-- Create Hacker Day Modal -->
+
+              <% if policy(@project).edit? %>
+                <button type="button" class="btn btn-signup" data-toggle="modal" data-target="#hackerDayModal">
+                  HackSession.new
+                </button>
+              <% end %>
             </div>
           </div>
 
@@ -107,25 +129,6 @@
                 <% end %>
               <% end %>
             </div>
-
-            <h6 style="margin:0;">Project Collaborators</h6>
-
-            <div class="box-collaborators">
-              <i class="fas fa-users"></i>
-              <div class="avatar-list">
-                <% @project.collaborations.map do |collaboration| %>
-                  <%= link_to user_path(collaboration.user) do %>
-                    <img src="<%= collaboration.user.profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-            <% if policy(@project).update? %>
-              <%= simple_form_for [@project, @collaboration] do |f| %>
-                <%= f.input :user, collection: @users, label: false %>
-                <%= f.button :submit, "Add Collaborator", class: "btn-social" %>
-              <% end %>
-            <% end %>
             <div class="box-project-public">
               <%= link_to "#" do %>
                 <i class="fab fa-github-square"></i>
@@ -137,6 +140,81 @@
               <% end %>
             </div>
 
+            <h6 style="margin:0;">Hack Team</h6>
+
+            <div class="box-collaborators">
+              <i class="fas fa-users"></i>
+              <div class="avatar-list">
+                <% @project.hacker_days.map do |hacker_day| %>
+                  <% hacker_day.attendants.each do |attendant| %>
+                    <%= link_to user_path(attendant) do %>
+                      <img src="<%= User.find(attendant).profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= User.find(attendant).username %>">
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row" style="justify-content: center;">
+    <div class="col-lg-8">
+
+      <div class="container-description">
+        <div class="row" style="width: 100%;">
+          <div class="col-md-8">
+
+            <div class="box-comments">
+
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" id="commentTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="public-chat-tab" data-toggle="tab" href="#public-chat" role="tab" aria-controls="public-chat" aria-selected="true">Public Chat</a>
+                </li>
+                <% if @hacker_days.empty? == false %>
+                  <% @att = @hacker_days.last.attendants %>
+                  <% if current_user.nil? == false && @att.include?(current_user.id.to_s) %>
+                    <li class="nav-item">
+                      <a class="nav-link" id="team-chat-tab" data-toggle="tab" href="#team-chat" role="tab" aria-controls="team-chat" aria-selected="false">Team Chat</a>
+                    </li>
+                  <% end %>
+                <% end %>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div class="tab-pane active" id="public-chat" role="tabpanel" aria-labelledby="public-chat-tab">
+                  <%= simple_form_for [@project, @comment], remote: true do |f| %>
+                    <%= f.input :content, label: false, placeholder: "What are your thoughts?" %>
+                    <%= f.button :submit, "Comment", class: "btn-social" %>
+                  <% end %>
+                  <h6>
+                    <%= @project.comments.size %> comments
+                  </h6>
+                  <div class="box-comment-messages">
+                    <% @project.comments.order(id: :desc).each do |c| %>
+                      <div class="comment-header">
+                        <img src="<%= c.user.profile_avatar_url %>" class="avatar">
+                        <p><%= link_to c.user.username, user_path(c.user) %> <em>at <%= c.created_at %></em></p>
+                      </div>
+                      <div class="comment-content">
+                        <p><%= c.content %></p>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="tab-pane" id="team-chat" role="tabpanel" aria-labelledby="team-chat-tab">Team Chat</div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-4">
             <div class="box-tags">
               <i class="fas fa-tag"></i>
               <div class="tags">
@@ -156,22 +234,71 @@
   </div>
 </div>
 
+<!-- Modal -->
 
-<!-- All informations about one project -->
-<!-- Still need to add pictures -->
-<!-- cover photo, photo1, photo2, photo3 -->
+<div class="modal fade" id="hackerDayModal" tabindex="-1" role="dialog" aria-labelledby="hackerDayModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="hackerDayModalLabel">Create Hacker Day</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% @hacker_day = HackerDay.new %>
+        <%= simple_form_for [@project, @hacker_day] do |f| %>
+          <%= f.input :date, label: "When will you hack?" %>
+          <%= f.input :location, label: "Where will the hacking take place?" %>
+          <%= f.button :submit, "HackSession.new", class: "btn-signup" %>
+          <%= f.button :button, "Reset", type: "reset", class: "btn-reset" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- cl_image_tag(@project.cover_photo, :width => 200, :height => 150, :crop => :fill)
-cl_image_tag(@project.photo1, :width => 200, :height => 150, :crop => :fill)
-cl_image_tag(@project.photo2, :width => 200, :height => 150, :crop => :fill)
-cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
 
 
+<!-- <script>
+  const commentForm = document.querySelector("#new_comment");
+  const commentList = document.querySelector(".box-comment-messages");
+  const commentIdArray = [];
 
-<!-- PROJECT TAGS -->
-<!-- <h3>Project Tags</h3> -->
-<%# @project.tags.each do |t| %>
-<!-- <p> #t.name %></p> -->
-<!-- end -->
+
+  // const addComment = (id, comment, name, time) => {
+  //   const timeParsed = new Date(Date(time)).toLocaleString('en-US', { timezone: 'Asia/Shanghai' });
+  //   const html = `<li id="${id}">${comment} (posted
+  //   <span class="date">${timeParsed}</span>
+  //   ) by ${name}</li>`;
+  //   commentList.insertAdjacentHTML("afterbegin", html);
+  //   commentIdArray.push(id);
+  // };
+
+  // const listComments = (data) => {
+  //   data.comments.forEach((comment) => {
+  //     if (commentIdArray.includes(comment.id) === false) {
+  //       addComment(comment.id, comment.content, comment.user, comment.created_at);
+  //     }
+  //   });
+  // };
+
+  const getComments = () => {
+  fetch(`/comments`)
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data)
+    });
+};
+
+
+  commentForm.addEventListener('ajax:success', (e) => {
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    setInterval(getComments, 2000);
+  });
+</script> -->
+
 
 

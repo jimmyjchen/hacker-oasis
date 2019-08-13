@@ -3,9 +3,7 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-
   config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], scope: 'user,public_repo', token_params: { parse: :json }
-  # config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], token_params: { parse: :json }
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing

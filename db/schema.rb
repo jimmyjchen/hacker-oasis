@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_12_034720) do
+ActiveRecord::Schema.define(version: 2019_08_13_040009) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +36,18 @@ ActiveRecord::Schema.define(version: 2019_08_12_034720) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+
+  create_table "hacker_days", force: :cascade do |t|
+    t.datetime "date"
+    t.bigint "project_id"
+    t.text "attendants", default: [], array: true
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_hacker_days_on_project_id"
+  end
+
+
   create_table "notifications", force: :cascade do |t|
     t.integer "recipient_id"
     t.integer "actor_id"
@@ -46,16 +59,26 @@ ActiveRecord::Schema.define(version: 2019_08_12_034720) do
     t.datetime "updated_at", null: false
   end
 
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.string "cover_photo"
-    t.string "photo1"
-    t.string "photo2"
-    t.string "photo3"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "url"
+    t.string "qrcode"
+    t.string "type"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -99,9 +122,12 @@ ActiveRecord::Schema.define(version: 2019_08_12_034720) do
     t.string "description"
     t.string "avatar"
     t.string "username"
+    t.string "social_avatar"
     t.string "provider"
     t.string "uid"
-    t.string "social_avatar"
+    t.string "wechatid"
+    t.string "linkedin"
+    t.string "github"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -110,5 +136,6 @@ ActiveRecord::Schema.define(version: 2019_08_12_034720) do
   add_foreign_key "collaborations", "users"
   add_foreign_key "comments", "projects"
   add_foreign_key "comments", "users"
+  add_foreign_key "hacker_days", "projects"
   add_foreign_key "projects", "users"
 end

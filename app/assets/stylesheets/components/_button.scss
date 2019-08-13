@@ -1,3 +1,14 @@
+.btn-outline-secondary {
+  border-color: $gray;
+  color: $gray;
+}
+
+.btn-outline-secondary:hover {
+  border-color: $light-gray;
+  color: $light-gray;
+  background-color: transparent;
+}
+
 .btn-upload {
   border: 1px solid $light-gray;
   padding: 4px 8px;
