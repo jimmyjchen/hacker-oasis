@@ -9,6 +9,10 @@
         <%= simple_form_for @project do |f| %>
           <%= f.input :name %>
           <%= f.input :description %>
+          <%= f.input :cover_photo, label: "Landing Page Screenshot" %>
+          <%= f.input :cover_photo_cache, as: :hidden %>
+          <%= f.input :type, as: :radio_buttons, label: "Project Type", collection: ["Mobile", "Web", "Both"], wrapper: :vertical_collection_inline %>
+          <%= f.input :url, label: "Project Link" %>
           <%= f.label :name, "Project Categories (ex. blockchain, javascript, ruby, wechat, etc.)" %>
           <div data-tags-input-name="project[tag_list]" id="tag"></div>
           <p>Press enter, comma or spacebar to create a new tag; backspace or delete to remove.</p>
