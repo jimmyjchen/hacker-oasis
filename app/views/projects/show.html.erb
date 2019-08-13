@@ -178,45 +178,11 @@
               <!-- Tab panes -->
               <div class="tab-content">
                 <div class="tab-pane active" id="public-chat" role="tabpanel" aria-labelledby="public-chat-tab">
-                  <%= simple_form_for [@project, @comment] do |f| %>
-                    <%= f.input :content, label: false, placeholder: "What are your thoughts?" %>
-                    <%= f.button :submit, "Comment", class: "btn-social" %>
-                  <% end %>
-                  <h6>
-                    <%= @project.comments.size %> comments
-                  </h6>
-                  <div class="box-comment-messages">
-                    <% @project.comments.order(id: :desc).each do |c| %>
-                      <div class="comment-header">
-                        <img src="<%= c.user.profile_avatar_url %>" class="avatar">
-                        <p><%= link_to c.user.username, user_path(c.user) %> <em>at <%= c.created_at %></em></p>
-                      </div>
-                      <div class="comment-content">
-                        <p><%= c.content %></p>
-                      </div>
-                    <% end %>
-                  </div>
+                  <%= render 'public_chat' %>
                 </div>
                 <div class="tab-pane" id="team-chat" role="tabpanel" aria-labelledby="team-chat-tab">
                   <% if @hacker_days.empty? == false %>
-                    <%= simple_form_for [@project, @team_comment] do |f| %>
-                      <%= f.input :content, label: false, placeholder: "What are your thoughts?" %>
-                      <%= f.button :submit, "Comment", class: "btn-social" %>
-                    <% end %>
-                    <h6>
-                      <%= @hacker_day.team_comments.size %> comments
-                    </h6>
-                    <div class="box-comment-messages">
-                      <% @hacker_day.team_comments.order(id: :desc).each do |c| %>
-                        <div class="comment-header">
-                          <img src="<%= c.user.profile_avatar_url %>" class="avatar">
-                          <p><%= link_to c.user.username, user_path(c.user) %> <em>at <%= c.created_at %></em></p>
-                        </div>
-                        <div class="comment-content">
-                          <p><%= c.content %></p>
-                        </div>
-                      <% end %>
-                    </div>
+                    <%= render 'team_chat' %>
                   <% end %>
                 </div>
               </div>
@@ -245,69 +211,68 @@
 
 <!-- Modal -->
 
-<div class="modal fade" id="hackerDayModal" tabindex="-1" role="dialog" aria-labelledby="hackerDayModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="hackerDayModalLabel">Create Hacker Day</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <% @hacker_day = HackerDay.new %>
-        <%= simple_form_for [@project, @hacker_day] do |f| %>
-          <%= f.input :date, label: "When will you hack?" %>
-          <%= f.input :location, label: "Where will the hacking take place?" %>
-          <%= f.button :submit, "HackSession.new", class: "btn-signup" %>
-          <%= f.button :button, "Reset", type: "reset", class: "btn-reset" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render 'new_hack_session' %>
 
 
 
-<!-- <script>
+<script>
   const commentForm = document.querySelector("#new_comment");
   const commentList = document.querySelector(".box-comment-messages");
-  const commentIdArray = [];
+  const numberComments = document.querySelector(".number-comments");
+  let commentSize = `<%= @project.comments.size %>`;
+  let commentId = `<%= @project.comments.last.id %>`;
 
+  const getCommentId = () => {
+    let commentId = `<%= @project.comments.last.id %>`;
+  }
 
-  // const addComment = (id, comment, name, time) => {
-  //   const timeParsed = new Date(Date(time)).toLocaleString('en-US', { timezone: 'Asia/Shanghai' });
-  //   const html = `<li id="${id}">${comment} (posted
-  //   <span class="date">${timeParsed}</span>
-  //   ) by ${name}</li>`;
-  //   commentList.insertAdjacentHTML("afterbegin", html);
-  //   commentIdArray.push(id);
-  // };
+  const showComment = (id, project_id, content, user_id, time) => {
+    Rails.ajax({
+      url: `/projects/${project_id}/comments/${id}`,
+      type: "get",
+      data: ""
+    })
+  };
 
-  // const listComments = (data) => {
-  //   data.comments.forEach((comment) => {
-  //     if (commentIdArray.includes(comment.id) === false) {
-  //       addComment(comment.id, comment.content, comment.user, comment.created_at);
-  //     }
-  //   });
-  // };
+  const listComments = (data) => {
+    i = 0
+    data.forEach((comment) => {
+      i ++;
+      if (comment.id > commentId) {
+        commentId = comment.id;
+        commentSize ++;
+        showComment(comment.id, comment.project_id, comment.content, comment.user_id, comment.created_at);
+        numberComments.innerHTML = `<h6>${i} comments</h6>`
+      }
+    });
+  };
 
   const getComments = () => {
-  fetch(`project_comments_path(@project.id)`)
-    .then(response => response.json())
-    .then((data) => {
-      console.log(data)
-    });
-};
+    Rails.ajax({
+      url: "<%= project_comments_path(@project.id) %>",
+      type: "get",
+      data: "",
+      success: function(data) {
+        listComments(data);
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    })
+  };
 
 
   commentForm.addEventListener('ajax:success', (e) => {
+    commentId = parseInt(commentId) + 1;
+    getComments();
+    numberComments.innerHTML = `<h6>${parseInt(commentSize) + 1} comments</h6>`
   });
 
   document.addEventListener("DOMContentLoaded", () => {
     setInterval(getComments, 2000);
   });
-</script> -->
+
+</script>
 
 
 

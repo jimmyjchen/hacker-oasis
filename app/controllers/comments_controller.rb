@@ -1,11 +1,18 @@
 class CommentsController < ApplicationController
   def index
-    @project = Project.find(params[:project_id])
-    @comments = @project.comments
+    @comments = policy_scope(Comment).where(project_id: params[:project_id])
+    authorize @comments
     render json: @comments
   end
 
   def show
+    # @project = Project.find(params[:project_id])
+    @comment = Comment.find(params[:id])
+    # authorize @project
+    authorize @comment
+    respond_to do |format|
+      format.js
+    end
   end
 
   def new
