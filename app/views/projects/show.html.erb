@@ -219,21 +219,16 @@
 <!-- End Likes -->
 
 
-
+<!-- Public Chat JavaScript -->
 <script>
   const commentForm = document.querySelector("#new_comment");
   const commentList = document.querySelector(".box-comment-messages");
   const numberComments = document.querySelector(".number-comments");
   let commentSize = `<%= @project.comments.size %>`;
-  let commentId = `<%= @project.comments.last.id %>`;
 
-  const getCommentId = () => {
-    let commentId = `<%= @project.comments.last.id %>`;
-  }
-
-  const showComment = (id, project_id, content, user_id, time) => {
+  const showComment = (id) => {
     Rails.ajax({
-      url: `/projects/${project_id}/comments/${id}`,
+      url: `/projects/<%= @project.id %>/comments/${id}`,
       type: "get",
       data: ""
     })
@@ -243,10 +238,9 @@
     i = 0
     data.forEach((comment) => {
       i ++;
-      if (comment.id > commentId) {
-        commentId = comment.id;
-        commentSize ++;
-        showComment(comment.id, comment.project_id, comment.content, comment.user_id, comment.created_at);
+      if (i > commentSize) {
+        commentSize = comment.id;
+        showComment(comment.id);
         numberComments.innerHTML = `<h6>${i} comments</h6>`
       }
     });
@@ -268,9 +262,9 @@
 
 
   commentForm.addEventListener('ajax:success', (e) => {
-    commentId = parseInt(commentId) + 1;
+    commentSize = parseInt(commentSize) + 1;
     getComments();
-    numberComments.innerHTML = `<h6>${parseInt(commentSize) + 1} comments</h6>`
+    numberComments.innerHTML = `<h6>${commentSize} comments</h6>`
   });
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -279,5 +273,60 @@
 
 </script>
 
+<!-- Team Chat JavaScript -->
+<% if @project.hacker_days.empty? == false %>
+  <script>
+    const teamCommentForm = document.querySelector("#new_team_comment");
+    const teamCommentList = document.querySelector(".box-team-comment-messages");
+    const numberTeamComments = document.querySelector(".number-team-comments");
+    let teamCommentSize = `<%= @project.hacker_days.last.team_comments.size %>`;
+    console.log(teamCommentSize);
 
+    const showTeamComment = (id) => {
+      Rails.ajax({
+        url: `/projects/<%= @project.id %>/team_comments/${id}`,
+        type: "get",
+        data: ""
+      })
+    };
+
+    const listTeamComments = (data) => {
+      i = 0
+      data.forEach((team_comment) => {
+        i ++;
+        if (i > teamCommentSize) {
+          teamCommentSize = team_comment.id;
+          showTeamComment(team_comment.id);
+          numberTeamComments.innerHTML = `<h6>${i} comments</h6>`
+        }
+      });
+    };
+
+    const getTeamComments = () => {
+      Rails.ajax({
+        url: "<%= project_team_comments_path(@project.id) %>",
+        type: "get",
+        data: "",
+        success: function(data) {
+          listTeamComments(data);
+        },
+        error: function(data) {
+          console.log(data);
+        }
+      })
+    };
+
+
+    teamCommentForm.addEventListener('ajax:success', (e) => {
+      teamCommentSize = parseInt(teamCommentSize) + 1;
+      getTeamComments();
+      numberTeamComments.innerHTML = `<h6>${teamCommentSize} comments</h6>`
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setInterval(getTeamComments, 2000);
+    });
+
+  </script>
+<% end %>
 

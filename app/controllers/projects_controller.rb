@@ -42,7 +42,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
     @hacker_days = HackerDay.where(project_id: @project.id)
     @hacker_day = @hacker_days.last
     # raise
