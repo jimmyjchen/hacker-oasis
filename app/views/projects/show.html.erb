@@ -91,6 +91,9 @@
                   <!-- Bug: joining with one user wipes out other users on the team -->
 
                   <%= simple_form_for [@project, @hacker_days.last], method: 'put' do |f| %>
+                    <% @hacker_days.last.attendants.each do |uid| %>
+                      <%= f.hidden_field :attendants, value: uid, multiple: true %>
+                    <% end %>
                     <%= f.hidden_field :attendants, value: current_user.id, multiple: true %>
                     <%= f.button :submit, "Join", class: "btn-signup" %>
                   <% end %>
@@ -317,22 +320,5 @@
   });
 </script> -->
 
-
-<!-- All informations about one project -->
-<!-- Still need to add pictures -->
-<!-- cover photo, photo1, photo2, photo3 -->
-
-<!-- cl_image_tag(@project.cover_photo, :width => 200, :height => 150, :crop => :fill)
-cl_image_tag(@project.photo1, :width => 200, :height => 150, :crop => :fill)
-cl_image_tag(@project.photo2, :width => 200, :height => 150, :crop => :fill)
-cl_image_tag(@project.photo3, :width => 200, :height => 150, :crop => :fill) -->
-
-
-
-<!-- PROJECT TAGS -->
-<!-- <h3>Project Tags</h3> -->
-<%# @project.tags.each do |t| %>
-<!-- <p> #t.name %></p> -->
-<!-- end -->
 
 
