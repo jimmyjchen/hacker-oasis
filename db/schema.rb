@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_08_13_040009) do
 
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,7 +34,6 @@ ActiveRecord::Schema.define(version: 2019_08_13_040009) do
     t.index ["project_id"], name: "index_comments_on_project_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
-
 
   create_table "hacker_days", force: :cascade do |t|
     t.datetime "date"
@@ -74,11 +72,11 @@ ActiveRecord::Schema.define(version: 2019_08_13_040009) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
     t.string "url"
     t.string "qrcode"
     t.string "type"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -122,12 +120,11 @@ ActiveRecord::Schema.define(version: 2019_08_13_040009) do
     t.string "description"
     t.string "avatar"
     t.string "username"
-    t.string "social_avatar"
-    t.string "provider"
-    t.string "uid"
     t.string "wechatid"
     t.string "linkedin"
     t.string "github"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
