@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_12_051549) do
+ActiveRecord::Schema.define(version: 2019_08_13_031451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 2019_08_12_051549) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_hacker_days_on_project_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "actor_id"
+    t.datetime "read_at"
+    t.string "action"
+    t.integer "notifiable_id"
+    t.string "notifiable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -107,9 +118,9 @@ ActiveRecord::Schema.define(version: 2019_08_12_051549) do
     t.string "description"
     t.string "avatar"
     t.string "username"
+    t.string "social_avatar"
     t.string "provider"
     t.string "uid"
-    t.string "social_avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

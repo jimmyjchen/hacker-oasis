@@ -11,7 +11,7 @@
     <div class="row" style="justify-content: center;">
       <div class="col col-sm-12 col-lg-8">
         <div class="submenu-show">
-          <img src="<%= @project.user.avatar.url(:bright_face) %>" class="avatar-large">
+          <img src="<%= @project.user.profile_avatar_url %>" class="avatar-large">
           <div class="project-details">
             <h4><%= @project.name %></h4>
             <p>by <%= link_to @project.user.username, user_path(@project.user) %>
@@ -145,7 +145,7 @@
                 <% @project.hacker_days.map do |hacker_day| %>
                   <% hacker_day.attendants.each do |attendant| %>
                     <%= link_to user_path(attendant) do %>
-                      <img src="<%= User.find(attendant).avatar.url(:bright_face) %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= User.find(attendant).username %>">
+                      <img src="<%= User.find(attendant).profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= User.find(attendant).username %>">
                     <% end %>
                   <% end %>
                 <% end %>
@@ -196,7 +196,7 @@
                   <div class="box-comment-messages">
                     <% @project.comments.order(id: :desc).each do |c| %>
                       <div class="comment-header">
-                        <img src="<%= c.user.avatar.url(:bright_face) %>" class="avatar">
+                        <img src="<%= c.user.profile_avatar_url %>" class="avatar">
                         <p><%= link_to c.user.username, user_path(c.user) %> <em>at <%= c.created_at %></em></p>
                       </div>
                       <div class="comment-content">
@@ -220,7 +220,7 @@
               <div class="avatar-list">
                 <% @project.collaborations.map do |collaboration| %>
                   <%= link_to user_path(collaboration.user) do %>
-                    <img src="<%= collaboration.user.avatar.url(:bright_face) %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
+                    <img src="<%= collaboration.user.profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
                   <% end %>
                 <% end %>
               </div>
