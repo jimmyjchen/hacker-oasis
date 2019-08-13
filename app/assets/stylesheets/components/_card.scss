@@ -35,7 +35,46 @@
   }
 }
 
+.card-img-container {
+  height: 240px;
+  position: relative;
+}
+
 .card-img-top {
   height: 240px;
   object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .2s ease;
+  background-color: gray;
+}
+
+.card-img-container:hover .overlay {
+  opacity: .9;
+}
+
+.hover-text {
+  position: absolute;
+  color: white;
+  font-style: italic;
+  font-size: 14px;
+  text-align: center;
+  width: 90%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
