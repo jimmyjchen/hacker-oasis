@@ -267,6 +267,11 @@
   </div>
 </div>
 
+<!-- Likes -->
+<%= button_to 'Like', project_likes_path(@project), method: :post %>
+<p><%= @project.likes.count %> <%= (@project.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+<!-- End Likes -->
+
 
 
 <!-- <script>
