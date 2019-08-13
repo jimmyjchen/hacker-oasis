@@ -1,6 +1,18 @@
+.box-search {
+  padding: 8px 0;
+}
+
+.box-nav-links {
+  display: flex;
+  padding: 8px 0;
+  a {
+    padding-right: 8px;
+    color: $gray;
+  }
+}
+
 .box-description {
-  padding: 16px 0px;
-  margin-bottom: 16px;
+  padding: 16px 0;
   border-bottom: 1px solid $light-gray;
   i {
     color: $dark-gray;
@@ -9,6 +21,10 @@
   i:hover {
     opacity: 1;
   }
+}
+
+.box-hacksession {
+  padding: 16px 0;
 }
 
 .icons-project-crud {
@@ -25,6 +41,7 @@
   }
 }
 
+
 .box-comments {
   h6 {
     padding-top: 16px;
@@ -33,6 +50,11 @@
     text-align: right;
     color: $gray;
   }
+}
+
+.box-comment-messages {
+  overflow: scroll;
+  height: 360px;
 }
 
 .box-collaborators {
@@ -48,10 +70,9 @@
 }
 
 .box-project-public {
-  margin-top: 16px;
-  padding: 16px 0;
-  border-top: 1px solid $light-gray;
-
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid $light-gray;
   a {
     display: flex;
     align-items: center;
@@ -73,6 +94,7 @@
 .box-tags {
   display: flex;
   align-items: top;
+  margin-top: 16px;
   border-top: 1px solid $light-gray;
   padding: 16px 0;
   color: $dark-gray;
