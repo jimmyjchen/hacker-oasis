@@ -1,0 +1,61 @@
+.badge-red-small {
+  position: absolute;
+  right: 0px;
+  top: 9px;
+
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: $red;
+}
+
+.badge-red {
+  position: absolute;
+  right: 18px;
+  top: 9px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background-color: $red;
+  color: $off-white;
+  font-size: 12px;
+}
+
+.badge-red-double {
+  position: absolute;
+  right: 0px;
+  top: 9px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 14px;
+  width: 18px;
+  border-radius: 35%;
+  background-color: $red;
+  color: $off-white;
+  font-size: 12px;
+}
+
+.badge-red-triple {
+  position: absolute;
+  right: 0px;
+  top: 9px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 16px;
+  width: 22px;
+  border-radius: 35%;
+  background-color: $red;
+  color: $off-white;
+  font-size: 12px;
+}

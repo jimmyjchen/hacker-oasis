@@ -46,7 +46,7 @@ class HackerDaysController < ApplicationController
     authorize @hacker_day
     @hacker_day.update(params_hackerdays)
     if @hacker_day.update(params_hackerdays)
-      noti = Notification.create(recipient: @project.user, actor: User.find(params_hackerdays["attendants"].last), action: "joined your hackerday", notifiable: @hacker_day)
+      noti = Notification.create(recipient: @project.user, actor: User.find(params_hackerdays["attendants"].last), action: "joined your hack session", notifiable: @hacker_day)
       # redirect_to project_hacker_day_path(@project.id, @hacker_day.id)
       redirect_to project_path(@project.id)
     else
