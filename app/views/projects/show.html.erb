@@ -17,7 +17,15 @@
             <p>by <%= link_to @project.user.username, user_path(@project.user) %>
             </p>
           </div>
-          <a href="#" class="btn-social"><i class="fas fa-heart"></i> Like</a>
+          <% if Like.where(user: current_user, project: @project).exists? %>
+            <%= link_to project_like_path(@project, @project.user.likes), method: :delete do %>
+              <div class="btn-social-red toggle-social"><i class="fas fa-heart"></i> Liked</div>
+            <% end %>
+          <% else %>
+            <%= link_to project_likes_path(@project), method: :post do %>
+              <div class="btn-social toggle-social"><i class="fas fa-heart"></i> Like</div>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -213,10 +221,11 @@
 <%= render 'new_hack_session' %>
 
 <!-- Likes -->
-<%= button_to 'Like', project_likes_path(@project), method: :post %>
 <p><%= @project.likes.count %> <%= (@project.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 <!-- End Likes -->
 
+
+<!-- Event Listeners -->
 
 <!-- Public Chat JavaScript -->
 <script>

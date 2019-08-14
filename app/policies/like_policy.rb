@@ -22,6 +22,6 @@ class LikePolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.project.user == user
+    return true
   end
 end
