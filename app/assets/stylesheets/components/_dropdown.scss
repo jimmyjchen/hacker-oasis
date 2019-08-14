@@ -1,9 +1,10 @@
 
 .dropdown-avatar {
+  position: relative;
   padding: 8px 0;
   height: 54px;
   float: left;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .dropdown-content {
@@ -47,6 +48,22 @@
   height: 8px;
   border-bottown: 1px solid $gray;
   opacity: 0.2;
+}
+
+.dropdown-notifications {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 8px;
+  height: 54px;
+  float: left;
+  // overflow: hidden;
+  i {
+    color: $gray;
+  }
+  i:hover {
+    color: $light-gray;
+  }
 }
 
 
