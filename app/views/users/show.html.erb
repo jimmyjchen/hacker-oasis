@@ -11,6 +11,9 @@
           <div class="location">
             <i class="fas fa-map-marker-alt"></i> | <%= @user.city %>, <%= @user.country %>
           </div>
+          <% @user.skills.each do |s| %>
+          <%= s %>
+          <% end %>
         </div>
       </div>
     </div>
