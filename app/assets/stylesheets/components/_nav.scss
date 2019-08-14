@@ -5,7 +5,10 @@
 }
 
 #myTab {
-  padding: 18px;
+  padding-top: 24px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 12px;
   background-color: $yellow;
   a {
     margin: 4px !important;
@@ -15,12 +18,6 @@
     border-radius: 4px !important;
     transition: all .3s ease-in-out !important;
   }
-
-#allTagTab {
-  margin-bottom: 16px;
-  padding: 12px;
-  background-color: $yellow;
-}
 
   a:hover {
     background-color: $red !important;
@@ -33,6 +30,14 @@
     font-weight: bold !important;
     border-radius: 4px !important;
   }
+}
+
+#allTagTab {
+  margin-bottom: 16px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  background-color: $yellow;
 }
 
 #commentTab {
