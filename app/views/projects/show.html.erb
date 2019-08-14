@@ -98,7 +98,7 @@
                   <h6>Next Hack Session</h6>
                   <p><strong>Date and time: </strong><%= @hacker_days.last.date %>
                   <br />
-                  <strong>Address: </strong><%= @hacker_days.last.location %></p>
+                  <strong>Address: </strong><%= @hacker_days.last.address %></p>
 
                   <%= simple_form_for [@project, @hacker_days.last], method: 'put' do |f| %>
                     <% @hacker_days.last.attendants.each do |uid| %>
