@@ -4,6 +4,7 @@ class Project < ApplicationRecord
   belongs_to :user
   has_many :collaborations, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 #   validates :name, :description, :cover_photo, :photo1, presence: true
   has_many :hacker_days, dependent: :destroy
   # geocoded_by :location

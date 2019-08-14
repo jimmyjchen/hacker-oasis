@@ -1,8 +1,19 @@
 class TeamCommentsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_after_action :verify_policy_scoped, :only => :index
   def index
+    @hacker_day = HackerDay.find_by(project_id: params[:project_id])
+    @team_comments = @hacker_day.team_comments
+    authorize @team_comments
+    render json: @team_comments
   end
 
   def show
+    @team_comment = TeamComment.find(params[:id])
+    authorize @team_comment
+    respond_to do |format|
+      format.js
+    end
   end
 
   def new

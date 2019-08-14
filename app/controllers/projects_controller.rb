@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
     @project.user = current_user
     authorize @project
     if @project.save
-      Collaboration.create(user_id: current_user.id, project_id: @project.id)
+      # Collaboration.create(user_id: current_user.id, project_id: @project.id)
       redirect_to root_path
     else
       render 'new'
@@ -42,13 +42,13 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
     @hacker_days = HackerDay.where(project_id: @project.id)
     @hacker_day = @hacker_days.last
     # raise
     @comment = Comment.new
+    @comments = @project.comments
     @team_comment = TeamComment.new
-    @collaboration = Collaboration.new
+    # @collaboration = Collaboration.new
     # @users = User.all.order(username: :asc)
     @users = User.all.order(username: :asc).map{|user| user.username}
     # puts @users
