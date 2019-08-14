@@ -34,7 +34,7 @@ class TeamCommentsController < ApplicationController
 
     respond_to do |format|
       if @team_comment.save
-        # noti = Notification.create(recipient: @project.user, actor: current_user, action: "commented on your team under project", notifiable: @project)
+        noti = Notification.create(recipient: @project.user, actor: current_user, action: "commented at team channel on project", notifiable: @project)
         format.html { redirect_to project_path(@project) }
         format.js
       else

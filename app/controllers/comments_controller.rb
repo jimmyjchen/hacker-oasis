@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        noti = Notification.create(recipient: @project.user, actor: current_user, action: "commented on your project", notifiable: @comment)
+        noti = Notification.create(recipient: @project.user, actor: current_user, action: "commented on your project", notifiable: @project)
         format.html { redirect_to project_path(@project) }
         format.js
       else

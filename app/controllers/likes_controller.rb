@@ -8,6 +8,7 @@ class LikesController < ApplicationController
       flash[:notice] = "You can't like more than once"
     else
       @project.likes.create(user_id: current_user.id)
+      noti = Notification.create(recipient: @project.user, actor: current_user, action: "liked your project", notifiable: @project)
     end
     redirect_to project_path(@project)
   end
