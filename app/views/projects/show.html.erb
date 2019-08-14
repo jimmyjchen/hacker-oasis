@@ -72,7 +72,7 @@
               <% end %>
             </div>
             <div class="box-project-public">
-              <%= link_to "#" do %>
+              <%= link_to "https://#{@project.url}" , :target => "_blank", rel: "nofollow" do %>
               <i class="fas fa-link" style="padding-right: 6px;"></i>
               <p>Project link</p>
               <% end %>
