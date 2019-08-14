@@ -30,6 +30,9 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "country" }%>
+            <%= f.label :name, "User skills (ex. blockchain, javascript, ruby, wechat, etc.)" %>
+                <div data-tags-input-name="user[skills]" id="tag"></div>
+                <p>Press enter, comma or spacebar to create a new tag; backspace or delete to remove.</p>
             <%= f.input :username,
                 required: true,
                 autofocus: true,

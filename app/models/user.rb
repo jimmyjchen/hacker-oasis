@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  acts_as_taggable_on :tags
+  # acts_as_taggable_on :tags
   mount_uploader :avatar, AvatarUploader
   has_many :projects
   has_many :collaborations
