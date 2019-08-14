@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2019_08_14_053856) do
     t.datetime "updated_at", null: false
     t.string "url"
     t.string "qrcode"
-    t.string "type"
+    t.string "project_type"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 2019_08_14_053856) do
     t.string "linkedin"
     t.string "github"
     t.string "social_avatar"
+    t.text "skills", default: [], array: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

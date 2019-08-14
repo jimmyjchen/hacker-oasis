@@ -10,7 +10,7 @@
       <div class="modal-body">
         <% @hacker_day = HackerDay.new %>
         <%= simple_form_for [@project, @hacker_day] do |f| %>
-          <%= f.input :date, label: "When will you hack?" %>
+          <%= f.input :date, label: "When will you hack?", input_html: {class: "dateSelection"}, as: :string %>
           <%= f.input :address, label: "Where will the hacking take place?", :input_html => { id: "hacker_day_address" } %>
           <%= f.button :submit, "HackSession.new", class: "btn-signup" %>
           <%= f.button :button, "Reset", type: "reset", class: "btn-reset" %>
@@ -19,3 +19,14 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    flatpickr(".dateSelection", {
+         enableTime: true,
+         minDate: "today"
+    });
+        // console.log('here')
+  })
+</script>

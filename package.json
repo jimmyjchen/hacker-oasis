@@ -8,6 +8,7 @@
     "mapbox-gl": "^1.2.1",
     "places.js": "^1.16.4",
     "popper.js": "^1.15.0"
+    "react-day-picker": "^7.3.2"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.7.2"

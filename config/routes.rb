@@ -16,11 +16,9 @@ Rails.application.routes.draw do
 
   resources :users, only: :show do
     resources :notifications, only: :index
-    #   collection do
-    #     post: mark_as_read
-    #   end
-    # end
   end
+
+  post 'users/:user_id/notifications', to: 'notifications#mark_as_read', as: :notifications_mark_as_read
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -17,8 +17,15 @@
             <p>by <%= link_to @project.user.username, user_path(@project.user) %>
             </p>
           </div>
-          <a href="#" class="btn-social" style="margin-right: 8px;">Follow</a>
-          <a href="#" class="btn-social"><i class="fas fa-heart"></i> Like</a>
+          <% if Like.where(user: current_user, project: @project).exists? %>
+            <%= link_to project_like_path(@project, @project.user.likes), method: :delete do %>
+              <div class="btn-social-red toggle-social"><i class="fas fa-heart"></i> Liked</div>
+            <% end %>
+          <% else %>
+            <%= link_to project_likes_path(@project), method: :post do %>
+              <div class="btn-social toggle-social"><i class="fas fa-heart"></i> Like</div>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -65,7 +72,7 @@
               <% end %>
             </div>
             <div class="box-project-public">
-              <%= link_to "#" do %>
+              <%= link_to "https://#{@project.url}" , :target => "_blank", rel: "nofollow" do %>
               <i class="fas fa-link" style="padding-right: 6px;"></i>
               <p>Project link</p>
               <% end %>
@@ -120,7 +127,7 @@
               <!-- Create Hacker Day Modal -->
 
               <% if policy(@project).edit? && (@project.hacker_days.empty? || DateTime.now > @project.hacker_days.last.date) %>
-                <button type="button" class="btn btn-signup" data-toggle="modal" data-target="#hackerDayModal">
+                <button type="button" class="btn btn-signup" data-toggle="modal" data-target="#hackerDayModal" >
                   HackSession.new
                 </button>
               <% end %>
@@ -215,10 +222,11 @@
 <%= render 'new_hack_session' %>
 
 <!-- Likes -->
-<%= button_to 'Like', project_likes_path(@project), method: :post %>
 <p><%= @project.likes.count %> <%= (@project.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 <!-- End Likes -->
 
+
+<!-- Event Listeners -->
 
 <!-- Public Chat JavaScript -->
 <script>
@@ -330,4 +338,8 @@
 
   </script>
 <% end %>
+
+<!-- Add eventListener for btn when create hacker session to open calendar -->
+
+<!-- End -->
 

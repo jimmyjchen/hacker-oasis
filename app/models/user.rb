@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # acts_as_taggable_on :tags
   mount_uploader :avatar, AvatarUploader
   has_many :projects
   has_many :collaborations
@@ -47,6 +48,7 @@ class User < ApplicationRecord
     user_params = auth.info.slice("email")
     user_params[:username] = auth.info.nickname
     user_params[:social_avatar] = auth.info.image
+    user_params[:city] = auth.extra.raw_info.location
     user_params = user_params.to_h
 
     user = User.find_by(provider: auth.provider, uid: auth.uid)

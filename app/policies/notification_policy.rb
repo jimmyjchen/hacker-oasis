@@ -9,6 +9,10 @@ class NotificationPolicy < ApplicationPolicy
     true
   end
 
+  def mark_as_read?
+    true
+  end
+
   # def show?
   #   return true
   # end
