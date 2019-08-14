@@ -126,7 +126,7 @@
               <!-- Create Hacker Day Modal -->
 
               <% if policy(@project).edit? && (@project.hacker_days.empty? || DateTime.now > @project.hacker_days.last.date) %>
-                <button type="button" class="btn btn-signup" data-toggle="modal" data-target="#hackerDayModal">
+                <button type="button" class="btn btn-signup" data-toggle="modal" data-target="#hackerDayModal" >
                   HackSession.new
                 </button>
               <% end %>
@@ -337,4 +337,8 @@
 
   </script>
 <% end %>
+
+<!-- Add eventListener for btn when create hacker session to open calendar -->
+
+<!-- End -->
 
