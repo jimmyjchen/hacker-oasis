@@ -42,12 +42,32 @@
       </li>
       <% end %>
       <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="" role="tab" aria-controls="profile" aria-selected="false">...</a>
+        <a class="nav-link" id="profile-tab" data-toggle="collapse" data-target="#allTags" href="" role="tab" aria-controls="profile" aria-selected="false">...</a>
       </li>
     </ul>
   </div>
   <div>
     <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#indexMap"data-keyboard="false">Find Hackers Nearby</button>
+  </div>
+</div>
+
+<!-- All Tags Container -->
+<div class="d-flex flex-row justify-content-center" id="allTagTab">
+  <div id="allTags" class="collapse">
+    <% most_common = ActsAsTaggableOn::Tag.most_used(5) %>
+    <% all_other_tags = [] %>
+    <% ActsAsTaggableOn::Tag.all.each do |t| %>
+      <% if !most_common.include?(t) %>
+        <% all_other_tags << t.name %>
+      <% end  %>
+    <% end  %>
+    <div class="box-tags">
+      <div class="tags">
+        <% all_other_tags.sort.each do |t| %>
+          <span><%= link_to t, "#" %></span>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -5,8 +5,7 @@
 }
 
 #myTab {
-  margin-bottom: 16px;
-  padding: 24px;
+  padding: 18px;
   background-color: $yellow;
   a {
     margin: 4px !important;
@@ -16,6 +15,12 @@
     border-radius: 4px !important;
     transition: all .3s ease-in-out !important;
   }
+
+#allTagTab {
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: $yellow;
+}
 
   a:hover {
     background-color: $red !important;
