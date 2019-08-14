@@ -1,2 +1,4 @@
-<h2><%= event.project.name %></h2>
-<p><%= event.location %></p>
+<p>Project Name: <%= link_to Project.find(id=event.project_id).name, project_path(event) %></p>
+<p>Date: <%= event.date %></p>
+<p>Location: <%= event.address %></p>
+<p>Hackers Attending: <%= event.attendants.count %></p>

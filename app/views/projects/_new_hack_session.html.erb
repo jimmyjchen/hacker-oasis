@@ -11,7 +11,7 @@
         <% @hacker_day = HackerDay.new %>
         <%= simple_form_for [@project, @hacker_day] do |f| %>
           <%= f.input :date, label: "When will you hack?" %>
-          <%= f.input :location, label: "Where will the hacking take place?" %>
+          <%= f.input :address, label: "Where will the hacking take place?", :input_html => { id: "hacker_day_address" } %>
           <%= f.button :submit, "HackSession.new", class: "btn-signup" %>
           <%= f.button :button, "Reset", type: "reset", class: "btn-reset" %>
         <% end %>
