@@ -12,11 +12,18 @@ class LikesController < ApplicationController
     redirect_to project_path(@project)
   end
 
+  def destroy
+    @like = Like.where(user_id: current_user.id, project_id:
+    params[:project_id])
+    authorize @like
+    @like.last.destroy
+    redirect_to project_path(@project)
+  end
+
   private
 
   def already_liked?
-    Like.where(user_id: current_user.id, project_id:
-    params[:project_id]).exists?
+    Like.where(user_id: current_user.id, project_id: params[:project_id]).exists?
   end
 
   def find_project
