@@ -1,16 +1,9 @@
 class HackerDaysController < ApplicationController
+
   def index
     # @project = Project.find(params[:project_id])
     # authorize @project
-    # @hacker_days = HackerDay.where(project_id: @project.id)
-    @hacker_days = HackerDay.geocoded
-    @markers = @hacker_days.map do |event|
-      {
-        lat: event.latitude,
-        lng: event.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { event: event })
-      }
-    end
+    # where(project_id: @project.id).
   end
 
   def show
@@ -28,7 +21,6 @@ class HackerDaysController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @hacker_day = HackerDay.new(params_hackerdays)
-    # raise
     @hacker_day.project = @project
     @project.user = current_user
     @hacker_day.attendants.push(current_user.id.to_s)
@@ -57,6 +49,6 @@ class HackerDaysController < ApplicationController
   private
 
   def params_hackerdays
-    params.require(:hacker_day).permit(:project_id, :user_id, :location, :date, attendants: [])
+    params.require(:hacker_day).permit(:project_id, :user_id, :address, :longitude, :latitude, :date, attendants: [])
   end
 end
