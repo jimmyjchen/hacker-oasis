@@ -1,8 +1,16 @@
 class HackerDaysController < ApplicationController
   def index
-    @project = Project.find(params[:project_id])
-    authorize @project
-    @hacker_days = HackerDay.where(project_id: @project.id)
+    # @project = Project.find(params[:project_id])
+    # authorize @project
+    # @hacker_days = HackerDay.where(project_id: @project.id)
+    @hacker_days = HackerDay.geocoded
+    @markers = @hacker_days.map do |event|
+      {
+        lat: event.latitude,
+        lng: event.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { event: event })
+      }
+    end
   end
 
   def show

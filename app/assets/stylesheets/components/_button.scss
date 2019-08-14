@@ -42,7 +42,7 @@
   background-color: transparent;
   color: $red;
   font-weight: bold;
-  font-family: "Roboto Mono";
+  font-family: "Roboto Mono" !important;
   transition: all .15s ease-in-out;
 }
 

@@ -55,7 +55,7 @@
   width: 100%;
   opacity: 0;
   transition: .2s ease;
-  background-color: gray;
+  background-color: $gray;
 }
 
 .card-img-container:hover .overlay {
@@ -66,15 +66,18 @@
   position: absolute;
   color: white;
   font-style: italic;
-  font-size: 14px;
-  text-align: center;
+  font-size: 12px;
+  text-align: left;
   width: 90%;
-  text-overflow: ellipsis;
-  overflow: hidden;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
+}
+
+.project-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

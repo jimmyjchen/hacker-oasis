@@ -1,0 +1,7 @@
+teamCommentList.insertAdjacentHTML("afterbegin", `<div class="comment-header">
+              <img src="<%= @hacker_day.team_comments.last.user.profile_avatar_url %>" class="avatar">
+              <p><%= link_to @hacker_day.team_comments.last.user.username, user_path(@hacker_day.team_comments.last.user) %> <em>at <%= @hacker_day.team_comments.last.created_at %></em></p>
+            </div>
+            <div class="comment-content">
+              <p><%= @hacker_day.team_comments.last.content %></p>
+            </div>`);

@@ -15,6 +15,9 @@
 @import "dropdown";
 @import "toggle";
 @import "nav";
+@import "map";
+@import "animation";
+
 
 html {
   position: relative;
@@ -24,6 +27,10 @@ html {
 body {
   background-color: $off-white;
   color: $off-black;
+}
+
+h6 {
+  color: $dark-gray;
 }
 
 p {

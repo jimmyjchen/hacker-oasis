@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_060347) do
+ActiveRecord::Schema.define(version: 2019_08_13_070220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2019_08_13_060347) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_hacker_days_on_project_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_likes_on_project_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -105,6 +114,16 @@ ActiveRecord::Schema.define(version: 2019_08_13_060347) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "team_comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "hacker_day_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hacker_day_id"], name: "index_team_comments_on_hacker_day_id"
+    t.index ["user_id"], name: "index_team_comments_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -135,5 +154,7 @@ ActiveRecord::Schema.define(version: 2019_08_13_060347) do
   add_foreign_key "comments", "projects"
   add_foreign_key "comments", "users"
   add_foreign_key "hacker_days", "projects"
+  add_foreign_key "likes", "projects"
+  add_foreign_key "likes", "users"
   add_foreign_key "projects", "users"
 end
