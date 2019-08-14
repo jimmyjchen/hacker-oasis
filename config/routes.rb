@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'notifications/index'
   root to: 'projects#index'
 
   devise_for :users,
@@ -10,6 +9,9 @@ Rails.application.routes.draw do
 
     resources :comments, only: [:index, :show, :new, :create]
     resources :hacker_days, only: [:new, :create, :show, :update,:index]
+    resources :likes
+    resources :team_comments, only: [:index, :show, :new, :create]
+
   end
 
   resources :users, only: :show do

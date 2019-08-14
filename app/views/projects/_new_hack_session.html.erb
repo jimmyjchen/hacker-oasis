@@ -1,0 +1,21 @@
+<div class="modal fade" id="hackerDayModal" tabindex="-1" role="dialog" aria-labelledby="hackerDayModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="hackerDayModalLabel">Create Hacker Day</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% @hacker_day = HackerDay.new %>
+        <%= simple_form_for [@project, @hacker_day] do |f| %>
+          <%= f.input :date, label: "When will you hack?" %>
+          <%= f.input :location, label: "Where will the hacking take place?" %>
+          <%= f.button :submit, "HackSession.new", class: "btn-signup" %>
+          <%= f.button :button, "Reset", type: "reset", class: "btn-reset" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

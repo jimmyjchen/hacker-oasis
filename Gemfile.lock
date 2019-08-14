@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:oauth-xx/oauth2.git
+  remote: https://github.com/oauth-xx/oauth2.git
   revision: 68c6d64d84e4186eb04e8fe1abafd1991a2eb2e9
   specs:
     oauth2 (1.4.1)

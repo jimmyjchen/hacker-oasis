@@ -6,7 +6,9 @@ class User < ApplicationRecord
   has_many :projects
   has_many :collaborations
   has_many :comments
+  has_many :team_comments
   has_many :notifications, foreign_key: :recipient_id
+  has_many :likes, dependent: :destroy
 
   validates :email, :username, uniqueness: true, presence: true
   # validates :avatar, presence: true
