@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_14_064005) do
+ActiveRecord::Schema.define(version: 2019_08_14_053856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_08_14_064005) do
     t.datetime "date"
     t.bigint "project_id"
     t.text "attendants", default: [], array: true
-    t.string "location"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "latitude"
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 2019_08_14_064005) do
     t.string "url"
     t.string "qrcode"
     t.string "project_type"
-    t.string "location"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
