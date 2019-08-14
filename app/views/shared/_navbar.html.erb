@@ -9,6 +9,25 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarExpandedContent">
       <% if user_signed_in? %>
+        <% if !current_user.notifications.nil? %>
+        <div>
+          <ul>
+            <li>
+              <a class="dropdown-toggle nav-link" type="button" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <button></button>
+              </a>
+              <div class="dropdown-menu"aria-labelledby="dropdownMenuLink">
+                <% current_user.notifications.each do |noti| %>
+                <a class="dropdown-item" href="#"><%= noti.actor.username %> <%= noti.action %> "<%= noti.notifiable.project.name %>" at <%= noti.created_at.strftime("%b %e, %l:%M %p") %></a>
+              <% end %>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <% end %>
+
+
+
         <div class="dropdown-avatar" style="margin-right: 8px;">
           <img class="avatar-medium dropbtn" src="<%= current_user.profile_avatar_url %>"/>
           <div class="dropdown-content">
@@ -92,6 +111,9 @@
         </div>
       <% end %>
     </div>
+
+
+
   </div>
 </div>
 

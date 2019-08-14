@@ -14,10 +14,9 @@ Rails.application.routes.draw do
 
   resources :users, only: :show do
     resources :notifications, only: :index
-    #   collection do
-    #     post: mark_as_read
-    #   end
-    # end
+      # collection do
+      #   post: mark_as_read
+      # end
   end
 
 
