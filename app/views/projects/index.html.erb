@@ -30,16 +30,26 @@
 <% end %>
 
 <!-- Nav tabs -->
-<ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">all</a>
-  </li>
-  <% ActsAsTaggableOn::Tag.most_used(5).each do |t| %>
-    <li class="nav-item">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#<%= t.name %>" role="tab" aria-controls="profile" aria-selected="false"><%= t.name %></a>
-    </li>
-  <% end %>
-</ul>
+<div class="d-flex flex-row justify-content-center" id="myTab" role="tablist">
+  <div>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">all</a>
+      </li>
+      <% ActsAsTaggableOn::Tag.most_used(5).each do |t| %>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#<%= t.name %>" role="tab" aria-controls="profile" aria-selected="false"><%= t.name %></a>
+      </li>
+      <% end %>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="" role="tab" aria-controls="profile" aria-selected="false">...</a>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#hackerDayMapModal">Find Hackers Nearby</button>
+  </div>
+</div>
 
 <!-- Tab panes -->
 <div class="tab-content">
@@ -53,7 +63,10 @@
                 <div class="card-img-container">
                   <%= cl_image_tag project.cover_photo, alt: "image", class: "card-img-top" %>
                   <div class="overlay">
-                    <p class="hover-text"><%= project.description %></p>
+                    <div class="hover-text">
+                      <p class="project-text"><%= project.type %></p>
+                      <p class="project-text"><%= project.description %></p>
+                    </div>
                   </div>
                 </div>
                 <div class="card-body">
@@ -104,6 +117,35 @@
       </div>
     </div>
   <% end %>
+</div>
+
+<div class="text-center">
+
+</div>
+
+
+
+<!-- Map Modal -->
+
+<div class="modal fade bd-example-modal-lg" id="hackerDayMapModal" tabindex="-1" role="dialog" aria-labelledby="hackerDayMapModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h5 class="modal-title" id="hackerDayMapModalLabel">Upcoming HackSessions Nearby</h5>
+        </div>
+        <div class="modal-body">
+            <div
+            id="map"
+            style="width: 100%;
+            height: 400px;"
+            data-markers="<%= @markers.to_json %>"
+            data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+            ></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
