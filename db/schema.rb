@@ -139,11 +139,11 @@ ActiveRecord::Schema.define(version: 2019_08_14_053856) do
     t.string "description"
     t.string "avatar"
     t.string "username"
-    t.string "provider"
-    t.string "uid"
     t.string "wechatid"
     t.string "linkedin"
     t.string "github"
+    t.string "provider"
+    t.string "uid"
     t.string "social_avatar"
     t.text "skills", default: [], array: true
     t.index ["email"], name: "index_users_on_email", unique: true
