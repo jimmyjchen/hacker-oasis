@@ -8,6 +8,8 @@
 
 @media(max-width: 576px) {
   #myTab {
+    margin: 0;
+    width: 100%;
     a {
       margin: 1px !important;
       padding: 2px 4px !important;
@@ -17,8 +19,8 @@
 }
 
 #myTab {
-  padding: 18px;
   background-color: $yellow;
+  padding: 18px;
   a {
     margin: 4px;
     padding: 4px 8px;
