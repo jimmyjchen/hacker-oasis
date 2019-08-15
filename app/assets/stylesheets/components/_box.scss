@@ -7,6 +7,12 @@
   padding: 8px 0;
 }
 
+@media(max-width: 992px) {
+  .box-submenu-info {
+    display: none !important;
+  }
+}
+
 .box-nav-links {
   display: flex;
   padding: 8px 0;
