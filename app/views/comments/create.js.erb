@@ -1,6 +1,6 @@
 commentList.insertAdjacentHTML("afterbegin", `<div class="comment-header">
               <img src="<%= @project.comments.last.user.profile_avatar_url %>" class="avatar">
-              <p><%= link_to @project.comments.last.user.username, user_path(@project.comments.last.user) %> <em>at <%= @project.comments.last.created_at %></em></p>
+              <p><%= link_to @project.comments.last.user.username, user_path(@project.comments.last.user) %> <em><%= distance_of_time_in_words(Time.now - @project.comments.last.created_at) %> ago</em></p>
             </div>
             <div class="comment-content">
               <p><%= @project.comments.last.content %></p>
