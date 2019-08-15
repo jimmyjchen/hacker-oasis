@@ -79,14 +79,16 @@
                       <p class="project-text"><%= project.description %></p>
                     </div>
                     <!-- add hacker session information -->
+                    <div class="hacker-session-text" style="padding: 20px">
                     <% if project.hacker_days.empty? %>
                       <p>No Hacker Sessions available</p>
                     <% else %>
                       <% project.hacker_days.each do |h| %>
-                      <%= h.address %>
-                      <%= h.date %>
+                      <p><%= h.address %></p>
+                      <p><%= h.date.strftime('%A, %d %b %Y %l:%M %p') %></p>
                       <% end %>
                     <% end %>
+                    </div>
                     <!-- end of hacker session -->
                   </div>
                 </div>
