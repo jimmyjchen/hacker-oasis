@@ -4,9 +4,9 @@
       <%= image_tag "hackeroasis.svg", height: "20px" %>
     <% end %>
     <div class="box-togglers">
-      <a class="navbar-toggler my-2 toggler-icon" href="#" data-toggle="collapse" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button type="button" class="navbar-toggler my-2 toggler-icon" data-target="#learnMoreModal" data-toggle="modal" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" data-keyboard="false">
         <i class="fas fa-info-circle"></i>
-      </a>
+      </button>
       <a class="navbar-toggler my-2 toggler-icon" href="#" data-toggle="collapse" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-map"></i>
       </a>
@@ -161,3 +161,6 @@
   </div>
 </div>
 
+<!-- Nav Modals -->
+
+<%= render 'learn_more' %>
