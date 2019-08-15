@@ -70,12 +70,12 @@
 
                     </div>
                     <!-- add hacker session information -->
-                    <div class="hacker-session-text" style="padding: 30px 30px; color:#BF3F50; ">
+                    <div class="hack-session-text">
                     <% if project.hacker_days.empty? %>
-                      <p><strong>No Hacker Sessions available</strong></p>
+                      <p><strong>No hack sessions available</strong></p>
                     <% else %>
                       <% project.hacker_days.each do |h| %>
-                      <p><strong>Next hacker session</strong></p>
+                      <p><strong>Next hack session</strong></p>
                       <p><%= h.address %></p>
                       <p><%= h.date.strftime('%A, %d %b %Y %l:%M %p') %></p>
                       <% end %>
