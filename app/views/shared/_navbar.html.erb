@@ -7,63 +7,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarExpandedContent">
-      <% if user_signed_in? %>
-        <div class="dropdown-avatar">
-          <img class="avatar-medium dropbtn" src="<%= current_user.profile_avatar_url %>"/>
-          <div class="dropdown-content">
-            <div class="dropdown-container">
-              <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
-            </div>
-            <div class="dropdown-container">
-              <%= link_to "Add Project", new_project_path, class: "dropdown-item" %>
-            </div>
-            <div class="dropdown-divider"></div>
-            <div class="dropdown-container">
-              <%= link_to "Account Settings", edit_user_registration_path, class: "dropdown-item" %>
-            </div>
-            <div class="dropdown-container">
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-            </div>
-          </div>
-        </div>
-        <div class="dropdown-notifications" style="margin-right: 8px;">
-          <a class="dropdown-toggle nav-link p-0" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-bell"></i>
-          </a>
-          <% if current_user.notifications.unread.size > 0 %>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-              <div class="box-notifications">
-                <% current_user.notifications.unread.order(created_at: :desc).each do |noti| %>
-                  <a class="dropdown-item" href="../../projects/<%= noti.notifiable.id %>"> <img src="<%= noti.actor.profile_avatar_url %>" class="avatar"> <strong><%= noti.actor.username %></strong> <%= noti.action %> "<%= noti.notifiable.name %>" <em><%= distance_of_time_in_words(Time.now - noti.created_at) %> ago</em></a>
-                <% end %>
-              </div>
-              <%= link_to notifications_mark_as_read_path(current_user), class: "dropdown-item", method: :post do %>
-                <center>Mark all as read</center>
-              <% end %>
-            </div>
-            <% if current_user.notifications.unread.size > 99 %>
-              <div class="badge-red-triple"><%= current_user.notifications.unread.size %></div>
-            <% elsif current_user.notifications.unread.size > 9 %>
-              <div class="badge-red-double"><%= current_user.notifications.unread.size %></div>
-            <% elsif current_user.notifications.unread.size > 0 %>
-              <div class="badge-red"><%= current_user.notifications.unread.size %></div>
-            <% else %>
-              <span></span>
-            <% end %>
-          <% else %>
-            <div class="dropdown-menu dropdown-menu-right"aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">You have no new notifications at this time</a>
-            </div>
-          <% end %>
-        </div>
-      <% else %>
-        <div class="box-nav-links">
-            <%= link_to "Login", new_user_session_path %>
-            <span style="border-right: 1px solid rgba(229,229,229,0.2); margin-right: 8px;"></span>
-            <%= link_to "Sign Up", new_user_registration_path%>
-        </div>
-      <% end %>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarExpandedContent">
 
       <div class="box-search">
         <%= form_tag('/projects', method: :get, class: "form-inline my-2 my-lg-0" ) do %>
@@ -77,6 +21,67 @@
           <%= submit_tag "Search", class: "btn btn-outline-secondary my-2 my-sm-0", type: "submit" %>
         <% end %>
       </div>
+
+      <div class="container-user">
+        <% if user_signed_in? %>
+
+          <div class="dropdown-avatar">
+            <img class="avatar-medium dropbtn" src="<%= current_user.profile_avatar_url %>"/>
+            <div class="dropdown-content">
+              <div class="dropdown-container">
+                <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
+              </div>
+              <div class="dropdown-container">
+                <%= link_to "Add Project", new_project_path, class: "dropdown-item" %>
+              </div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-container">
+                <%= link_to "Account Settings", edit_user_registration_path, class: "dropdown-item" %>
+              </div>
+              <div class="dropdown-container">
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            </div>
+          </div>
+          <div class="dropdown-notifications">
+            <a class="dropdown-toggle nav-link p-0" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell"></i>
+            </a>
+            <% if current_user.notifications.unread.size > 0 %>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <div class="box-notifications">
+                  <% current_user.notifications.unread.order(created_at: :desc).each do |noti| %>
+                    <a class="dropdown-item" href="../../projects/<%= noti.notifiable.id %>"> <img src="<%= noti.actor.profile_avatar_url %>" class="avatar"> <strong><%= noti.actor.username %></strong> <%= noti.action %> "<%= noti.notifiable.name %>" <em><%= distance_of_time_in_words(Time.now - noti.created_at) %> ago</em></a>
+                  <% end %>
+                </div>
+                <%= link_to notifications_mark_as_read_path(current_user), class: "dropdown-item", method: :post do %>
+                  <center>Mark all as read</center>
+                <% end %>
+              </div>
+              <% if current_user.notifications.unread.size > 99 %>
+                <div class="badge-red-triple"><%= current_user.notifications.unread.size %></div>
+              <% elsif current_user.notifications.unread.size > 9 %>
+                <div class="badge-red-double"><%= current_user.notifications.unread.size %></div>
+              <% elsif current_user.notifications.unread.size > 0 %>
+                <div class="badge-red"><%= current_user.notifications.unread.size %></div>
+              <% else %>
+                <span></span>
+              <% end %>
+            <% else %>
+              <div class="dropdown-menu dropdown-menu-right"aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">You have no new notifications at this time</a>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="box-nav-links">
+              <%= link_to "Login", new_user_session_path %>
+              <span style="border-right: 1px solid rgba(229,229,229,0.2); margin-right: 8px;"></span>
+              <%= link_to "Sign Up", new_user_registration_path%>
+          </div>
+        <% end %>
+      </div>
+
     </div>
   </nav>
 
