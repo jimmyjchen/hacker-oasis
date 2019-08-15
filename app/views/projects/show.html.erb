@@ -103,7 +103,7 @@
                 <% @att = @hacker_days.last.attendants %>
                 <% if current_user.nil? == false && @att.include?(current_user.id.to_s) == false %>
                   <h6>Next Hack Session</h6>
-                  <p><strong>Date and time: </strong><%= @hacker_days.last.date %>
+                  <p><strong>Date and time: </strong><%= @hacker_days.last.date.strftime('%A, %d %b %Y %l:%M %p') %>
                   <br />
                   <strong>Address: </strong><%= @hacker_days.last.address %></p>
 
@@ -117,7 +117,7 @@
                 <% elsif current_user.nil? %>
                   <p>Please login to join hack sessions!</p>
                 <% else %>
-                  <p>Registered to the next hack session on <em><%= @hacker_days.last.date %></em> at <strong><%= @hacker_days.last.address %>.</strong></p>
+                  <p>Registered to the next hack session on <em><%= @hacker_days.last.date.strftime('%A, %d %b %Y %l:%M %p') %></em> at <strong><%= @hacker_days.last.address %>.</strong></p>
                   <div id="map" style="width: 100%; height: 100px" data-markers="<%= @marker.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
                 <% end %>
               <% else %>

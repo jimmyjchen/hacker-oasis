@@ -43,14 +43,10 @@
                         required: true,
                         autofocus: true,
                         input_html: { autocomplete: "email" }%>
-            <%= f.input :first_name,
+            <%= f.input :username,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "first_name" }%>
-            <%= f.input :last_name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "last_name" }%>
+                input_html: { autocomplete: "username" }%>
             <%= f.input :city,
                 required: true,
                 autofocus: true,
@@ -62,10 +58,6 @@
             <%= f.label :name, "User skills (ex. blockchain, javascript, ruby, wechat, etc.)" %>
                 <div data-tags-input-name="user[skills]" id="tag"></div>
                 <p>Press enter, comma or spacebar to create a new tag; backspace or delete to remove.</p>
-            <%= f.input :username,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "username" }%>
             <%= f.input :password,
                         required: true,
                         hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
