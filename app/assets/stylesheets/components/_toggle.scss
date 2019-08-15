@@ -27,3 +27,11 @@
     color: $gray;
   }
 }
+
+.responsive-notifications {
+  max-height: 120px;
+  overflow: scroll;
+  a {
+    font-size: 12px;
+  }
+}
