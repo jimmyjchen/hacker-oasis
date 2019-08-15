@@ -4,7 +4,7 @@
   justify-content: center;
   border-bottom: 1px solid $light-gray;
   h5 {
-    color: $gray;
+    color: $dark-gray;
   }
 }
 
@@ -82,11 +82,11 @@
   overflow: hidden;
 }
 
-.card-img {
-  height: 160px;
+.card-image {
+  height: 200px;
+  width: 100%;
   object-fit: cover;
 }
-
 
 
 
