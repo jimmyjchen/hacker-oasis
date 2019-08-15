@@ -64,9 +64,24 @@
                   <%= cl_image_tag project.cover_photo, alt: "image", class: "card-img-top" %>
                   <div class="overlay">
                     <div class="hover-text">
-                      <p class="project-text"><%= project.project_type %></p>
-                      <p class="project-text"><%= project.description %></p>
+
+                        <!-- <p class="project-text">< project.project_type </p>
+                        <p class="project-text"><project.description </p> -->
+
                     </div>
+                    <!-- add hacker session information -->
+                    <div class="hacker-session-text" style="padding: 30px 30px; color:#BF3F50; ">
+                    <% if project.hacker_days.empty? %>
+                      <p><strong>No Hacker Sessions available</strong></p>
+                    <% else %>
+                      <% project.hacker_days.each do |h| %>
+                      <p><strong>Next hacker session</strong></p>
+                      <p><%= h.address %></p>
+                      <p><%= h.date.strftime('%A, %d %b %Y %l:%M %p') %></p>
+                      <% end %>
+                    <% end %>
+                    </div>
+                    <!-- end of hacker session -->
                   </div>
                 </div>
                 <div class="card-body">
