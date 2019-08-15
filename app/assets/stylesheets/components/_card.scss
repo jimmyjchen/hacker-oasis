@@ -55,11 +55,11 @@
   width: 100%;
   opacity: 0;
   transition: .2s ease;
-  background-color: $gray;
+  background-color: #fff;
 }
 
 .card-img-container:hover .overlay {
-  opacity: .9;
+  opacity: 0.9;
 }
 
 .hover-text {

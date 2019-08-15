@@ -59,8 +59,8 @@
 <div class="tab-content">
   <div class="tab-pane active" id="all" role="tabpanel" aria-labelledby="all-tab">
     <div class="container">
-      <div class="row">
-        <% @projects.each do |project| %>
+      <div class="row row-all">
+        <% @projects.limit(6).each do |project| %>
           <div class="col-lg-4 col-md-6 col-sm-12">
             <%= link_to project_path(project) do %>
               <div class="card">
@@ -104,13 +104,14 @@
           </div>
         <% end %>
       </div>
+      <center><a href="#" class="btn-social-red" id="see-more">See More ...</a></center>
     </div>
   </div>
   <% ActsAsTaggableOn::Tag.all.each do |t| %>
     <div class="tab-pane" id="<%= t.name %>" role="tabpanel" aria-labelledby="<%= t.name %>-tab">
       <div class="container">
         <div class="row">
-          <% @projects.tagged_with(t).each do |project| %>
+          <% @projects.tagged_with(t).limit(6).each do |project| %>
             <div class="col-lg-4 col-md-6 col-sm-12">
               <%= link_to project_path(project) do %>
                 <div class="card">
@@ -151,3 +152,62 @@
     </div>
   </div>
 </div>
+
+<!-- See More -->
+<script>
+  const seeMore = document.querySelector("#see-more");
+  const rowAll = document.querySelector(".row-all");
+
+  const nextResults = () => {
+    rowAll.insertAdjacentHTML('beforeend', `
+      <% @projects.limit(12).offset(6).each do |project| %>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <%= link_to project_path(project) do %>
+            <div class="card">
+              <div class="card-img-container">
+                <%= cl_image_tag project.cover_photo, alt: "image", class: "card-img-top" %>
+                <div class="overlay">
+                  <div class="hover-text">
+
+                      <!-- <p class="project-text">< project.project_type </p>
+                      <p class="project-text"><project.description </p> -->
+
+                  </div>
+                  <!-- add hacker session information -->
+                  <div class="hack-session-text">
+                  <% if project.hacker_days.empty? %>
+                    <p><strong>No hack sessions available</strong></p>
+                  <% else %>
+                    <% project.hacker_days.each do |h| %>
+                    <p><strong>Next hack session</strong></p>
+                    <p><%= h.address %></p>
+                    <p><%= h.date.strftime('%A, %d %b %Y %l:%M %p') %></p>
+                    <% end %>
+                  <% end %>
+                  </div>
+                  <!-- end of hacker session -->
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="card-content-header">
+                  <h6><%= project.name %></h6>
+                  <div class="box-list-inline">
+                    <i class="fas fa-comment-dots"></i>
+                    <p><%= project.comments.size %></p>
+                    <i class="fas fa-heart"></i>
+                    <p><%= project.likes.size %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    `);
+  };
+
+  seeMore.addEventListener('click', (e) => {
+    seeMore.remove();
+    nextResults();
+  });
+</script>
