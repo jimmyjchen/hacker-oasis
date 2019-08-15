@@ -23,6 +23,24 @@
   border-radius: 8px;
 }
 
+.form-box-github {
+  color: $red;
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 24px;
+  border: 1px solid $red;
+  border-radius: 8px;
+  background-color: $off-white;
+   :hover {
+    color:#A03524;
+    font-size: 20.5px;
+   }
+}
+
+.form-box-github-text {
+  text-decoration:none;
+}
+
 .log-in-alt {
   text-align: center;
   a {
@@ -32,4 +50,10 @@
   a:hover {
     opacity: 0.8;
   }
+}
+
+.form-box-github-icon {
+  text-align: center;
+  font-size: 25px;
+  margin-right: 10px;
 }
