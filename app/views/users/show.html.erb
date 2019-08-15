@@ -34,12 +34,11 @@
                   <div class="card-body">
                     <div class="card-content-header">
                       <h6><%= project.name %></h6>
-                      <div class="avatar-list">
-                        <% project.collaborations.map do |collaboration| %>
-                          <%= link_to user_path(collaboration.user) do %>
-                            <img src="<%= collaboration.user.profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
-                          <% end %>
-                        <% end %>
+                      <div class="box-list-inline">
+                        <i class="fas fa-comment-dots"></i>
+                        <p><%= project.comments.size %></p>
+                        <i class="fas fa-heart"></i>
+                        <p><%= project.likes.size %></p>
                       </div>
                     </div>
                   </div>
@@ -69,6 +68,14 @@
                     <p><strong>Project:</strong> <%= h.project.name %></p>
                     <p><strong>Location:</strong> <%= h.address %></p>
                     <p><strong>Time:</strong> <%= h.date %></p>
+                    <div class="avatar-list">
+                      <% h.attendants.each do |attendant| %>
+                        <% user_instance = User.find(attendant) %>
+                        <%= link_to user_path(attendant) do %>
+                          <img src="<%= user_instance.profile_avatar_url %>" class="avatar" data-toggle="tooltip" data-placement="top" title="<%= user_instance.username %>">
+                        <% end %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -32,6 +32,12 @@
   max-height: 120px;
   overflow: scroll;
   a {
+    padding: 4px;
     font-size: 12px;
+    border-bottom: 1px dotted rgba(229,229,229,0.2);
   }
+}
+
+#mark-as-read {
+  text-align: right;
 }
