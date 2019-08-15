@@ -3,9 +3,17 @@
     <%= link_to "/", class: "navbar-brand d-flex align-items-center" do %>
       <%= image_tag "hackeroasis.svg", height: "20px" %>
     <% end %>
-    <button class="navbar-toggler my-2" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="box-togglers">
+      <button type="button" class="navbar-toggler my-2 toggler-icon" data-target="#learnMoreModal" data-toggle="modal" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" data-keyboard="false">
+        <i class="fas fa-info-circle"></i>
+      </button>
+      <a class="navbar-toggler my-2 toggler-icon" href="#" data-toggle="collapse" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-map"></i>
+      </a>
+      <button class="navbar-toggler my-2" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
 
     <div class="collapse navbar-collapse justify-content-between" id="navbarExpandedContent">
 
@@ -153,3 +161,6 @@
   </div>
 </div>
 
+<!-- Nav Modals -->
+
+<%= render 'learn_more' %>
