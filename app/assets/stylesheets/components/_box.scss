@@ -7,6 +7,26 @@
   padding: 8px 0;
 }
 
+@media(max-width: 992px) {
+  .box-submenu-info {
+    display: none !important;
+  }
+}
+
+.box-togglers {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  i {
+    padding-right: 12px;
+    color: $gray;
+    opacity: 0.8;
+  }
+  i:hover {
+    color: $light-gray;
+  }
+}
+
 .box-nav-links {
   display: flex;
   padding: 8px 0;
@@ -197,3 +217,18 @@
   padding: 8px;
 }
 
+.box-list-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: $gray;
+  i {
+    padding-left: 8px;
+    font-size: 12px;
+  }
+  p {
+    margin: 0;
+    padding-left: 2px;
+    font-size: 12px;
+  }
+}

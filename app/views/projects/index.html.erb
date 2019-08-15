@@ -15,11 +15,11 @@
 <% end %>
 
 <!-- Nav tabs -->
-<div class="d-flex flex-row" id="myTab" role="tablist">
-  <div class="justify-content-left w-25">
-    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="" data-keyboard="false">Learn More</button>
+<div class="row" id="myTab" role="tablist">
+  <div class="col-lg-3 d-flex justify-content-center align-items-center box-submenu-info">
+    <button type="button" class="btn-signup-small" data-toggle="modal" data-target="#learnMoreModal" data-keyboard="false"><i class="fas fa-info-circle"></i>Learn More</button>
   </div>
-  <div class="d-flex flex-row justify-content-center w-50">
+  <div class="col-lg-6 d-flex justify-content-center align-items-center">
     <ul class="nav nav-pills">
       <li class="nav-item">
         <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">all</a>
@@ -30,37 +30,30 @@
       </li>
       <% end %>
       <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#" role="tab" aria-controls="profile" aria-selected="true">
-          <span data-toggle="collapse" data-target="#allTags">...</span>
-        </a>
-
+        <a class="nav-link" id="profile-tab" data-toggle="dropdown" href="#" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">...</a>
+          <% most_common = ActsAsTaggableOn::Tag.most_used(5) %>
+          <% all_other_tags = [] %>
+          <% ActsAsTaggableOn::Tag.all.each do |t| %>
+            <% if !most_common.include?(t) %>
+              <% all_other_tags << t.name %>
+            <% end %>
+          <% end %>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+          <% all_other_tags.sort.each do |tag| %>
+            <a class="dropdown-item" data-toggle="tab" href="#<%= tag %>" role="tab" aria-selected="false" aria-expanded="false"><%= tag %></a>
+          <% end %>
+        </div>
       </li>
     </ul>
   </div>
-  <div class="d-flex justify-content-end w-25">
-    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#indexMap"data-keyboard="false">Find Hackers Nearby</button>
+  <div class="col-lg-3 d-flex justify-content-center align-items-center box-submenu-info">
+    <button type="button" class="btn-signup-small" data-toggle="modal" data-target="#indexMap"data-keyboard="false"><i class="fas fa-map"></i>Hack Sessions</button>
   </div>
 </div>
 
-<!-- All Tags Collapsable Container -->
-<div class="d-flex flex-row justify-content-around" id="allTagTab">
-  <div id="allTags" class="collapse">
-    <% most_common = ActsAsTaggableOn::Tag.most_used(5) %>
-    <% all_other_tags = [] %>
-    <% ActsAsTaggableOn::Tag.all.each do |t| %>
-      <% if !most_common.include?(t) %>
-        <% all_other_tags << t.name %>
-      <% end  %>
-    <% end  %>
-    <div class="box-tags">
-      <div class="tags">
-        <% all_other_tags.sort.each do |t| %>
-          <a class="nav-link mx-2" id="profile-tab" data-toggle="tab" href="#<%= t %>" role="tab" aria-controls="profile"><%= t %></a>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- Nav modals -->
+
+<%= render 'learn_more' %>
 
 <!-- Tab panes -->
 <div class="tab-content">
@@ -75,20 +68,34 @@
                   <%= cl_image_tag project.cover_photo, alt: "image", class: "card-img-top" %>
                   <div class="overlay">
                     <div class="hover-text">
-                      <p class="project-text"><%= project.project_type %></p>
-                      <p class="project-text"><%= project.description %></p>
+
+                        <!-- <p class="project-text">< project.project_type </p>
+                        <p class="project-text"><project.description </p> -->
+
                     </div>
+                    <!-- add hacker session information -->
+                    <div class="hack-session-text">
+                    <% if project.hacker_days.empty? %>
+                      <p><strong>No hack sessions available</strong></p>
+                    <% else %>
+                      <% project.hacker_days.each do |h| %>
+                      <p><strong>Next hack session</strong></p>
+                      <p><%= h.address %></p>
+                      <p><%= h.date.strftime('%A, %d %b %Y %l:%M %p') %></p>
+                      <% end %>
+                    <% end %>
+                    </div>
+                    <!-- end of hacker session -->
                   </div>
                 </div>
                 <div class="card-body">
                   <div class="card-content-header">
                     <h6><%= project.name %></h6>
-                    <div class="avatar-list">
-                      <% project.collaborations.map do |collaboration| %>
-                        <%= link_to user_path(collaboration.user) do %>
-                          <img src="<%= collaboration.user.profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
-                        <% end %>
-                      <% end %>
+                    <div class="box-list-inline">
+                      <i class="fas fa-comment-dots"></i>
+                      <p><%= project.comments.size %></p>
+                      <i class="fas fa-heart"></i>
+                      <p><%= project.likes.size %></p>
                     </div>
                   </div>
                 </div>
@@ -99,7 +106,7 @@
       </div>
     </div>
   </div>
-  <% ActsAsTaggableOn::Tag.most_used(5).each do |t| %>
+  <% ActsAsTaggableOn::Tag.all.each do |t| %>
     <div class="tab-pane" id="<%= t.name %>" role="tabpanel" aria-labelledby="<%= t.name %>-tab">
       <div class="container">
         <div class="row">
@@ -111,12 +118,11 @@
                   <div class="card-body">
                     <div class="card-content-header">
                       <h6><%= project.name %></h6>
-                      <div class="avatar-list">
-                        <% project.collaborations.map do |collaboration| %>
-                          <%= link_to user_path(collaboration.user) do %>
-                            <img src="<%= collaboration.user.profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
-                          <% end %>
-                        <% end %>
+                      <div class="box-list-inline">
+                        <i class="fas fa-comment-dots"></i>
+                        <p><%= project.comments.size %></p>
+                        <i class="fas fa-heart"></i>
+                        <p><%= project.likes.size %></p>
                       </div>
                     </div>
                   </div>

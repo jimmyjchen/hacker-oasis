@@ -52,6 +52,32 @@
   background-color: $red;
 }
 
+@media(max-width: 1200px) {
+  .btn-signup-small {
+    font-size: 14px;
+  }
+}
+
+.btn-signup-small {
+  border: 1px solid $red;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: transparent;
+  color: $red;
+  font-weight: bold;
+  font-family: "Roboto Mono" !important;
+  transition: all .15s ease-in-out;
+  i {
+    padding-right: 4px;
+  }
+}
+
+.btn-signup-small:hover {
+  border: 1px solid transparent;
+  color: #FFF;
+  background-color: $red;
+}
+
 .btn-reset {
   border: 1px solid $gray;
   padding: 8px 16px;

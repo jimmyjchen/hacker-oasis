@@ -1,18 +1,27 @@
+@media(max-width: 1200px) {
+  #myTab {
+    a {
+      font-size: 14px;
+    }
+  }
+}
+
 @media(max-width: 576px) {
   #myTab {
-    display: none;
+    a {
+      margin: 1px !important;
+      padding: 2px 4px !important;
+      font-size: 12px;
+    }
   }
 }
 
 #myTab {
-  padding-top: 24px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-bottom: 12px;
+  padding: 18px;
   background-color: $yellow;
   a {
-    margin: 4px !important;
-    padding: 4px 8px !important;
+    margin: 4px;
+    padding: 4px 8px;
     font-family: "Roboto Mono";
     color: $red !important;
     border-radius: 4px !important;
@@ -30,14 +39,21 @@
     font-weight: bold !important;
     border-radius: 4px !important;
   }
-}
 
-#allTagTab {
-  margin-bottom: 16px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-bottom: 12px;
-  background-color: $yellow;
+  .dropdown-menu {
+    background-color: $yellow;
+    overflow-y: scroll;
+    max-height: 331px;
+  }
+
+  .dropdown-item {
+    width: 95%;
+    background-color: $yellow;
+  }
+
+  .nav-pills .show > .nav-link {
+    background-color: $yellow !important;
+  }
 }
 
 #commentTab {

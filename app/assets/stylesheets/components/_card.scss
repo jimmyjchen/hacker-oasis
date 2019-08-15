@@ -75,6 +75,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
+  color:#BF3F50
 }
 
 .project-text {
@@ -88,6 +89,10 @@
   object-fit: cover;
 }
 
+.hack-session-text {
+  padding: 30px;
+  color: $red;
+}
 
 
 

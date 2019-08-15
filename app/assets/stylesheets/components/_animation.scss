@@ -20,3 +20,15 @@
   opacity: 0.2;
   transform: translate(0%, 0px) scale(1.5);
 }
+
+@media(max-width: 992px) {
+  .palm-tree-right {
+    display: none !important;
+  }
+  .palm-tree-left {
+    display: none !important;
+  }
+  .waves {
+    display: none !important;
+  }
+}
