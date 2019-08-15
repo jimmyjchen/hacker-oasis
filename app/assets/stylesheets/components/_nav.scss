@@ -5,10 +5,7 @@
 }
 
 #myTab {
-  padding-top: 24px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-bottom: 12px;
+  padding: 18px;
   background-color: $yellow;
   a {
     margin: 4px !important;
@@ -30,14 +27,21 @@
     font-weight: bold !important;
     border-radius: 4px !important;
   }
-}
 
-#allTagTab {
-  margin-bottom: 16px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-bottom: 12px;
-  background-color: $yellow;
+  .dropdown-menu {
+    background-color: $yellow;
+    overflow-y: scroll;
+    max-height: 331px;
+  }
+
+  .dropdown-item {
+    width: 95%;
+    background-color: $yellow;
+  }
+
+  .nav-pills .show > .nav-link {
+    background-color: $yellow !important;
+  }
 }
 
 #commentTab {

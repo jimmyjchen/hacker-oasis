@@ -17,7 +17,7 @@
 <!-- Nav tabs -->
 <div class="d-flex flex-row" id="myTab" role="tablist">
   <div class="justify-content-left w-25">
-    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="" data-keyboard="false">Learn More</button>
+    <button type="button" class="btn btn-outline-secondary rounded" data-toggle="modal" data-target="" data-keyboard="false">Learn More</button>
   </div>
   <div class="d-flex flex-row justify-content-center w-50">
     <ul class="nav nav-pills">
@@ -30,35 +30,24 @@
       </li>
       <% end %>
       <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#" role="tab" aria-controls="profile" aria-selected="true">
-          <span data-toggle="collapse" data-target="#allTags">...</span>
-        </a>
-
+        <a class="nav-link" id="profile-tab" data-toggle="dropdown" href="#" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">...</a>
+          <% most_common = ActsAsTaggableOn::Tag.most_used(5) %>
+          <% all_other_tags = [] %>
+          <% ActsAsTaggableOn::Tag.all.each do |t| %>
+            <% if !most_common.include?(t) %>
+              <% all_other_tags << t.name %>
+            <% end %>
+          <% end %>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <% all_other_tags.sort.each do |tag| %>
+            <a class="dropdown-item" data-toggle="tab" href="#<%= tag %>" role="tab" aria-selected="false" aria-expanded="false"><%= tag %></a>
+          <% end %>
+        </div>
       </li>
     </ul>
   </div>
   <div class="d-flex justify-content-end w-25">
-    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#indexMap"data-keyboard="false">Find Hackers Nearby</button>
-  </div>
-</div>
-
-<!-- All Tags Collapsable Container -->
-<div class="d-flex flex-row justify-content-around" id="allTagTab">
-  <div id="allTags" class="collapse">
-    <% most_common = ActsAsTaggableOn::Tag.most_used(5) %>
-    <% all_other_tags = [] %>
-    <% ActsAsTaggableOn::Tag.all.each do |t| %>
-      <% if !most_common.include?(t) %>
-        <% all_other_tags << t.name %>
-      <% end  %>
-    <% end  %>
-    <div class="box-tags">
-      <div class="tags">
-        <% all_other_tags.sort.each do |t| %>
-          <a class="nav-link mx-2" id="profile-tab" data-toggle="tab" href="#<%= t %>" role="tab" aria-controls="profile"><%= t %></a>
-        <% end %>
-      </div>
-    </div>
+    <button type="button" class="btn btn-outline-secondary rounded" data-toggle="modal" data-target="#indexMap"data-keyboard="false">Find Hackers Nearby</button>
   </div>
 </div>
 
@@ -99,7 +88,7 @@
       </div>
     </div>
   </div>
-  <% ActsAsTaggableOn::Tag.most_used(5).each do |t| %>
+  <% ActsAsTaggableOn::Tag.all.each do |t| %>
     <div class="tab-pane" id="<%= t.name %>" role="tabpanel" aria-labelledby="<%= t.name %>-tab">
       <div class="container">
         <div class="row">
