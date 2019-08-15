@@ -18,6 +18,14 @@ class ProjectsController < ApplicationController
         image_url: helpers.asset_url('https://icon-library.net/images/laptop-icon-png-transparent/laptop-icon-png-transparent-9.jpg')
       }
     end
+    @hacker_days = HackerDay.all
+    # @sessions_array =
+    # HackerDay.all.each do |x|
+    #   if x.project_id.include?(project_id)
+    #     @sessions_array << x
+    #   end
+    # end
+
   end
 
   def new

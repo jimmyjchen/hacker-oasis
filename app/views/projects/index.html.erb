@@ -78,6 +78,16 @@
                       <p class="project-text"><%= project.project_type %></p>
                       <p class="project-text"><%= project.description %></p>
                     </div>
+                    <!-- add hacker session information -->
+                    <% if project.hacker_days.empty? %>
+                      <p>No Hacker Sessions available</p>
+                    <% else %>
+                      <% project.hacker_days.each do |h| %>
+                      <%= h.address %>
+                      <%= h.date %>
+                      <% end %>
+                    <% end %>
+                    <!-- end of hacker session -->
                   </div>
                 </div>
                 <div class="card-body">
