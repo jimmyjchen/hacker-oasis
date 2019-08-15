@@ -84,6 +84,22 @@
   color: $dark-gray;
 }
 
+.btn-social-like {
+  border: 1px solid $dark-gray;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: $dark-gray;
+  opacity: 0.7;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.btn-social-like:hover {
+  border: 1px solid $red;
+  color: $red;
+  opacity: 0.8;
+}
+
 .btn-social-red {
   border: 1px solid $red;
   padding: 4px 8px;
