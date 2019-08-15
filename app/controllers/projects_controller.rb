@@ -10,11 +10,11 @@ class ProjectsController < ApplicationController
       @projects = policy_scope(Project).order(created_at: :desc)
     end
     @hacker_days = HackerDay.geocoded
-    @markers = @hacker_days.map do |event|
+    @markers = @hacker_days.map do |hacker_day|
       {
-        lat: event.latitude,
-        lng: event.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { event: event }),
+        lat: hacker_day.latitude,
+        lng: hacker_day.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { hacker_day: hacker_day }),
         image_url: helpers.asset_url('https://icon-library.net/images/laptop-icon-png-transparent/laptop-icon-png-transparent-9.jpg')
       }
     end
@@ -58,12 +58,14 @@ class ProjectsController < ApplicationController
     @team_comment = TeamComment.new
     # @collaboration = Collaboration.new
     # @users = User.all.order(username: :asc)
-    @users = User.all.order(username: :asc).map{|user| user.username}
+    @users = User.all.order(username: :asc).map{ |user| user.username }
+
     if @hacker_day.present?
       @marker = [
         { lat: @hacker_day.latitude,
-          lng: @hacker_day.longitude,
-          image_url: helpers.asset_url('https://icon-library.net/images/laptop-icon-png-transparent/laptop-icon-png-transparent-9.jpg')
+          lng: @hacker_day.longitude
+          # infoWindow: render_to_string(partial: "info_window", locals: { hacker_day: @hacker_day }),
+          # image_url: helpers.asset_url('https://icon-library.net/images/laptop-icon-png-transparent/laptop-icon-png-transparent-9.jpg')
         }]
     end
   end
