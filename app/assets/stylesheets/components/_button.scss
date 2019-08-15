@@ -52,6 +52,12 @@
   background-color: $red;
 }
 
+@media(max-width: 1200px) {
+  .btn-signup-small {
+    font-size: 14px;
+  }
+}
+
 .btn-signup-small {
   border: 1px solid $red;
   padding: 4px 8px;
