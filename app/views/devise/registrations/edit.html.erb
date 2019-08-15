@@ -44,6 +44,18 @@
                         hint: "Leave blank if you don't want to change it",
                         required: false,
                         input_html: { autocomplete: "country" } %>
+            <%= f.input :wechatid,
+                        hint: "Leave blank if you don't want to change it",
+                        required: false,
+                        input_html: { autocomplete: "wechatid" } %>
+            <%= f.input :linkedin,
+                        hint: "Leave blank if you don't want to change it",
+                        required: false,
+                        input_html: { autocomplete: "linkedin" } %>
+            <%= f.input :github,
+                        hint: "Leave blank if you don't want to change it",
+                        required: false,
+                        input_html: { autocomplete: "github" } %>
             <%= f.label :name, "User skills (ex. blockchain, javascript, ruby, wechat, etc.)" %>
                 <div data-tags-input-name="user[skills]" id="tag"></div>
                 <p>Press enter, comma or spacebar to create a new tag; backspace or delete to remove.</p>
