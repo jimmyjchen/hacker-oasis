@@ -10,7 +10,7 @@
   <% @hacker_day.team_comments.order(id: :desc).each do |c| %>
     <div class="comment-header">
       <img src="<%= c.user.profile_avatar_url %>" class="avatar">
-      <p><%= link_to c.user.username, user_path(c.user) %> <em>at <%= c.created_at %></em></p>
+      <p><%= link_to c.user.username, user_path(c.user) %> <em><%= distance_of_time_in_words(Time.now - c.created_at) %> ago</em></p>
     </div>
     <div class="comment-content">
       <p><%= c.content %></p>

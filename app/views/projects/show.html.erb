@@ -23,7 +23,7 @@
             <% end %>
           <% else %>
             <%= link_to project_likes_path(@project), method: :post do %>
-              <div class="btn-social toggle-social"><i class="fas fa-heart"></i> Like</div>
+              <div class="btn-social-like toggle-social"><i class="fas fa-heart"></i> Like</div>
             <% end %>
           <% end %>
         </div>
@@ -72,7 +72,7 @@
               <% end %>
             </div>
             <div class="box-project-public">
-              <%= link_to "https://#{@project.url}" , :target => "_blank", rel: "nofollow" do %>
+              <%= link_to "http://#{@project.url}" , :target => "_blank", rel: "nofollow" do %>
               <i class="fas fa-link" style="padding-right: 6px;"></i>
               <p>Project link</p>
               <% end %>
@@ -198,6 +198,10 @@
           </div>
 
           <div class="col-md-4">
+            <div class="box-likes">
+              <i class="fas fa-heart"></i>
+              <p><%= @project.likes.count %> <%= (@project.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+            </div>
             <div class="box-tags">
               <i class="fas fa-tag"></i>
               <div class="tags">
@@ -221,9 +225,6 @@
 
 <%= render 'new_hack_session' %>
 
-<!-- Likes -->
-<p><%= @project.likes.count %> <%= (@project.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-<!-- End Likes -->
 
 
 <!-- Event Listeners -->
