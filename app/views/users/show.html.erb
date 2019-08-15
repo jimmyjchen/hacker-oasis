@@ -24,7 +24,7 @@
         </div>
         <div class="row">
           <% if @user.projects.empty? %>
-            <p class="d-flex w-100 justify-content-center font-italic mt-3">You do not have any active projects. What are you waiting for?</p>
+            <p class="d-flex w-100 justify-content-center font-italic mt-3">No current active projects.</p>
           <% else %>
             <% @user.projects.each do |project| %>
             <div class="col-xl-6">
@@ -34,12 +34,11 @@
                   <div class="card-body">
                     <div class="card-content-header">
                       <h6><%= project.name %></h6>
-                      <div class="avatar-list">
-                        <% project.collaborations.map do |collaboration| %>
-                          <%= link_to user_path(collaboration.user) do %>
-                            <img src="<%= collaboration.user.profile_avatar_url %>" class="avatar-small" data-toggle="tooltip" data-placement="top" title="<%= collaboration.user.username %>">
-                          <% end %>
-                        <% end %>
+                      <div class="box-list-inline">
+                        <i class="fas fa-comment-dots"></i>
+                        <p><%= project.comments.size %></p>
+                        <i class="fas fa-heart"></i>
+                        <p><%= project.likes.size %></p>
                       </div>
                     </div>
                   </div>
@@ -50,8 +49,39 @@
           <% end %>
         </div>
 
-        <div class="card-section-header">
-          <h5>My Collaborations</h5>
+        <div class="card-section-header" style="margin-bottom: 16px;">
+          <h5>My Upcoming Hack Sessions</h5>
+        </div>
+        <% if @sessions_array.empty? %>
+          <p class="d-flex w-100 justify-content-center font-italic mt-3">Currently not registered for any hack sessions.</p>
+        <% else %>
+          <% @sessions_array.reverse.each do |h| %>
+            <div class="container-card">
+              <div class="row align-items-center">
+                <div class="col-xl-5">
+                  <div class="box-card">
+                    <img src="<%= h.project.cover_photo.url %>" class="card-image" alt="">
+                  </div>
+                </div>
+                <div class="col-xl-7">
+                  <div class="box-card-content">
+                    <p><strong>Project:</strong> <%= h.project.name %></p>
+                    <p><strong>Location:</strong> <%= h.address %></p>
+                    <p><strong>Time:</strong> <%= h.date %></p>
+                    <div class="avatar-list">
+                      <% h.attendants.each do |attendant| %>
+                        <% user_instance = User.find(attendant) %>
+                        <%= link_to user_path(attendant) do %>
+                          <img src="<%= user_instance.profile_avatar_url %>" class="avatar" data-toggle="tooltip" data-placement="top" title="<%= user_instance.username %>">
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
         </div>
 
 
@@ -61,11 +91,18 @@
   </div>
 </div>
 
-<% @sessions_array.each do |h| %>
-<%= cl_image_tag h.project.cover_photo%>
-<%= h.project.name %>
-<%= h.address %>
-<%= h.date %>
+
+<br />
+<br />
+<% if false %>
+<% if @sessions_array.empty? == false %>
+  <% @sessions_array.each do |h| %>
+    <%= cl_image_tag h.project.cover_photo%>
+    <%= h.project.name %>
+    <%= h.address %>
+    <%= h.date %>
+  <% end %>
+<% end %>
 <% end %>
 
 
@@ -85,4 +122,6 @@
     <%# end %>
   <%# end %>
 <%# if guest_collabs.empty? %>
+
+
 
