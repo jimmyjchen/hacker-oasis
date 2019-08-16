@@ -71,9 +71,8 @@ class ProjectsController < ApplicationController
     if @hacker_day.present?
       @marker = [
         { lat: @hacker_day.latitude,
-          lng: @hacker_day.longitude
-          # infoWindow: render_to_string(partial: "info_window", locals: { hacker_day: @hacker_day }),
-          # image_url: helpers.asset_url('https://icon-library.net/images/laptop-icon-png-transparent/laptop-icon-png-transparent-9.jpg')
+          lng: @hacker_day.longitude,
+          infoWindow: render_to_string(partial: "info_window_show", locals: { hacker_day: @hacker_day })
         }]
     end
   end

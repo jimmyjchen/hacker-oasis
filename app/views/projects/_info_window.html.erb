@@ -1,4 +1,4 @@
 <h5><%= link_to hacker_day.project.name, project_path(hacker_day.project) %></h5>
-<p>Date: <%= hacker_day.date %></p>
+<p>Date: <%= hacker_day.date.strftime('%A, %d %b %Y %l:%M %p') %></p>
 <p>Location: <%= hacker_day.address %></p>
 <p>Hackers Attending: <%= hacker_day.attendants.count %></p>
