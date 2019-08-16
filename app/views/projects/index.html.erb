@@ -104,7 +104,7 @@
           </div>
         <% end %>
       </div>
-      <% if @projects.count > 7 %>
+      <% if @projects.count > 6 %>
         <center><a href="#" class="btn-social-red" id="see-more">See More ...</a></center>
       <% end %>
     </div>
@@ -157,7 +157,7 @@
             </div>
           <% end %>
         </div>
-        <% if @projects.tagged_with(t).count > 7 %>
+        <% if @projects.tagged_with(t).count > 6 %>
           <center><a href="#" class="btn-social-red" id="see-more-tagged">See More ...</a></center>
         <% end %>
       </div>
@@ -188,7 +188,7 @@
   const rowAll = document.querySelector(".row-all");
   const rowTagged = document.querySelector(".row-tagged");
 
-  const nextResults = () => {
+const nextTaggedResults = () => {
     rowTagged.insertAdjacentHTML('beforeend', `
       <% ActsAsTaggableOn::Tag.all.each do |t| %>
         <% @projects.tagged_with(t).limit(12).offset(6).each do |project| %>
@@ -238,7 +238,8 @@
     `);
   };
 
-  const nextTaggedResults = () => {
+  const nextResults = () => {
+
     rowAll.insertAdjacentHTML('beforeend', `
       <% @projects.limit(12).offset(6).each do |project| %>
         <div class="col-lg-4 col-md-6 col-sm-12">
@@ -283,15 +284,16 @@
           <% end %>
         </div>
       <% end %>
+
     `);
   };
 
   seeMore.addEventListener('click', (e) => {
-    seeMore.remove();
     nextResults();
+    seeMore.remove();
   });
   seeMoreTagged.addEventListener('click', (e) => {
-    seeMoreTagged.remove();
     nextTaggedResults();
+    seeMoreTagged.remove();
   });
 </script>
