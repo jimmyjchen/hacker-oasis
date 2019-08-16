@@ -1,7 +1,33 @@
-<h1>Create a new HackerDay</h1>
+<div class="submenu-tall" style="justify-content: center">
+  <h4 class="sub-header">Seems like the form didn't go through. Please try again.</h4>
+</div>
 
 <%# simple_form_for @hacker_day, url: project_hacker_days_path(params[:project_id]) do |f| %>
 <%# f.input :location, label: "Location" %>
 <%# f.input :date, label: "Date" %>
 <%# f.button :submit %>
 <%# end %>
+<div class="container">
+  <div class="row form-add-project">
+    <div class="col-lg-8">
+      <div class="form-box">
+        <%= simple_form_for [@project, @hacker_day] do |f| %>
+          <%= f.input :date, label: "When will you hack?", input_html: {class: "dateSelection"}, as: :string %>
+          <%= f.input :address, label: "Where will the hacking take place?", :input_html => { id: "hacker_day_address" } %>
+          <%= f.button :submit, "HackSession.new", class: "btn-signup" %>
+          <%= f.button :button, "Reset", type: "reset", class: "btn-reset" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    flatpickr(".dateSelection", {
+         enableTime: true,
+         minDate: "today"
+    });
+        // console.log('here')
+  })
+</script>

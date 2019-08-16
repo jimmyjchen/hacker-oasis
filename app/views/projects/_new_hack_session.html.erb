@@ -8,6 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
+        <div class="modal-body">
         <% @hacker_day = HackerDay.new %>
         <%= simple_form_for [@project, @hacker_day] do |f| %>
           <%= f.input :date, label: "When will you hack?", input_html: {class: "dateSelection"}, as: :string %>
