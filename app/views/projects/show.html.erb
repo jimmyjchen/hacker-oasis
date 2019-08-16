@@ -106,32 +106,6 @@
                   <p><strong>Date and time: </strong><%= @hacker_days.last.date.strftime('%A, %d %b %Y %l:%M %p') %>
                   <br />
                   <strong>Address: </strong><%= @hacker_days.last.address %></p>
-
-                  <%= simple_form_for [@project, @hacker_days.last], method: 'put' do |f| %>
-                    <% @hacker_days.last.attendants.each do |uid| %>
-                      <%= f.hidden_field :attendants, value: uid, multiple: true %>
-                    <% end %>
-                    <%= f.hidden_field :attendants, value: current_user.id, multiple: true %>
-                    <%= f.button :submit, "Join", class: "btn-signup" %>
-                  <% end %>
-                <h6 style="margin:0;">Hack Team</h6>
-                <div class="box-collaborators">
-                  <i class="fas fa-users"></i>
-                  <div class="avatar-list">
-                    <% @project.hacker_days.map do |hacker_day| %>
-                      <% hacker_day.attendants.each do |attendant| %>
-                        <%= link_to user_path(attendant) do %>
-                          <img src="<%= User.find(attendant).profile_avatar_url %>" class="avatar" data-toggle="tooltip" data-placement="top" title="<%= User.find(attendant).username %>">
-                        <% end %>
-                      <% end %>
-                    <% end %>
-                  </div>
-                </div>
-                <% elsif current_user.nil? %>
-                  <p>Please login to join hack sessions!</p>
-                <% else %>
-
-                  <p>Registered to the next hack session on <em><%= @hacker_days.last.date %></em> at <strong><%= @hacker_days.last.address %>.</strong></p>
                   <h6 style="margin:0;">Hack Team</h6>
                   <div class="box-collaborators">
                     <i class="fas fa-users"></i>
@@ -145,7 +119,34 @@
                       <% end %>
                     </div>
                   </div>
-         
+
+                  <%= simple_form_for [@project, @hacker_days.last], method: 'put' do |f| %>
+                    <% @hacker_days.last.attendants.each do |uid| %>
+                      <%= f.hidden_field :attendants, value: uid, multiple: true %>
+                    <% end %>
+                    <%= f.hidden_field :attendants, value: current_user.id, multiple: true %>
+                    <%= f.button :submit, "Join", class: "btn-signup" %>
+                  <% end %>
+
+                <% elsif current_user.nil? %>
+                  <p>Please login to join hack sessions!</p>
+                <% else %>
+
+                  <p>Registered to the next hack session on <em><%= @hacker_days.last.date.strftime('%A, %d %b %Y %l:%M %p') %></em> at <strong><%= @hacker_days.last.address %>.</strong></p>
+                  <h6 style="margin:0;">Hack Team</h6>
+                  <div class="box-collaborators">
+                    <i class="fas fa-users"></i>
+                    <div class="avatar-list">
+                      <% @project.hacker_days.map do |hacker_day| %>
+                        <% hacker_day.attendants.each do |attendant| %>
+                          <%= link_to user_path(attendant) do %>
+                            <img src="<%= User.find(attendant).profile_avatar_url %>" class="avatar" data-toggle="tooltip" data-placement="top" title="<%= User.find(attendant).username %>">
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+
                 <% end %>
               <% else %>
                 <p>Currently no hack session scheduled for this project.</p>
