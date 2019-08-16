@@ -11,16 +11,6 @@
           <div class="location">
             <i class="fas fa-map-marker-alt"></i> | <%= @user.city %>, <%= @user.country %>
           </div>
-          <% @user.skills.each do |s| %>
-          <span class="skills-tags"><%= s %></span>
-          <% end %>
-        </div>
-        <div class="box-user-details">
-          <p><strong>Username:</strong> <%= @user.username %></p>
-          <p><strong>Email:</strong> <%= @user.email %></p>
-          <p><strong>Linkedin:</strong> <%= @user.linkedin %> </p>
-          <p><strong>Github:</strong> <%= @user.github %> </p>
-          <p><strong>Wechat id:</strong> <%= @user.wechatid %> </p>
         </div>
       </div>
     </div>
