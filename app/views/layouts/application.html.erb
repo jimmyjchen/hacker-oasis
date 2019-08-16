@@ -7,16 +7,16 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%= render 'shared/footer' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js' %>
-    <%= javascript_include_tag 'https://cdn.rawgit.com/sniperwolf/taggingJS/master/tagging.min.js' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js' %>
+    <%= javascript_include_tag 'https://cdn.rawgit.com/sniperwolf/taggingJS/master/tagging.min.js' %>
   </body>
 </html>
