@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :collaborations, only: [:new, :create, :show, :index]
 
     resources :comments, only: [:index, :show, :new, :create]
-    resources :hacker_days, only: [:new, :create, :show, :update,:index]
+    resources :hacker_days, only: [:new, :create, :show, :update,:destroy, :index]
     resources :likes
     resources :team_comments, only: [:index, :show, :new, :create]
 
