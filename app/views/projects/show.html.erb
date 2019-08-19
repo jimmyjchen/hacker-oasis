@@ -159,6 +159,14 @@
                   HackSession.new
                 </button>
               <% end %>
+
+              <!-- Delete Hack Session -->
+
+              <% if policy(@project).edit? && (@hacker_day.nil? == false) %>
+                <%= link_to project_hacker_day_path(@project, @hacker_day), method: 'delete', class: 'btn-signup', data: { confirm: "Are you sure?" } do %>
+                    HackSession.destroy
+                <% end %>
+              <% end %>
             </div>
           </div>
           <div class="col-md-4">

@@ -46,6 +46,14 @@ class HackerDaysController < ApplicationController
     end
   end
 
+  def destroy
+    @project = Project.find(params[:project_id])
+    @hacker_day = HackerDay.find(params[:id])
+    authorize @hacker_day
+    @hacker_day.destroy
+    redirect_to project_path(@project.id)
+  end
+
   private
 
   def params_hackerdays
