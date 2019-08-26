@@ -46,6 +46,8 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     puts auth
     user_params = auth.info.slice("email")
+    # user_params[:provider] = auth.provider
+    # user_params[:uid] = auth.uid
     user_params[:username] = auth.info.nickname
     user_params[:social_avatar] = auth.info.image
     user_params[:city] = auth.extra.raw_info.location
