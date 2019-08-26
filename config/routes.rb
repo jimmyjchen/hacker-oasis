@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :projects, only: [ :index ] do
+      resources :projects, only: [ :index, :show, :update, :create, :destory ] do
         resources :hacker_days, only: [ :index, :show, :new, :create, :update, :destroy]
       end
     end
