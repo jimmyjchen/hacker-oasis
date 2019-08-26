@@ -1,6 +1,5 @@
-
-json.hacker_days do
-  json.array! @hacker_days do |hd|
-    json.extract! hd, :date, :project_id, :address
-  end
+json.extract! @project, :id, :name, :text
+json.comments @project.hacker_days do |hd|
+  json.extract! hd, :date, :project_id, :address, :attendants
+  json.date hd.created_at.strftime("%m/%d/%y")
 end
