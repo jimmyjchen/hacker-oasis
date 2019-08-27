@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(version: 2019_08_26_041525) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.string "url"
     t.string "qrcode"
     t.string "project_type"
@@ -139,11 +141,11 @@ ActiveRecord::Schema.define(version: 2019_08_26_041525) do
     t.string "description"
     t.string "avatar"
     t.string "username"
+    t.string "provider"
+    t.string "uid"
     t.string "wechatid"
     t.string "linkedin"
     t.string "github"
-    t.string "provider"
-    t.string "uid"
     t.string "social_avatar"
     t.text "skills", default: [], array: true
     t.string "openid"
