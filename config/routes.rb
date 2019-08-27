@@ -25,7 +25,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :projects, only: [ :index, :show, :update, :create, :destory ] do
         resources :hacker_days, only: [ :index, :show, :new, :create, :update, :destroy]
-        resources :commentsc, only: [ :index, :show, :new, :create, :update, :destroy]
+        resources :comments, only: [ :index, :show, :new, :create, :update, :destroy]
+        resources :likes, only: [ :index, :show, :new, :create, :destroy]
       end
     end
   end
