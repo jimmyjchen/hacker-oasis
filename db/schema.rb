@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(version: 2019_08_26_041525) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.string "url"
     t.string "qrcode"
     t.string "project_type"
