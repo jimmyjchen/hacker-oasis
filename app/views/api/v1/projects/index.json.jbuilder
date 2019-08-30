@@ -5,6 +5,6 @@
 # end
 
 json.projects @projects do |pro|
-  json.extract! pro, :name, :id, :description, :hacker_days
+  json.extract! pro, :name, :id, :description, :hacker_days, :cover_photo
   json.date pro.created_at.strftime("%m/%d/%y")
 end
